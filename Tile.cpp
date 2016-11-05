@@ -17,6 +17,22 @@ Tile::Tile(SideType north, SideType east, SideType south, SideType west, CenterT
     this->hasPennant = hasPennant;
 }
 
+Tile::SideType Tile::getNType() {
+    return this->nType;
+}
+Tile::SideType Tile::getEType() {
+    return this->eType;
+}
+Tile::SideType Tile::getSType() {
+    return this->sType;
+}
+Tile::SideType Tile::getWType() {
+    return this->wType;
+}
+Tile::CenterType Tile::getCenterType() {
+    return this->centerType;
+}
+
 void Tile::rotate() {
     SideType oldNType = nType;
     nType = wType;

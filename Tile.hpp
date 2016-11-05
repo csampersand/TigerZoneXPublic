@@ -14,18 +14,23 @@
 class Tile {
 public:
     enum SideType {
-        sideFarm,
-        sideRoad,
-        sideCity
+        sideFarm = 'f',
+        sideRoad = 'r',
+        sideCity = 'c'
     };
     enum CenterType {
-        centerCloister,
-        centerCity,
-        centerFarm
+        centerCloister = 'm',
+        centerCity = 'c',
+        centerFarm = 'f'
     };
-    Tile(SideType north, SideType east, SideType south, SideType west, CenterType center, bool hasPennant);
+    Tile(SideType, SideType, SideType, SideType, CenterType, bool);
+    SideType getNType();
+    SideType getEType();
+    SideType getSType();
+    SideType getWType();
+    CenterType getCenterType();
     void rotate();
-    void rotate(int rotations);
+    void rotate(int);
 private:
     SideType nType;
     SideType eType;
