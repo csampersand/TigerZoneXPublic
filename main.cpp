@@ -7,9 +7,24 @@
 //
 
 #include <iostream>
+#include "Tile.hpp"
+#include "TileTest.hpp"
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+    std::cout << "Tile type M:\n";
+    Tile testTile(Tile::sideCity, Tile::sideFarm, Tile::sideFarm, Tile::sideCity, Tile::centerCity, true);
+    TileTest::printTile(testTile);
+
+    std::cout << "\nRotate once:\n";
+    testTile.rotate();
+    TileTest::printTile(testTile);
+
+    std::cout << "\nRotated 2 more times:\n";
+    testTile.rotate(2);
+    TileTest::printTile(testTile);
+    
+//    int i = 3;
+//    while (i--)
+//        std::cout << "Hello, World!\n";
     return 0;
 }
