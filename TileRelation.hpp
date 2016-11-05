@@ -10,7 +10,8 @@
 #define TileRelation_hpp
 
 #include <stdio.h>
-#include "Tile.cpp"
+#include "Tile.hpp"
+
 class TileRelation {
 private:
     Tile* tile;
