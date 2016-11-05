@@ -16,10 +16,11 @@
 -e: sideType
 -w: sideType
 -center: centerType
--hasPennant: bool
--rotation: 
+-hasPennant: bool 
 --
-Tile(n, s, e, w, center, hasPennant)</panel_attributes>
+Tile(n, s, e, w, center, hasPennant)
+rotate()
+rotate(int rotations)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -119,13 +120,18 @@ hasPennant: bool=true</panel_attributes>
     <id>UMLNote</id>
     <coordinates>
       <x>408</x>
-      <y>64</y>
+      <y>32</y>
       <w>192</w>
-      <h>64</h>
+      <h>112</h>
     </coordinates>
     <panel_attributes>It is assumed that road sides will
 be connected unless centerType
 is "field"
+
+Types w and x have center "field"
+
+Types h and i have center "field"
+Types g and n have center "city"
 bg=yellow</panel_attributes>
     <additional_attributes/>
   </element>
