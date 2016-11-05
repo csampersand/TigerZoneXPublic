@@ -15,6 +15,7 @@
 #include <vector>
 #include <string>
 #include <iostream>
+extern const int NUMBEROFTILESPERTYPE[];
 #define TILES_H
 
 class Tiles {
@@ -28,6 +29,7 @@ public:
         std::string NameOfType;
         std::vector<Coordinate> *coordinate=new std::vector<Coordinate>();
     };
+    
     type *A[2];
     type *B[1];
     type *C[1];

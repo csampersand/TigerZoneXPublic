@@ -14,6 +14,15 @@
 #include "Tiles.h"
 Tiles::Tiles() {
     
+//Set the number Copy of tiles allowed in the game    
+    const int NUMBEROFTILESPERTYPE[] = {
+        2, 4, 1, 4, 5, 2,
+        1, 3, 2, 3 ,3 , 3,
+        2, 3, 2, 3, 1, 3,
+        2, 1, 8, 9, 4, 1
+    };
+    
+    
  //Individual tiles initializations
     
     A[0]=new type();
@@ -89,6 +98,8 @@ Tiles::Tiles() {
     
     S[0]=new type();
     S[1]=new type();
+    S[2]=new type();
+    S[3]=new type();
     
     T[0]=new type();
     T[1]=new type();
@@ -257,6 +268,7 @@ Tiles::Tiles() {
     
     J[0]->NameOfType="Farm"; 
     J[0]->coordinate->push_back(temp4);
+    J[0]->coordinate->push_back(temp2);
     J[0]->coordinate->push_back(temp8);
     
     J[1]->NameOfType="City";
