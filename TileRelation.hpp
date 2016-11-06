@@ -22,10 +22,10 @@ private:
 public:
     TileRelation(Tile*, TileRelation*, TileRelation*, TileRelation*, TileRelation*);
     Tile* getTile();
-    TileRelation* getNorthTile();
-    TileRelation* getEastTile();
-    TileRelation* getSouthTile();
-    TileRelation* getWestTile();
+    TileRelation* getNTile();
+    TileRelation* getETile();
+    TileRelation* getSTile();
+    TileRelation* getWTile();
 };
 
 #endif /* TileRelation_hpp */

@@ -11,15 +11,15 @@
 Tile* TileRelation::getTile() {
     return this->tile;
 }
-TileRelation* TileRelation::getNorthTile() {
+TileRelation* TileRelation::getNTile() {
     return this->nTileRelation;
 }
-TileRelation* TileRelation::getEastTile() {
+TileRelation* TileRelation::getETile() {
     return this->eTileRelation;
 }
-TileRelation* TileRelation::getSouthTile() {
+TileRelation* TileRelation::getSTile() {
     return this->sTileRelation;
 }
-TileRelation* TileRelation::getWestTile() {
+TileRelation* TileRelation::getWTile() {
     return this->wTileRelation;
 }

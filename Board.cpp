@@ -16,13 +16,13 @@ bool Board::placeTile(int x, int y, Tile* tile) {
     // Check if has neighbor
     
     // Check if neighbor matches
-    if(newTile->getNorthTile() != NULL && newTile->getNorthTile()->getTile()->getSType() != tile->getNType())
+    if(newTile->getNTile() != NULL && newTile->getNTile()->getTile()->getSType() != tile->getNType())
         return false;
-    else if(newTile->getEastTile() != NULL && newTile->getEastTile()->getTile()->getWType() != tile->getEType())
+    else if(newTile->getETile() != NULL && newTile->getETile()->getTile()->getWType() != tile->getEType())
         return false;
-    else if(newTile->getSouthTile() != NULL && newTile->getSouthTile()->getTile()->getNType() != tile->getSType())
+    else if(newTile->getSTile() != NULL && newTile->getSTile()->getTile()->getNType() != tile->getSType())
         return false;
-    else if(newTile->getWestTile() != NULL && newTile->getWestTile()->getTile()->getEType() != tile->getWType())
+    else if(newTile->getWTile() != NULL && newTile->getWTile()->getTile()->getEType() != tile->getWType())
         return false;
     
     else {
