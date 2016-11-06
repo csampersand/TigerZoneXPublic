@@ -25,6 +25,8 @@ bool Board::isPlacementValid(int x, int y, Tile* tile) {
         return false;
     else if (board[x-1][y] != NULL && board[x-1][y]->getTile()->getEType() != tile->getWType())
         return false;
+    
+    return true;
 }
 
 bool Board::placeTile(int x, int y, Tile* tile) {
