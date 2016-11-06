@@ -44,30 +44,3 @@ bool Board::placeTile(int x, int y, Tile* tile) {
     
     return true;
 }
-
-//bool Board::isPlacementValid(int x, int y, Tile* tileRelation) {
-//    if(x > 142 || y > 142) return false;    //Invalid Board coordinate
-//    if(board[x][y] != NULL) return false;  //Tile already placed in coordinate
-//
-//    bool adjacentTileFound = false;
-//
-//    //Check north edge
-//    if(x - 1 >= 0){
-//
-//    }
-//
-//    //Check south edge
-//    if(x + 1 >= 0){
-//
-//    }
-//
-//    //Check east edge
-//    if(y + 1 >= 0){
-//
-//    }
-//
-//    //Check west edge
-//    if(y - 1 >= 0){
-//
-//    }
-//}
