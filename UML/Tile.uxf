@@ -195,10 +195,11 @@ placeTile(...)</panel_attributes>
 --
 -Deck: Stack(*Tile)
 --
-Static defineTiles()
-Deck(int size)
-shuffle()
-drawTile()</panel_attributes>
++drawTile()
++static defineTiles()
++Deck(int size)
+-shuffle()
+-static createTileFromTemplate()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>

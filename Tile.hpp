@@ -24,7 +24,7 @@ public:
         centerFarm = 'f',
         centerNull = '-'
     };
-    Tile(SideType, SideType, SideType, SideType, CenterType, bool);
+    Tile(SideType, SideType, SideType, SideType, CenterType, bool hasPennant = false);
     SideType getNType();
     SideType getEType();
     SideType getSType();

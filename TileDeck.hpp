@@ -17,9 +17,10 @@ class TileDeck {
 public:
     TileDeck();
     static std::vector<Tile*> defineTiles();
-    void shuffle();
     Tile* drawTile();
 private:
+    static Tile* createTileFromTemplate(char);
+    void shuffle();
     std::vector<Tile*> deck;
 };
 
