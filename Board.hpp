@@ -14,8 +14,10 @@
 class Board {
 public:
     bool placeTile(int, int, TileRelation*);
+
 private:
     TileRelation _board[143][143];
+    bool isPlacementValid(int, int, TileRelation*);
 };
 
 #endif /* Board_hpp */
