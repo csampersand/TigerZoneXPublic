@@ -16,7 +16,7 @@ public:
     bool isPlacementValid(int, int, Tile*);
     bool placeTile(int, int, Tile*);
 private:
-    TileRelation* board[143][143];
+    TileRelation* board[144][144];
     TileRelation* firstTile;
 };
 
