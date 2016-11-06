@@ -8,6 +8,7 @@
 
 #include <algorithm>
 #include <random>
+#include <chrono>
 #include "TileDeck.hpp"
 
 Tile* TileDeck::createTileFromTemplate(char tileTemplate) {
@@ -358,7 +359,12 @@ std::vector<Tile*> TileDeck::defineTiles() {
 }
 
 void TileDeck::shuffle() {
+    typedef std::chrono::high_resolution_clock myclock;
+    myclock::time_point beginning = myclock::now();
+    myclock::duration d = myclock::now() - beginning;
+    unsigned seed = d.count();
     auto engine = std::default_random_engine{};
+    engine.seed(seed);
     std::shuffle(std::begin(this->deck), std::end(this->deck), engine);
 }
 
