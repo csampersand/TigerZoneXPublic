@@ -7,6 +7,11 @@
 
 #include "Board.hpp"
 
+Board::Board() {
+    this->firstTile = new TileRelation(this->deck.drawTile());
+    board[72][72] = this->firstTile;
+}
+
 bool Board::isPlacementValid(int x, int y, Tile* tile) {
     // TODO: Make sure this doesn't break things by checking tiles off the board
     if(x > 142 || y > 142) return false;    //Invalid Board coordinate
