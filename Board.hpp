@@ -13,11 +13,11 @@
 
 class Board {
 public:
+    bool isPlacementValid(int, int, Tile*);
     bool placeTile(int, int, Tile*);
 private:
     TileRelation* board[143][143];
     TileRelation* firstTile;
-    bool isPlacementValid(int, int, Tile*);
 };
 
 #endif /* Board_hpp */
