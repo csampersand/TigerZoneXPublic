@@ -231,8 +231,7 @@ std::vector<Tile*> TileDeck::defineTiles() {
     //Type C 1x
     tiles.push_back(createTileFromTemplate('C'));
     
-    //Type D 4x
-    tiles.push_back(createTileFromTemplate('D'));
+    //Type D 3x (+ 1x for starting tile)
     tiles.push_back(createTileFromTemplate('D'));
     tiles.push_back(createTileFromTemplate('D'));
     tiles.push_back(createTileFromTemplate('D'));
@@ -352,7 +351,7 @@ std::vector<Tile*> TileDeck::defineTiles() {
     tiles.push_back(createTileFromTemplate('W'));
 
     
-    //Type X 1
+    //Type X 1x
     tiles.push_back(createTileFromTemplate('X'));
     
     return tiles;
@@ -371,6 +370,9 @@ void TileDeck::shuffle() {
 TileDeck::TileDeck() {
     this->deck = TileDeck::defineTiles();
     this->shuffle();
+
+    //Push starting tile to top of deck
+    this->deck->push_back(createTileFromTemplate('D'));
 }
 
 Tile* TileDeck::drawTile() {
