@@ -43,7 +43,7 @@ Tile* TileDeck::createTileFromTemplate(char tileTemplate) {
                             Tile::sideCity,
                             Tile::sideRoad,
                             Tile::sideFarm,
-                            Tile::centerNull,
+                            Tile::centerFarm,
                             false);
             break;
         case 'E':
@@ -51,7 +51,7 @@ Tile* TileDeck::createTileFromTemplate(char tileTemplate) {
                             Tile::sideFarm,
                             Tile::sideFarm,
                             Tile::sideFarm,
-                            Tile::centerFarm,
+                            Tile::centerRoadBlock,
                             false);
             break;
         case 'F':
@@ -75,7 +75,7 @@ Tile* TileDeck::createTileFromTemplate(char tileTemplate) {
                             Tile::sideCity,
                             Tile::sideFarm,
                             Tile::sideCity,
-                            Tile::centerFarm,
+                            Tile::centerRoadBlock,
                             false);
             break;
         case 'I':
@@ -83,7 +83,7 @@ Tile* TileDeck::createTileFromTemplate(char tileTemplate) {
                             Tile::sideCity,
                             Tile::sideCity,
                             Tile::sideFarm,
-                            Tile::centerFarm,
+                            Tile::centerRoadBlock,
                             false);
             break;
         case 'J':
@@ -91,7 +91,7 @@ Tile* TileDeck::createTileFromTemplate(char tileTemplate) {
                             Tile::sideRoad,
                             Tile::sideRoad,
                             Tile::sideFarm,
-                            Tile::centerNull,
+                            Tile::centerFarm,
                             false);
             break;
         case 'K':
@@ -99,7 +99,7 @@ Tile* TileDeck::createTileFromTemplate(char tileTemplate) {
                             Tile::sideCity,
                             Tile::sideFarm,
                             Tile::sideRoad,
-                            Tile::centerNull,
+                            Tile::centerFarm,
                             false);
             break;
         case 'L':
@@ -179,7 +179,7 @@ Tile* TileDeck::createTileFromTemplate(char tileTemplate) {
                             Tile::sideFarm,
                             Tile::sideRoad,
                             Tile::sideFarm,
-                            Tile::centerNull,
+                            Tile::centerFarm,
                             false);
             break;
         case 'V':
@@ -187,7 +187,7 @@ Tile* TileDeck::createTileFromTemplate(char tileTemplate) {
                             Tile::sideFarm,
                             Tile::sideRoad,
                             Tile::sideRoad,
-                            Tile::centerNull,
+                            Tile::centerFarm,
                             false);
             break;
         case 'W':
@@ -195,7 +195,7 @@ Tile* TileDeck::createTileFromTemplate(char tileTemplate) {
                             Tile::sideRoad,
                             Tile::sideRoad,
                             Tile::sideRoad,
-                            Tile::centerFarm,
+                            Tile::centerRoadBlock,
                             false);
             break;
         case 'X':
@@ -203,7 +203,7 @@ Tile* TileDeck::createTileFromTemplate(char tileTemplate) {
                             Tile::sideRoad,
                             Tile::sideRoad,
                             Tile::sideRoad,
-                            Tile::centerFarm,
+                            Tile::centerRoadBlock,
                             false);
             break;
             
