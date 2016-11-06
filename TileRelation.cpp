@@ -38,11 +38,8 @@ void TileRelation::setSTileRelation(TileRelation* tileRelation) {
 void TileRelation::setWTileRelation(TileRelation* tileRelation) {
     this->wTileRelation = tileRelation;
 }
-TileRelation::TileRelation(Tile* tile) {
-    this->setTile(tile);
-}
 TileRelation::TileRelation(Tile* tile, TileRelation* nTileRelation, TileRelation* eTileRelation, TileRelation* sTileRelation, TileRelation* wTileRelation) {
-    this->tile = tile;
+    this->setTile(tile);
     this->setNTileRelation(nTileRelation);
     this->setETileRelation(eTileRelation);
     this->setSTileRelation(sTileRelation);

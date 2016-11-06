@@ -20,8 +20,7 @@ private:
     TileRelation* sTileRelation;
     TileRelation* wTileRelation;
 public:
-    TileRelation(Tile*);
-    TileRelation(Tile*, TileRelation*, TileRelation*, TileRelation*, TileRelation*);
+    TileRelation(Tile*, TileRelation* nTileRleation = NULL, TileRelation* eTileRelation = NULL, TileRelation* sTileRelation = NULL, TileRelation* wTileRelation = NULL);
     Tile* getTile();
     void setTile(Tile*);
     TileRelation* getNTileRelation();
