@@ -75,6 +75,7 @@ bool Board::placeTile(int x, int y, Tile* tile) {
         return false;
     
     TileRelation* newTile = new TileRelation(tile, board[x][y+1], board[x+1][y], board[x][y-1], board[x-1][y]);
+    board[x][y] = newTile;
     
     // Have all neighbors reference the newTile
     if (newTile->getNTileRelation() != NULL) {
