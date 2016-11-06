@@ -20,12 +20,18 @@ private:
     TileRelation* sTileRelation;
     TileRelation* wTileRelation;
 public:
+    TileRelation(Tile*);
     TileRelation(Tile*, TileRelation*, TileRelation*, TileRelation*, TileRelation*);
     Tile* getTile();
-    TileRelation* getNTile();
-    TileRelation* getETile();
-    TileRelation* getSTile();
-    TileRelation* getWTile();
+    void setTile(Tile*);
+    TileRelation* getNTileRelation();
+    TileRelation* getETileRelation();
+    TileRelation* getSTileRelation();
+    TileRelation* getWTileRelation();
+    void setNTileRelation(TileRelation*);
+    void setETileRelation(TileRelation*);
+    void setSTileRelation(TileRelation*);
+    void setWTileRelation(TileRelation*);
 };
 
 #endif /* TileRelation_hpp */
