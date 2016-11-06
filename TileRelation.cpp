@@ -8,6 +8,9 @@
 
 #include "TileRelation.hpp"
 
+Tile* TileRelation::getTile() {
+    return this->tile;
+}
 TileRelation* TileRelation::getNorthTile() {
     return this->nTileRelation;
 }
