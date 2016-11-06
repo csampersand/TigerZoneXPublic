@@ -39,3 +39,9 @@ TileDeck::TileDeck() {
     this->deck = TileDeck::defineTiles();
     this->shuffle();
 }
+
+Tile* TileDeck::drawTile() {
+    Tile* tile = this->deck.back();
+    this->deck.pop_back();
+    return tile;
+}

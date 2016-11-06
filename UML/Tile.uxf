@@ -197,7 +197,8 @@ placeTile(...)</panel_attributes>
 --
 Static defineTiles()
 Deck(int size)
-shuffle()</panel_attributes>
+shuffle()
+drawTile()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
