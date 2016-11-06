@@ -12,12 +12,16 @@
 #include "TileDeck.hpp"
 
 int main(int argc, const char * argv[]) {
-    std::cout << "Draw tile from deck:\n";
+    std::cout << "Drawing some tiles from the deck:\n";
     TileDeck deck;
     TileTest::printTile(*deck.drawTile());
+    TileTest::printTile(*deck.drawTile());
+    TileTest::printTile(*deck.drawTile());
+    TileTest::printTile(*deck.drawTile());
+    TileTest::printTile(*deck.drawTile());
+    TileTest::printTile(*deck.drawTile());
+    TileTest::printTile(*deck.drawTile());
+    TileTest::printTile(*deck.drawTile());
     
-//    int i = 3;
-//    while (i--)
-//        std::cout << "Hello, World!\n";
     return 0;
 }
