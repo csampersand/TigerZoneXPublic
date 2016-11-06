@@ -30,10 +30,12 @@ std::vector<Tile*> TileDeck::defineTiles() {
     return tiles;
 }
 
-TileDeck::TileDeck() {
-    this->deck = TileDeck::defineTiles();
+void TileDeck::shuffle() {
+    auto engine = std::default_random_engine{};
+    std::shuffle(std::begin(this->deck), std::end(this->deck), engine);
 }
 
-void TileDeck::shuffle() {
-    
+TileDeck::TileDeck() {
+    this->deck = TileDeck::defineTiles();
+    this->shuffle();
 }
