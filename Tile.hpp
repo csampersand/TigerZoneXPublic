@@ -21,7 +21,8 @@ public:
     enum CenterType {
         centerCloister = 'm',
         centerCity = 'c',
-        centerFarm = 'f'
+        centerFarm = 'f',
+        centerNull = '-'
     };
     Tile(SideType, SideType, SideType, SideType, CenterType, bool);
     SideType getNType();

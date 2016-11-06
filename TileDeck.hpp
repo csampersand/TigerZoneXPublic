@@ -18,6 +18,7 @@ public:
     TileDeck();
     static std::vector<Tile*> defineTiles();
     void shuffle();
+    Tile* drawTile();
 private:
     std::vector<Tile*> deck;
 };
