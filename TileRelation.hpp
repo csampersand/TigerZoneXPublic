@@ -20,6 +20,7 @@ private:
     TileRelation* sTileRelation;
     TileRelation* wTileRelation;
 public:
+    Tile* getTile();
     TileRelation* getNorthTile();
     TileRelation* getEastTile();
     TileRelation* getSouthTile();
