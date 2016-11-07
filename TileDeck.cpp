@@ -372,7 +372,7 @@ TileDeck::TileDeck() {
     this->shuffle();
 
     //Push starting tile to top of deck
-    this->deck->push_back(createTileFromTemplate('D'));
+    this->deck.push_back(createTileFromTemplate('D'));
 }
 
 Tile* TileDeck::drawTile() {
