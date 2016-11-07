@@ -37,7 +37,7 @@ bool Board::isPlacementValid(int x, int y, Tile* tile) {
     bool adjacentTileFound = false;
     //Check south edge
     if(y - 1 >= 0){
-        if(board[x][y-1] != null){
+        if(board[x][y-1] != NULL){
             adjacentTileFound = true;
             if(board[x][y-1]->getTile()->getNType() != tile->getSType()) return false;
         }
@@ -45,7 +45,7 @@ bool Board::isPlacementValid(int x, int y, Tile* tile) {
 
     //Check north edge
     if(y + 1 <= 142){
-        if(board[x][y+1] != null){
+        if(board[x][y+1] != NULL){
             adjacentTileFound = true;
             if(board[x][y+1]->getTile()->getSType() != tile->getNType()) return false;
         }
@@ -53,7 +53,7 @@ bool Board::isPlacementValid(int x, int y, Tile* tile) {
 
     //Check east edge
     if(x + 1 <= 142){
-        if(board[x+1][y] != null){
+        if(board[x+1][y] != NULL){
             adjacentTileFound = true;
             if(board[x+1][y]->getTile()->getWType() != tile->getEType()) return false;
         }
@@ -61,7 +61,7 @@ bool Board::isPlacementValid(int x, int y, Tile* tile) {
 
     //Check west edge
     if(x - 1 >= 0){
-        if(board[x-1][y] != null){
+        if(board[x-1][y] != NULL){
             adjacentTileFound = true;
             if(board[x-1][y]->getTile()->getEType() != tile->getWType()) return false;
         }
