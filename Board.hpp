@@ -10,13 +10,17 @@
 
 #include <stdio.h>
 #include "TileRelation.hpp"
+#include "TileDeck.hpp"
 
 class Board {
 public:
+    Board();
     bool isPlacementValid(int, int, Tile*);
     bool placeTile(int, int, Tile*);
 private:
     TileRelation* board[145][145];
+    TileDeck deck;
+    TileRelation* board[143][143];
     TileRelation* firstTile;
 	//Make sure to start at 45,45
 };

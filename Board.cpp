@@ -7,14 +7,21 @@
 
 #include "Board.hpp"
 
+Board::Board() {
+    this->firstTile = new TileRelation(this->deck.drawTile());
+    board[72][72] = this->firstTile;
+}
+
 bool Board::isPlacementValid(int x, int y, Tile* tile) {
     // TODO: Make sure this doesn't break things by checking tiles off the board
 
 	// Either coordinate cant be > 144 or < 1
 	// Board configured so that edge will have an extra row and column to check
     if(x > 144 || x < 1 || y < 1 || y > 144) return false;    //Invalid Board coordinate
+
     if(board[x][y] != NULL) return false;  //Tile already placed in coordinate
-    
+
+    /*
     // Check for at least 1 neighbor
     if (board[x][y+1] == NULL && board[x+1][y] == NULL && board[x][y-1] == NULL && board[x-1][y] == NULL)
         return false;
@@ -28,6 +35,43 @@ bool Board::isPlacementValid(int x, int y, Tile* tile) {
         return false;
     else if (board[x-1][y] != NULL && board[x-1][y]->getTile()->getEType() != tile->getWType())
         return false;
+    
+    return true;
+    */
+    bool adjacentTileFound = false;
+    //Check south edge
+    if(y - 1 >= 0){
+        if(board[x][y-1] != NULL){
+            adjacentTileFound = true;
+            if(board[x][y-1]->getTile()->getNType() != tile->getSType()) return false;
+        }
+    }
+
+    //Check north edge
+    if(y + 1 <= 142){
+        if(board[x][y+1] != NULL){
+            adjacentTileFound = true;
+            if(board[x][y+1]->getTile()->getSType() != tile->getNType()) return false;
+        }
+    }
+
+    //Check east edge
+    if(x + 1 <= 142){
+        if(board[x+1][y] != NULL){
+            adjacentTileFound = true;
+            if(board[x+1][y]->getTile()->getWType() != tile->getEType()) return false;
+        }
+    }
+
+    //Check west edge
+    if(x - 1 >= 0){
+        if(board[x-1][y] != NULL){
+            adjacentTileFound = true;
+            if(board[x-1][y]->getTile()->getEType() != tile->getWType()) return false;
+        }
+    }
+
+    return adjacentTileFound;
 }
 
 bool Board::placeTile(int x, int y, Tile* tile) {
@@ -35,19 +79,20 @@ bool Board::placeTile(int x, int y, Tile* tile) {
         return false;
     
     TileRelation* newTile = new TileRelation(tile, board[x][y+1], board[x+1][y], board[x][y-1], board[x-1][y]);
+    board[x][y] = newTile;
     
     // Have all neighbors reference the newTile
     if (newTile->getNTileRelation() != NULL) {
         newTile->getNTileRelation()->setSTileRelation(newTile);
     }
     if (newTile->getETileRelation() != NULL) {
-        newTile->getETileRelation()->setSTileRelation(newTile);
+        newTile->getETileRelation()->setWTileRelation(newTile);
     }
     if (newTile->getSTileRelation() != NULL) {
-        newTile->getSTileRelation()->setSTileRelation(newTile);
+        newTile->getSTileRelation()->setNTileRelation(newTile);
     }
     if (newTile->getWTileRelation() != NULL) {
-        newTile->getWTileRelation()->setSTileRelation(newTile);
+        newTile->getWTileRelation()->setETileRelation(newTile);
     }
     return true;
 }

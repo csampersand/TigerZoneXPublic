@@ -43,7 +43,7 @@ Tile* TileDeck::createTileFromTemplate(char tileTemplate) {
                             Tile::sideCity,
                             Tile::sideRoad,
                             Tile::sideFarm,
-                            Tile::centerNull,
+                            Tile::centerFarm,
                             false);
             break;
         case 'E':
@@ -51,7 +51,7 @@ Tile* TileDeck::createTileFromTemplate(char tileTemplate) {
                             Tile::sideFarm,
                             Tile::sideFarm,
                             Tile::sideFarm,
-                            Tile::centerFarm,
+                            Tile::centerRoadBlock,
                             false);
             break;
         case 'F':
@@ -75,7 +75,7 @@ Tile* TileDeck::createTileFromTemplate(char tileTemplate) {
                             Tile::sideCity,
                             Tile::sideFarm,
                             Tile::sideCity,
-                            Tile::centerFarm,
+                            Tile::centerRoadBlock,
                             false);
             break;
         case 'I':
@@ -83,7 +83,7 @@ Tile* TileDeck::createTileFromTemplate(char tileTemplate) {
                             Tile::sideCity,
                             Tile::sideCity,
                             Tile::sideFarm,
-                            Tile::centerFarm,
+                            Tile::centerRoadBlock,
                             false);
             break;
         case 'J':
@@ -91,7 +91,7 @@ Tile* TileDeck::createTileFromTemplate(char tileTemplate) {
                             Tile::sideRoad,
                             Tile::sideRoad,
                             Tile::sideFarm,
-                            Tile::centerNull,
+                            Tile::centerFarm,
                             false);
             break;
         case 'K':
@@ -99,7 +99,7 @@ Tile* TileDeck::createTileFromTemplate(char tileTemplate) {
                             Tile::sideCity,
                             Tile::sideFarm,
                             Tile::sideRoad,
-                            Tile::centerNull,
+                            Tile::centerFarm,
                             false);
             break;
         case 'L':
@@ -179,7 +179,7 @@ Tile* TileDeck::createTileFromTemplate(char tileTemplate) {
                             Tile::sideFarm,
                             Tile::sideRoad,
                             Tile::sideFarm,
-                            Tile::centerNull,
+                            Tile::centerFarm,
                             false);
             break;
         case 'V':
@@ -187,7 +187,7 @@ Tile* TileDeck::createTileFromTemplate(char tileTemplate) {
                             Tile::sideFarm,
                             Tile::sideRoad,
                             Tile::sideRoad,
-                            Tile::centerNull,
+                            Tile::centerFarm,
                             false);
             break;
         case 'W':
@@ -195,7 +195,7 @@ Tile* TileDeck::createTileFromTemplate(char tileTemplate) {
                             Tile::sideRoad,
                             Tile::sideRoad,
                             Tile::sideRoad,
-                            Tile::centerFarm,
+                            Tile::centerRoadBlock,
                             false);
             break;
         case 'X':
@@ -203,7 +203,7 @@ Tile* TileDeck::createTileFromTemplate(char tileTemplate) {
                             Tile::sideRoad,
                             Tile::sideRoad,
                             Tile::sideRoad,
-                            Tile::centerFarm,
+                            Tile::centerRoadBlock,
                             false);
             break;
             
@@ -231,8 +231,7 @@ std::vector<Tile*> TileDeck::defineTiles() {
     //Type C 1x
     tiles.push_back(createTileFromTemplate('C'));
     
-    //Type D 4x
-    tiles.push_back(createTileFromTemplate('D'));
+    //Type D 3x (+ 1x for starting tile)
     tiles.push_back(createTileFromTemplate('D'));
     tiles.push_back(createTileFromTemplate('D'));
     tiles.push_back(createTileFromTemplate('D'));
@@ -352,7 +351,7 @@ std::vector<Tile*> TileDeck::defineTiles() {
     tiles.push_back(createTileFromTemplate('W'));
 
     
-    //Type X 1
+    //Type X 1x
     tiles.push_back(createTileFromTemplate('X'));
     
     return tiles;
@@ -371,6 +370,9 @@ void TileDeck::shuffle() {
 TileDeck::TileDeck() {
     this->deck = TileDeck::defineTiles();
     this->shuffle();
+
+    //Push starting tile to top of deck
+    this->deck.push_back(createTileFromTemplate('D'));
 }
 
 Tile* TileDeck::drawTile() {
