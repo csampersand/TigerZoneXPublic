@@ -322,7 +322,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 3Z69XUPWPA;
+<<<<<<< 296ca013a1b9aea012e324dbcc3c7b6dc0166db3
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
+=======
+>>>>>>> First test written for Tile rotation
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -331,7 +334,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 3Z69XUPWPA;
+<<<<<<< 296ca013a1b9aea012e324dbcc3c7b6dc0166db3
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
+=======
+>>>>>>> First test written for Tile rotation
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -340,7 +346,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 3Z69XUPWPA;
+<<<<<<< 296ca013a1b9aea012e324dbcc3c7b6dc0166db3
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
+=======
+>>>>>>> First test written for Tile rotation
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -349,7 +358,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 3Z69XUPWPA;
+<<<<<<< 296ca013a1b9aea012e324dbcc3c7b6dc0166db3
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
+=======
+>>>>>>> First test written for Tile rotation
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -382,7 +394,10 @@
 				83EB3EDB1DD59A25008485FD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+<<<<<<< 296ca013a1b9aea012e324dbcc3c7b6dc0166db3
 			defaultConfigurationName = Release;
+=======
+>>>>>>> First test written for Tile rotation
 		};
 /* End XCConfigurationList section */
 	};
