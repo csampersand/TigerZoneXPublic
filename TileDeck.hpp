@@ -16,6 +16,7 @@
 class TileDeck {
 public:
     TileDeck();
+	TileDeck(char[], int);	//The bottom card of the deck corresponds to the zero-eth element of the char[]
     static std::vector<Tile*> defineTiles();
     Tile* drawTile();
 private:
