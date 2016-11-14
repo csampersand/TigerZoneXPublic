@@ -375,6 +375,15 @@ TileDeck::TileDeck() {
     this->deck.push_back(createTileFromTemplate('D'));
 }
 
+TileDeck::TileDeck(char* tileList, int n) {
+	std::vector<Tile*> tiles;
+	for (int i = 0; i < n; ++i) {
+		tiles.push_back(createTileFromTemplate(tileList[n]));
+	}
+	this->deck = tiles;
+}
+
+
 Tile* TileDeck::drawTile() {
     Tile* tile = this->deck.back();
     this->deck.pop_back();
