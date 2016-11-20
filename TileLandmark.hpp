@@ -15,6 +15,25 @@
 class TileLandmark {
 private:
     Player* tigerOwnedBy;
+    std::vector<TileLandmark*>* tileLandmarks;
+};
+
+class TileTrail : public TileLandmark {
+private:
+    TileTrail* nextTrail;
+    TileTrail* prevTrail;
+};
+
+class TileLake : public TileLandmark {
+private:
+    TileLake* nLake;
+    TileLake* eLake;
+    TileLake* sLake;
+    TileLake* wLake;
+};
+
+class TileDen : public TileLandmark {
+    bool completed;
 };
 
 #endif /* TileLandmark_hpp */
