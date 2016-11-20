@@ -68,19 +68,11 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-d yes"
-<<<<<<< 296ca013a1b9aea012e324dbcc3c7b6dc0166db3
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-s"
             isEnabled = "NO">
-=======
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "-s"
-            isEnabled = "YES">
->>>>>>> First test written for Tile rotation
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>

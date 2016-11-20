@@ -2,10 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-<<<<<<< 296ca013a1b9aea012e324dbcc3c7b6dc0166db3
       location = "self:">
-=======
-      location = "self:TigerZoneX.xcodeproj">
->>>>>>> First test written for Tile rotation
    </FileRef>
 </Workspace>
