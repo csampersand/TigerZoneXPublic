@@ -11,14 +11,14 @@
 #include "Tile.hpp"
 
 TEST_CASE("Testing tile class") {
-    Tile t(Tile::sideCity, Tile::sideFarm, Tile::sideRoad, Tile::sideRoad, Tile::centerCity, false);
+    Tile t(Tile::sideLake, Tile::sideJungle, Tile::sideTrail, Tile::sideTrail, Tile::centerLake, false);
     
     SECTION("rotating the tile") {
         INFO("Rotating 3 times")
         t.rotate(3);
-        REQUIRE(t.getNType() == Tile::sideFarm);
-        REQUIRE(t.getEType() == Tile::sideRoad);
-        REQUIRE(t.getSType() == Tile::sideRoad);
-        REQUIRE(t.getWType() == Tile::sideCity);
+        REQUIRE(t.getNType() == Tile::sideJungle);
+        REQUIRE(t.getEType() == Tile::sideTrail);
+        REQUIRE(t.getSType() == Tile::sideTrail);
+        REQUIRE(t.getWType() == Tile::sideLake);
     }
 }
