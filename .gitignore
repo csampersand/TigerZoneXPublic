@@ -9,3 +9,4 @@ TigerZoneX.sublime-project
 /TigerZoneX_VS.sln
 /.vs/TigerZoneX_VS/v14
 /Debug
+*.orig
