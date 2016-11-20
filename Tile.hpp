@@ -46,7 +46,6 @@ private:
     SideType wType;
     CenterType centerType;
     PreyType preyType;
-    bool hasPennant;
 };
 
 #endif /* Tile_hpp */
