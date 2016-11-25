@@ -1,16 +1,11 @@
 #include "Player.hpp"
 
-Player::Player(TileRelation*** gameBoard) {
+Player::Player() {
 	this->score = 0;
-	this->tigerCount = 7;
-	this->crocodileCount = 2;
-	this->Board = gameBoard;
+	//8 meeples
+	this->followerCount = 8;
 }
 
-void Player::incrementScore(int amount) {
+Player::incrementScore(int amount) {
 	this->score += amount;
-}
-
-int Player::getScore() {
-	return this->score;
 }
