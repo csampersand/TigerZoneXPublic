@@ -8,13 +8,13 @@
 
 #include "Tile.hpp"
 
-Tile::Tile(SideType north, SideType east, SideType south, SideType west, CenterType center, bool hasPennant) {
+Tile::Tile(SideType north, SideType east, SideType south, SideType west, CenterType center, PreyType prey) {
     this->nType = north;
     this->eType = east;
     this->sType = south;
     this->wType = west;
     this->centerType = center;
-    this->hasPennant = hasPennant;
+    this->preyType = prey;
 }
 
 Tile::SideType Tile::getNType() {
@@ -31,6 +31,9 @@ Tile::SideType Tile::getWType() {
 }
 Tile::CenterType Tile::getCenterType() {
     return this->centerType;
+}
+Tile::PreyType Tile::getPreyType() {
+    return this->preyType;
 }
 
 void Tile::rotate() {

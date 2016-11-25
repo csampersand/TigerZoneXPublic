@@ -14,22 +14,29 @@
 class Tile {
 public:
     enum SideType {
-        sideFarm = 'f',
-        sideRoad = 'r',
-        sideCity = 'c'
+        sideJungle = 'f',
+        sideTrail = 'r',
+        sideLake = 'c'
     };
     enum CenterType {
-        centerCloister = 'm',
-        centerCity = 'c',
-        centerRoadBlock = 'x',
-        centerFarm = 'f'
+        centerDen = 'm',
+        centerLake = 'c',
+        centerTrailBlock = 'x',
+        centerJungle = 'f'
     };
-    Tile(SideType, SideType, SideType, SideType, CenterType, bool hasPennant = false);
+    enum PreyType {
+        preyBoar = 'b',
+        preyBuffalo = 'u',
+        preyDeer = 'd',
+        null = NULL
+    };
+    Tile(SideType, SideType, SideType, SideType, CenterType, PreyType prey = null);
     SideType getNType();
     SideType getEType();
     SideType getSType();
     SideType getWType();
     CenterType getCenterType();
+    PreyType getPreyType();
     void rotate();
     void rotate(int);
 private:
@@ -38,7 +45,7 @@ private:
     SideType sType;
     SideType wType;
     CenterType centerType;
-    bool hasPennant;
+    PreyType preyType;
 };
 
 #endif /* Tile_hpp */

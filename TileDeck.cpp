@@ -15,196 +15,219 @@ Tile* TileDeck::createTileFromTemplate(char tileTemplate) {
     Tile* tile;
     switch(tileTemplate) {
         case 'A':
-            tile = new Tile(Tile::sideFarm,
-                            Tile::sideFarm,
-                            Tile::sideRoad,
-                            Tile::sideFarm,
-                            Tile::centerCloister,
-                            false);
+            tile = new Tile(Tile::sideJungle,
+                            Tile::sideJungle,
+                            Tile::sideJungle,
+                            Tile::sideJungle,
+                            Tile::centerJungle,
+                            Tile::null);
             break;
         case 'B':
-            tile = new Tile(Tile::sideFarm,
-                            Tile::sideFarm,
-                            Tile::sideFarm,
-                            Tile::sideFarm,
-                            Tile::centerCloister,
-                            false);
+            tile = new Tile(Tile::sideJungle,
+                            Tile::sideJungle,
+                            Tile::sideJungle,
+                            Tile::sideJungle,
+                            Tile::centerDen,
+                            Tile::null);
             break;
         case 'C':
-            tile = new Tile(Tile::sideCity,
-                            Tile::sideCity,
-                            Tile::sideCity,
-                            Tile::sideCity,
-                            Tile::centerCity,
-                            true);
+            tile = new Tile(Tile::sideJungle,
+                            Tile::sideJungle,
+                            Tile::sideTrail,
+                            Tile::sideJungle,
+                            Tile::centerDen,
+                            Tile::null);
             break;
         case 'D':
-            tile = new Tile(Tile::sideRoad,
-                            Tile::sideCity,
-                            Tile::sideRoad,
-                            Tile::sideFarm,
-                            Tile::centerFarm,
-                            false);
+            tile = new Tile(Tile::sideTrail,
+                            Tile::sideTrail,
+                            Tile::sideTrail,
+                            Tile::sideTrail,
+                            Tile::centerTrailBlock,
+                            Tile::null);
             break;
         case 'E':
-            tile = new Tile(Tile::sideCity,
-                            Tile::sideFarm,
-                            Tile::sideFarm,
-                            Tile::sideFarm,
-                            Tile::centerRoadBlock,
-                            false);
+            tile = new Tile(Tile::sideTrail,
+                            Tile::sideJungle,
+                            Tile::sideTrail,
+                            Tile::sideJungle,
+                            Tile::centerJungle,
+                            Tile::null);
             break;
         case 'F':
-            tile = new Tile(Tile::sideFarm,
-                            Tile::sideCity,
-                            Tile::sideFarm,
-                            Tile::sideCity,
-                            Tile::centerCity,
-                            true);
+            tile = new Tile(Tile::sideTrail,
+                            Tile::sideJungle,
+                            Tile::sideJungle,
+                            Tile::sideTrail,
+                            Tile::centerJungle,
+                            Tile::null);
             break;
         case 'G':
-            tile = new Tile(Tile::sideCity,
-                            Tile::sideFarm,
-                            Tile::sideCity,
-                            Tile::sideFarm,
-                            Tile::centerCity,
-                            false);
+            tile = new Tile(Tile::sideTrail,
+                            Tile::sideJungle,
+                            Tile::sideTrail,
+                            Tile::sideTrail,
+                            Tile::centerJungle,
+                            Tile::null);
             break;
         case 'H':
-            tile = new Tile(Tile::sideFarm,
-                            Tile::sideCity,
-                            Tile::sideFarm,
-                            Tile::sideCity,
-                            Tile::centerRoadBlock,
-                            false);
+            tile = new Tile(Tile::sideLake,
+                            Tile::sideLake,
+                            Tile::sideLake,
+                            Tile::sideLake,
+                            Tile::centerLake,
+                            Tile::null);
             break;
         case 'I':
-            tile = new Tile(Tile::sideFarm,
-                            Tile::sideCity,
-                            Tile::sideCity,
-                            Tile::sideFarm,
-                            Tile::centerRoadBlock,
-                            false);
+            tile = new Tile(Tile::sideJungle,
+                            Tile::sideLake,
+                            Tile::sideLake,
+                            Tile::sideLake,
+                            Tile::centerLake,
+                            Tile::null);
             break;
         case 'J':
-            tile = new Tile(Tile::sideCity,
-                            Tile::sideRoad,
-                            Tile::sideRoad,
-                            Tile::sideFarm,
-                            Tile::centerFarm,
-                            false);
+            tile = new Tile(Tile::sideLake,
+                            Tile::sideLake,
+                            Tile::sideJungle,
+                            Tile::sideJungle,
+                            Tile::centerLake,
+                            Tile::null);
             break;
         case 'K':
-            tile = new Tile(Tile::sideRoad,
-                            Tile::sideCity,
-                            Tile::sideFarm,
-                            Tile::sideRoad,
-                            Tile::centerFarm,
-                            false);
+            tile = new Tile(Tile::sideJungle,
+                            Tile::sideLake,
+                            Tile::sideJungle,
+                            Tile::sideLake,
+                            Tile::centerLake,
+                            Tile::null);
             break;
         case 'L':
-            tile = new Tile(Tile::sideRoad,
-                            Tile::sideCity,
-                            Tile::sideRoad,
-                            Tile::sideRoad,
-                            Tile::centerCloister,
-                            false);
+            tile = new Tile(Tile::sideLake,
+                            Tile::sideJungle,
+                            Tile::sideLake,
+                            Tile::sideJungle,
+                            Tile::centerJungle,
+                            Tile::null);
             break;
         case 'M':
-            tile = new Tile(Tile::sideCity,
-                            Tile::sideFarm,
-                            Tile::sideFarm,
-                            Tile::sideCity,
-                            Tile::centerCity,
-                            true);
+            tile = new Tile(Tile::sideLake,
+                            Tile::sideJungle,
+                            Tile::sideJungle,
+                            Tile::sideJungle,
+                            Tile::centerJungle,
+                            Tile::null);
             break;
         case 'N':
-            tile = new Tile(Tile::sideCity,
-                            Tile::sideFarm,
-                            Tile::sideFarm,
-                            Tile::sideCity,
-                            Tile::centerCity,
-                            false);
+            tile = new Tile(Tile::sideJungle,
+                            Tile::sideLake,
+                            Tile::sideLake,
+                            Tile::sideJungle,
+                            Tile::centerJungle,
+                            Tile::null);
             break;
         case 'O':
-            tile = new Tile(Tile::sideCity,
-                            Tile::sideRoad,
-                            Tile::sideRoad,
-                            Tile::sideCity,
-                            Tile::centerCity,
-                            true);
+            tile = new Tile(Tile::sideTrail,
+                            Tile::sideLake,
+                            Tile::sideJungle,
+                            Tile::sideTrail,
+                            Tile::centerJungle,
+                            Tile::null);
             break;
         case 'P':
-            tile = new Tile(Tile::sideCity,
-                            Tile::sideRoad,
-                            Tile::sideRoad,
-                            Tile::sideCity,
-                            Tile::centerCity,
-                            false);
+            tile = new Tile(Tile::sideTrail,
+                            Tile::sideLake,
+                            Tile::sideJungle,
+                            Tile::sideTrail,
+                            Tile::centerJungle,
+                            Tile::preyBoar);
             break;
         case 'Q':
-            tile = new Tile(Tile::sideCity,
-                            Tile::sideCity,
-                            Tile::sideFarm,
-                            Tile::sideCity,
-                            Tile::centerCity,
-                            true);
+            tile = new Tile(Tile::sideJungle,
+                            Tile::sideLake,
+                            Tile::sideTrail,
+                            Tile::sideTrail,
+                            Tile::centerJungle,
+                            Tile::null);
             break;
         case 'R':
-            tile = new Tile(Tile::sideCity,
-                            Tile::sideCity,
-                            Tile::sideFarm,
-                            Tile::sideCity,
-                            Tile::centerCity,
-                            false);
+            tile = new Tile(Tile::sideJungle,
+                            Tile::sideLake,
+                            Tile::sideTrail,
+                            Tile::sideTrail,
+                            Tile::centerJungle,
+                            Tile::preyBuffalo);
             break;
         case 'S':
-            tile = new Tile(Tile::sideCity,
-                            Tile::sideCity,
-                            Tile::sideRoad,
-                            Tile::sideCity,
-                            Tile::centerCity,
-                            true);
+            tile = new Tile(Tile::sideTrail,
+                            Tile::sideLake,
+                            Tile::sideTrail,
+                            Tile::sideJungle,
+                            Tile::centerJungle,
+                            Tile::null);
             break;
         case 'T':
-            tile = new Tile(Tile::sideCity,
-                            Tile::sideCity,
-                            Tile::sideRoad,
-                            Tile::sideCity,
-                            Tile::centerCity,
-                            false);
+            tile = new Tile(Tile::sideTrail,
+                            Tile::sideLake,
+                            Tile::sideTrail,
+                            Tile::sideJungle,
+                            Tile::centerJungle,
+                            Tile::preyDeer);
             break;
         case 'U':
-            tile = new Tile(Tile::sideRoad,
-                            Tile::sideFarm,
-                            Tile::sideRoad,
-                            Tile::sideFarm,
-                            Tile::centerFarm,
-                            false);
+            tile = new Tile(Tile::sideTrail,
+                            Tile::sideLake,
+                            Tile::sideLake,
+                            Tile::sideLake,
+                            Tile::centerLake,
+                            Tile::null);
             break;
         case 'V':
-            tile = new Tile(Tile::sideFarm,
-                            Tile::sideFarm,
-                            Tile::sideRoad,
-                            Tile::sideRoad,
-                            Tile::centerFarm,
-                            false);
+            tile = new Tile(Tile::sideTrail,
+                            Tile::sideLake,
+                            Tile::sideTrail,
+                            Tile::sideTrail,
+                            Tile::centerTrailBlock,
+                            Tile::null);
             break;
         case 'W':
-            tile = new Tile(Tile::sideFarm,
-                            Tile::sideRoad,
-                            Tile::sideRoad,
-                            Tile::sideRoad,
-                            Tile::centerRoadBlock,
-                            false);
+            tile = new Tile(Tile::sideTrail,
+                            Tile::sideLake,
+                            Tile::sideTrail,
+                            Tile::sideTrail,
+                            Tile::centerTrailBlock,
+                            Tile::preyBoar);
             break;
         case 'X':
-            tile = new Tile(Tile::sideRoad,
-                            Tile::sideRoad,
-                            Tile::sideRoad,
-                            Tile::sideRoad,
-                            Tile::centerRoadBlock,
-                            false);
+            tile = new Tile(Tile::sideTrail,
+                            Tile::sideLake,
+                            Tile::sideLake,
+                            Tile::sideTrail,
+                            Tile::centerLake,
+                            Tile::null);
+            break;
+        case 'Y':
+            tile = new Tile(Tile::sideTrail,
+                            Tile::sideLake,
+                            Tile::sideLake,
+                            Tile::sideTrail,
+                            Tile::centerLake,
+                            Tile::preyBuffalo);
+        case 'Z':
+            tile = new Tile(Tile::sideLake,
+                            Tile::sideJungle,
+                            Tile::sideTrail,
+                            Tile::sideJungle,
+                            Tile::centerJungle,
+                            Tile::null);
+            break;
+        case '#':
+            tile = new Tile(Tile::sideLake,
+                            Tile::sideJungle,
+                            Tile::sideTrail,
+                            Tile::sideJungle,
+                            Tile::centerJungle,
+                            Tile::preyDeer);
             break;
             
         default:
@@ -218,8 +241,7 @@ Tile* TileDeck::createTileFromTemplate(char tileTemplate) {
 std::vector<Tile*> TileDeck::defineTiles() {
     std::vector<Tile*> tiles;
     
-    // Type A 2x
-    tiles.push_back(createTileFromTemplate('A'));
+    // Type A 1x
     tiles.push_back(createTileFromTemplate('A'));
     
     // Type B 4x
@@ -228,43 +250,55 @@ std::vector<Tile*> TileDeck::defineTiles() {
     tiles.push_back(createTileFromTemplate('B'));
     tiles.push_back(createTileFromTemplate('B'));
     
-    //Type C 1x
+    //Type C 2x
+    tiles.push_back(createTileFromTemplate('C'));
     tiles.push_back(createTileFromTemplate('C'));
     
-    //Type D 3x (+ 1x for starting tile)
+    //Type D 1x
     tiles.push_back(createTileFromTemplate('D'));
-    tiles.push_back(createTileFromTemplate('D'));
-    tiles.push_back(createTileFromTemplate('D'));
+    
+    //Type E 8x
+    tiles.push_back(createTileFromTemplate('E'));
+    tiles.push_back(createTileFromTemplate('E'));
+    tiles.push_back(createTileFromTemplate('E'));
+    tiles.push_back(createTileFromTemplate('E'));
+    tiles.push_back(createTileFromTemplate('E'));
+    tiles.push_back(createTileFromTemplate('E'));
+    tiles.push_back(createTileFromTemplate('E'));
+    tiles.push_back(createTileFromTemplate('E'));
 
     
-    //Type E 5x
-    tiles.push_back(createTileFromTemplate('E'));
-    tiles.push_back(createTileFromTemplate('E'));
-    tiles.push_back(createTileFromTemplate('E'));
-    tiles.push_back(createTileFromTemplate('E'));
-    tiles.push_back(createTileFromTemplate('E'));
-
-    
-    //Type F 2x
+    //Type F 9x
     tiles.push_back(createTileFromTemplate('F'));
     tiles.push_back(createTileFromTemplate('F'));
-
+    tiles.push_back(createTileFromTemplate('F'));
+    tiles.push_back(createTileFromTemplate('F'));
+    tiles.push_back(createTileFromTemplate('F'));
+    tiles.push_back(createTileFromTemplate('F'));
+    tiles.push_back(createTileFromTemplate('F'));
+    tiles.push_back(createTileFromTemplate('F'));
+    tiles.push_back(createTileFromTemplate('F'));
     
-    //Type G 1x
+    //Type G 4x
+    tiles.push_back(createTileFromTemplate('G'));
+    tiles.push_back(createTileFromTemplate('G'));
+    tiles.push_back(createTileFromTemplate('G'));
     tiles.push_back(createTileFromTemplate('G'));
     
-    //Type H 3x
-    tiles.push_back(createTileFromTemplate('H'));
-    tiles.push_back(createTileFromTemplate('H'));
+    //Type H 1x
     tiles.push_back(createTileFromTemplate('H'));
 
     
-    //Type I 2x
+    //Type I 4x
+    tiles.push_back(createTileFromTemplate('I'));
+    tiles.push_back(createTileFromTemplate('I'));
     tiles.push_back(createTileFromTemplate('I'));
     tiles.push_back(createTileFromTemplate('I'));
 
     
-    //Type J 3x
+    //Type J 5x
+    tiles.push_back(createTileFromTemplate('J'));
+    tiles.push_back(createTileFromTemplate('J'));
     tiles.push_back(createTileFromTemplate('J'));
     tiles.push_back(createTileFromTemplate('J'));
     tiles.push_back(createTileFromTemplate('J'));
@@ -282,77 +316,72 @@ std::vector<Tile*> TileDeck::defineTiles() {
     tiles.push_back(createTileFromTemplate('L'));
 
     
-    //Type M 2x
+    //Type M 5x
     tiles.push_back(createTileFromTemplate('M'));
     tiles.push_back(createTileFromTemplate('M'));
+    tiles.push_back(createTileFromTemplate('M'));
+    tiles.push_back(createTileFromTemplate('M'));
+    tiles.push_back(createTileFromTemplate('M'));
 
     
-    //Type N 3x
-    tiles.push_back(createTileFromTemplate('N'));
+    //Type N 2x
     tiles.push_back(createTileFromTemplate('N'));
     tiles.push_back(createTileFromTemplate('N'));
 
     
-    //Type O 2x
+    //Type O 1x
     tiles.push_back(createTileFromTemplate('O'));
-    tiles.push_back(createTileFromTemplate('O'));
-
     
-    //Type P 3x
+    //Type P 2x
     tiles.push_back(createTileFromTemplate('P'));
     tiles.push_back(createTileFromTemplate('P'));
-    tiles.push_back(createTileFromTemplate('P'));
-
     
     //Type Q 1x
     tiles.push_back(createTileFromTemplate('Q'));
     
-    //Type R 3x
+    //Type R 2x
     tiles.push_back(createTileFromTemplate('R'));
     tiles.push_back(createTileFromTemplate('R'));
-    tiles.push_back(createTileFromTemplate('R'));
-
     
-    //Type S 2x
+    //Type S 1 + 2x
     tiles.push_back(createTileFromTemplate('S'));
     tiles.push_back(createTileFromTemplate('S'));
 
     
-    //Type T 1x
+    //Type T 2x
+    tiles.push_back(createTileFromTemplate('T'));
     tiles.push_back(createTileFromTemplate('T'));
     
-    //Type U 8x
-    tiles.push_back(createTileFromTemplate('U'));
-    tiles.push_back(createTileFromTemplate('U'));
-    tiles.push_back(createTileFromTemplate('U'));
-    tiles.push_back(createTileFromTemplate('U'));
-    tiles.push_back(createTileFromTemplate('U'));
+    //Type U 3x
     tiles.push_back(createTileFromTemplate('U'));
     tiles.push_back(createTileFromTemplate('U'));
     tiles.push_back(createTileFromTemplate('U'));
 
     
-    //Type V 9x
-    tiles.push_back(createTileFromTemplate('V'));
-    tiles.push_back(createTileFromTemplate('V'));
-    tiles.push_back(createTileFromTemplate('V'));
-    tiles.push_back(createTileFromTemplate('V'));
-    tiles.push_back(createTileFromTemplate('V'));
-    tiles.push_back(createTileFromTemplate('V'));
-    tiles.push_back(createTileFromTemplate('V'));
-    tiles.push_back(createTileFromTemplate('V'));
+    //Type V 1x
     tiles.push_back(createTileFromTemplate('V'));
 
     
-    //Type W 4x
-    tiles.push_back(createTileFromTemplate('W'));
-    tiles.push_back(createTileFromTemplate('W'));
+    //Type W 2x
     tiles.push_back(createTileFromTemplate('W'));
     tiles.push_back(createTileFromTemplate('W'));
 
     
-    //Type X 1x
+    //Type X 3x
     tiles.push_back(createTileFromTemplate('X'));
+    tiles.push_back(createTileFromTemplate('X'));
+    tiles.push_back(createTileFromTemplate('X'));
+    
+    //Type Y 2x
+    tiles.push_back(createTileFromTemplate('Y'));
+    tiles.push_back(createTileFromTemplate('Y'));
+    
+    //Type Z 1x
+    tiles.push_back(createTileFromTemplate('Z'));
+    
+    //Type # 2x
+    tiles.push_back(createTileFromTemplate('#'));
+    tiles.push_back(createTileFromTemplate('#'));
     
     return tiles;
 }
@@ -372,7 +401,7 @@ TileDeck::TileDeck() {
     this->shuffle();
 
     //Push starting tile to top of deck
-    this->deck.push_back(createTileFromTemplate('D'));
+    this->deck.push_back(createTileFromTemplate('S'));
 }
 
 TileDeck::TileDeck(char* tileList, int n) {

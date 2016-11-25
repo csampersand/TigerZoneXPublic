@@ -13,8 +13,9 @@ Board::Board() {
 }
 
 bool Board::isPlacementValid(int x, int y, Tile* tile) {
-    // TODO: Make sure this doesn't break things by checking tiles off the board
-    if(x > 145 || y > 145) return false;    //Invalid Board coordinate
+	// Either coordinate cant be > 144 or < 1
+	// Board configured so that edge will have an extra row and column to check
+    if(x > 144 || x < 1 || y < 1 || y > 144) return false;    //Invalid Board coordinate
     if(board[x][y] != NULL) return false;  //Tile already placed in coordinate
 
     /*
