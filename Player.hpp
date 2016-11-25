@@ -11,7 +11,7 @@
 class Player {
 public:
 	Player();
-
+	int incrementScore(int);
 
 private:
 	int followerCount; // Number of Meeple
