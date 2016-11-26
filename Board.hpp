@@ -18,7 +18,7 @@ public:
     bool isPlacementValid(int, int, Tile*);
     bool placeTile(int, int, Tile*);
 private:
-    TileRelation* board[145][145];
+    TileRelation* board[153][153];
     TileDeck deck;
     TileRelation* firstTile;
 	//Make sure to start at 45,45

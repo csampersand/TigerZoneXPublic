@@ -5,10 +5,11 @@
 class DenFeature : BoardFeature
 {
 public:
-	DenFeature(Tile*);
-	void updateScore();
+	DenFeature();
+	DenFeature(int, int);
+	bool placeCroc(Player*);
 	
 private:
-	Tile* denLocation;
+	int x_coord;	//Possibly have the scoring object contain these coord's
+	int y_coord;
 };
-
