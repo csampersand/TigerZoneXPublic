@@ -2,13 +2,13 @@
 
 using namespace std;
 
-DenFeature::DenFeature()
+DenFeature::DenFeature(Tile* denLocation)
 {
+	this->denLocation = denLocation;
+	updateScore();
 }
 
-void DenFeature::isComplete() {
-	currentScore = 9;
-	if (featureOwner != NULL) {
-		featureOwner->incrementScore(currentScore);
-	}
+//Check Moore neighborhood of Den and update score accordingly
+void DenFeature::updateScore() {
+	
 }

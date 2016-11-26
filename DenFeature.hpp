@@ -1,11 +1,14 @@
 #pragma once
 #include "BoardFeature.hpp";
+#include "Tile.hpp";
 
 class DenFeature : BoardFeature
 {
 public:
-	DenFeature();
-	void isComplete();
+	DenFeature(Tile*);
+	void updateScore();
 	
+private:
+	Tile* denLocation;
 };
 
