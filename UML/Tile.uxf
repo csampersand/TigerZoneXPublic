@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.2">
-  <zoom_level>13</zoom_level>
+  <zoom_level>6</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>364</x>
-      <y>1157</y>
-      <w>286</w>
-      <h>312</h>
+      <x>168</x>
+      <y>606</y>
+      <w>132</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>*Tile*
 --
@@ -27,10 +27,10 @@ rotate(int rotations)</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>728</x>
-      <y>1625</y>
-      <w>273</w>
-      <h>195</h>
+      <x>336</x>
+      <y>822</y>
+      <w>126</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>*object: Tile*
 (type H)
@@ -46,10 +46,10 @@ hasPennant: bool=false</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>494</x>
-      <y>1456</y>
-      <w>403</w>
-      <h>195</h>
+      <x>228</x>
+      <y>744</y>
+      <w>186</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 &lt;&lt;instanceOf&gt;&gt;</panel_attributes>
@@ -58,10 +58,10 @@ hasPennant: bool=false</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>39</x>
-      <y>1625</y>
-      <w>273</w>
-      <h>195</h>
+      <x>18</x>
+      <y>822</y>
+      <w>126</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>*object: Tile*
 (type A)
@@ -77,10 +77,10 @@ hasPennant: bool=false</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>143</x>
-      <y>1456</y>
-      <w>390</w>
-      <h>195</h>
+      <x>66</x>
+      <y>744</y>
+      <w>180</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 &lt;&lt;instanceOf&gt;&gt;</panel_attributes>
@@ -89,10 +89,10 @@ hasPennant: bool=false</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>377</x>
-      <y>1625</y>
-      <w>273</w>
-      <h>195</h>
+      <x>174</x>
+      <y>822</y>
+      <w>126</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>*object: Tile*
 (type F)
@@ -108,10 +108,10 @@ hasPennant: bool=true</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>494</x>
-      <y>1456</y>
-      <w>143</w>
-      <h>182</h>
+      <x>228</x>
+      <y>744</y>
+      <w>66</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 &lt;&lt;instanceOf&gt;&gt;</panel_attributes>
@@ -120,10 +120,10 @@ hasPennant: bool=true</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>494</x>
-      <y>1014</y>
-      <w>39</w>
-      <h>169</h>
+      <x>228</x>
+      <y>540</y>
+      <w>18</w>
+      <h>78</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
@@ -131,10 +131,10 @@ hasPennant: bool=true</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>364</x>
-      <y>819</y>
-      <w>273</w>
-      <h>208</h>
+      <x>168</x>
+      <y>450</y>
+      <w>126</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>*TileRelation*
 --
@@ -152,13 +152,14 @@ setters()</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>364</x>
-      <y>494</y>
-      <w>273</w>
-      <h>247</h>
+      <x>168</x>
+      <y>300</y>
+      <w>126</w>
+      <h>114</h>
     </coordinates>
     <panel_attributes>*Board*
 --
+-deck: TileDeck
 -tiles: TileRelation*[][]
 -landmarks: vector&lt;TileLandmark*&gt;[][]
 -startTile: TileRelation*
@@ -172,9 +173,9 @@ placeTile(int x, int y, Tile* tile)</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>0</x>
-      <y>793</y>
-      <w>273</w>
-      <h>247</h>
+      <y>438</y>
+      <w>126</w>
+      <h>114</h>
     </coordinates>
     <panel_attributes>*TileDeck*
 --
@@ -183,7 +184,6 @@ placeTile(int x, int y, Tile* tile)</panel_attributes>
 +drawTile()
 +static defineTiles()
 +Deck(int size)
-+size(): int //number of remaining tiles
 -shuffle()
 -static createTileFromTemplate()</panel_attributes>
     <additional_attributes/>
@@ -191,10 +191,10 @@ placeTile(int x, int y, Tile* tile)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>494</x>
-      <y>728</y>
-      <w>39</w>
-      <h>117</h>
+      <x>228</x>
+      <y>408</y>
+      <w>18</w>
+      <h>54</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
@@ -202,10 +202,10 @@ placeTile(int x, int y, Tile* tile)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>130</x>
-      <y>1027</y>
-      <w>403</w>
-      <h>156</h>
+      <x>60</x>
+      <y>546</y>
+      <w>186</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;290.0;100.0</additional_attributes>
@@ -213,114 +213,143 @@ placeTile(int x, int y, Tile* tile)</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1430</x>
-      <y>325</y>
-      <w>442</w>
-      <h>273</h>
+      <x>168</x>
+      <y>144</y>
+      <w>126</w>
+      <h>114</h>
     </coordinates>
-    <panel_attributes>&lt;&lt;Virtual&gt;&gt;
-*Player*
+    <panel_attributes>*Game*
 --
--tigerCount: int
--crocodileCount: int
--score: int
-#Board: TileRelation***
+-players: std::vector&lt;Player*&gt;
+-board: Board
+-turnIndex: int
 --
-+Player(TileRelation***)
-+incrementScore(int): int
-+getScore(): int
-+virtual TakeTurn(Tile*) const = 0 : MoveEntity</panel_attributes>
+Game(int playerCount) // Call startgame</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>520</x>
-      <y>286</y>
-      <w>1066</w>
-      <h>65</h>
+      <x>228</x>
+      <y>252</y>
+      <w>18</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;800.0;30.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1040</x>
-      <y>1066</y>
-      <w>273</w>
-      <h>195</h>
+      <x>360</x>
+      <y>300</y>
+      <w>126</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>*Player*
+--
+-tigerCount: int
+-score: int
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>228</x>
+      <y>252</y>
+      <w>204</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;320.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>480</x>
+      <y>570</y>
+      <w>126</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>*TileLake*
+{friend Lake}
 --
 nLake: TileLake*
 eLake: TileLake*
 sLake: TileLake*
 wLake: TileLake*
+bool lakeEnds
+bool hasCrocodile</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>612</x>
+      <y>570</y>
+      <w>126</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>*TileDen*
+{friend Den}
+--
+vector&lt;Tile*&gt; surroundingTiles;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>348</x>
+      <y>570</y>
+      <w>126</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>*TileTrail*
+{friend Trail}
+--
+nextTrail: TileTrail*
+prevTrail: TileTrail*
+bool trailEnds
+bool hasCrocodile</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>228</x>
+      <y>408</y>
+      <w>330</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;530.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>480</x>
+      <y>456</y>
+      <w>126</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Virtual&gt;&gt;
+/TileLandmark/
+{friend Landmark}
+--
+tigerOwnedBy: Player*
+landmark: Landmark*
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>1326</x>
-      <y>1066</y>
-      <w>273</w>
-      <h>195</h>
-    </coordinates>
-    <panel_attributes>*TileDen*
---
-completed: bool</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>754</x>
-      <y>1066</y>
-      <w>273</w>
-      <h>195</h>
-    </coordinates>
-    <panel_attributes>*TileTrail*
---
-nextTrail: TileTrail*
-prevTrail: TileTrail*</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
     <id>Relation</id>
     <coordinates>
-      <x>494</x>
-      <y>728</y>
-      <w>715</w>
-      <h>117</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;530.0;70.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>1040</x>
-      <y>819</y>
-      <w>273</w>
-      <h>195</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Virtual&gt;&gt;
-*TileLandmark*
---
-tigerOwnedBy: Player*
-tiles: vector&lt;TileLandmark*&gt;*
---</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>884</x>
-      <y>1001</y>
-      <w>325</w>
-      <h>91</h>
+      <x>408</x>
+      <y>540</y>
+      <w>150</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>230.0;10.0;10.0;50.0</additional_attributes>
@@ -328,10 +357,10 @@ tiles: vector&lt;TileLandmark*&gt;*
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1170</x>
-      <y>1001</y>
-      <w>39</w>
-      <h>91</h>
+      <x>540</x>
+      <y>540</y>
+      <w>18</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
@@ -339,10 +368,10 @@ tiles: vector&lt;TileLandmark*&gt;*
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1170</x>
-      <y>1001</y>
-      <w>338</w>
-      <h>91</h>
+      <x>540</x>
+      <y>540</y>
+      <w>156</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;240.0;50.0</additional_attributes>
@@ -350,117 +379,148 @@ tiles: vector&lt;TileLandmark*&gt;*
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>390</x>
-      <y>52</y>
-      <w>507</w>
-      <h>247</h>
+      <x>264</x>
+      <y>0</y>
+      <w>126</w>
+      <h>114</h>
     </coordinates>
     <panel_attributes>*GameController*
 --
--Deck: TileDeck
--board: Board*
--players: Player*[2]
--turnIndex: int
+-game: Game*
 --
-+GameController(Player*, Player*)
-+startGame(): void
--endGame(): void // Choose winner, call end game scoring
--endGame(int): void //int is the index of the forfeiting player
--scoreGame(): void</panel_attributes>
+nextTurn() // Call player turn method &amp; pass tile &amp; board
+playTile(x, y, Tile*, Player*)
+endTurn() // Return meeples if necessary, and update score
+-startGame(int playerCount) // init stuff
+-endGame() // Choose winner, call end game scoring
+-scoreGame()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>494</x>
-      <y>286</y>
-      <w>52</w>
-      <h>234</h>
+      <x>222</x>
+      <y>108</y>
+      <w>114</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>20.0;10.0;10.0;160.0</additional_attributes>
+    <additional_attributes>170.0;10.0;10.0;60.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1495</x>
-      <y>585</y>
-      <w>182</w>
-      <h>143</h>
+      <x>318</x>
+      <y>108</y>
+      <w>120</w>
+      <h>204</h>
     </coordinates>
-    <panel_attributes>lt=&lt;.
-&lt;&lt;instanceOf&gt;&gt;</panel_attributes>
-    <additional_attributes>120.0;10.0;10.0;90.0</additional_attributes>
+    <panel_attributes>lt=&lt;-
+m1=2..n</panel_attributes>
+    <additional_attributes>170.0;320.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1378</x>
-      <y>702</y>
-      <w>273</w>
-      <h>91</h>
+      <x>714</x>
+      <y>222</y>
+      <w>126</w>
+      <h>84</h>
     </coordinates>
-    <panel_attributes>*AIPlayer*
+    <panel_attributes>&lt;&lt;Virtual&gt;&gt;
+/Landmark/
 --
+vector&lt;TileLandmark*&gt;
+--
+virtual bool isComplete()
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1677</x>
-      <y>702</y>
-      <w>273</w>
-      <h>91</h>
+      <x>846</x>
+      <y>336</y>
+      <w>126</w>
+      <h>90</h>
     </coordinates>
-    <panel_attributes>*NetworkPlayer*
+    <panel_attributes>*Den*
 --
-</panel_attributes>
+--
+bool isComplete()</panel_attributes>
     <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1651</x>
-      <y>585</y>
-      <w>195</w>
-      <h>143</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;.
-&lt;&lt;instanceOf&gt;&gt;</panel_attributes>
-    <additional_attributes>10.0;10.0;130.0;90.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1833</x>
-      <y>1079</y>
-      <w>429</w>
-      <h>273</h>
+      <x>714</x>
+      <y>336</y>
+      <w>126</w>
+      <h>90</h>
     </coordinates>
-    <panel_attributes>*MoveEntity*
+    <panel_attributes>*Lake*
 --
-+forfeit: bool
-+tile: Tile*
-+numOfTileRelations: int
-+x_coord: int
-+y_coord: int
-+crocodile: bool
-+tigerZone: int //if = -1, then no tiger was placed
 --
-+MoveEntity() //Forfeit Constructor
-+MoveEntity(Tile*, int, int, int, bool, int)</panel_attributes>
+bool isComplete()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>582</x>
+      <y>336</y>
+      <w>126</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>*Trail*
+--
+--
+bool isComplete()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>91</x>
-      <y>286</y>
-      <w>416</w>
-      <h>533</h>
+      <x>636</x>
+      <y>300</y>
+      <w>150</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>300.0;10.0;10.0;390.0</additional_attributes>
+    <additional_attributes>230.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>768</x>
+      <y>300</y>
+      <w>156</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;240.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>768</x>
+      <y>300</y>
+      <w>18</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>546</x>
+      <y>300</y>
+      <w>240</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-&gt;
+m1=n..1</panel_attributes>
+    <additional_attributes>10.0;260.0;30.0;40.0;380.0;10.0</additional_attributes>
   </element>
 </diagram>

@@ -14,10 +14,15 @@
 #include "Player.hpp"
 #include "Tile.hpp"
 
-class Landmark; // Forward declaration of Landmark
+// Forward declarations since we can't two-way include
+class Landmark;
+class Trail;
+class Lake;
+class Den;
 
 // TODO: Consider adding quadrants to this
 class TileLandmark {
+    friend class Landmark;
 private:
     Player* tigerOwnedBy;
     // The parent landmark, containing all tile landmarks
@@ -25,6 +30,7 @@ private:
 };
 
 class TileTrail : public TileLandmark {
+    friend class Trail;
 private:
     TileTrail* nextTrail;
     TileTrail* prevTrail;
@@ -33,6 +39,7 @@ private:
 };
 
 class TileLake : public TileLandmark {
+    friend class Lake;
 private:
     TileLake* nLake;
     TileLake* eLake;
@@ -43,6 +50,7 @@ private:
 };
 
 class TileDen : public TileLandmark {
+    friend class Den;
 private:
     std::vector<Tile*> surroundingTiles;
 };
