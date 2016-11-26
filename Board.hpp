@@ -26,6 +26,8 @@ public:
     bool isPlacementValid(int, int, Tile*);
     bool placeTile(int, int, Tile*);
     static int getLowestZone(int, int, TileLandmark*);
+private:
+    TileRelation* board[153][153];    
 };
 
 #endif /* Board_hpp */
