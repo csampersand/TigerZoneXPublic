@@ -19,6 +19,7 @@ public:
 	TileDeck(char[], int);	//The bottom card of the deck corresponds to the zero-eth element of the char[]
     static std::vector<Tile*> defineTiles();
     Tile* drawTile();
+	int size();
 private:
     static Tile* createTileFromTemplate(char);
     void shuffle();

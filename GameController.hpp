@@ -5,27 +5,24 @@
 
 #include <stdio.h>
 #include <vector>
-#include "TileRelation.hpp" //Change to Board? TODO: 
 #include "Player.hpp"
 #include "Board.hpp"
 #include "TileDeck.hpp"
 
 class GameController {
 public:
-	GameController(int);//call Startgame
-	void nextTurn();//iterate through
-	void startGame(int); //pass in playerCount
-	//initialize board
-	//initialize tileDeck
-	//init player objects
-	int endGame(); // Choose winner, call end game scoring
-	void scoreGame();
-	//TODO
+	GameController(Player*, Player*);
+	void startGame();
+
 private:
 	Board* board;
 	TileDeck Deck;
-	std::vector<Player*> players;
+	Player* players[2];
 	int turnIndex;
+
+	void endGame(); // Choose winner, call end game scoring
+	void endGame(int); //int indicates the index of the player who forfeited
+	void scoreGame();
 };
 
 

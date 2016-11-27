@@ -419,3 +419,6 @@ Tile* TileDeck::drawTile() {
     return tile;
 }
 
+int TileDeck::size() {
+	return deck.size();
+}
