@@ -2,10 +2,14 @@
 
 Player::Player() {
 	this->score = 0;
-	//8 meeples
-	this->followerCount = 8;
+	this->tigerCount = 7;
+	this->crocodileCount = 2;
 }
 
-Player::incrementScore(int amount) {
+void Player::incrementScore(int amount) {
 	this->score += amount;
+}
+
+int Player::getScore() {
+	return this->score;
 }

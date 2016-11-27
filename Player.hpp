@@ -11,12 +11,13 @@
 class Player {
 public:
 	Player();
-	int incrementScore(int);
+	void incrementScore(int);
+	int getScore();
 
 private:
-	int followerCount; // Number of Meeple
+	int tigerCount;
+	int crocodileCount;
 	int score;
-	
 };
 
 
