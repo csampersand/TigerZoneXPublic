@@ -3,7 +3,6 @@
 #include "iostream"
 #include <vector>
 #include "Player.hpp"
-<<<<<<< HEAD
 #include "Board.hpp"
 
 Game::Game(int playerCount) {
@@ -30,19 +29,11 @@ void Game::startGame(int playerCount) {
 			Player *temp = new Player();
 			players[i] = temp;
 		}
-=======
-
-Game::Game(int playerCount) {
-	if (playerCount >= 2) {
-		std::vector<Player*> players(playerCount);
-
->>>>>>> b0b627c... Added skeleton code for Game and Player objects
 		this->players = players;
 	}
 	else {
 		std::cout << "ERROR: the player count needs to be 2 or greater!\n";
 	}
-<<<<<<< HEAD
 	//initilalize board
 	Board *newBoard = new Board();
 	this->board = newBoard;
@@ -59,23 +50,4 @@ int Game::endGame() { // Choose winner, call end game scoring
 
 void Game::scoreGame() {
 	
-=======
-
-}
-
-void nextTurn() {
-
-}
-
-void startGame(int playerCount) {
-
-}
-
-void endGame() { // Choose winner, call end game scoring
-
-}
-
-void scoreGame() {
-
->>>>>>> b0b627c... Added skeleton code for Game and Player objects
 }
