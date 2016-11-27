@@ -7,15 +7,15 @@
 
 #include "Board.hpp"
 
-Board::Board() {
-    this->firstTile = new TileRelation(this->deck.drawTile());
-    board[72][72] = this->firstTile;
+Board::Board(Tile* startingTile) {
+    this->firstTile = new TileRelation(startingTile);
+    board[76][76] = this->firstTile;
 }
 
 bool Board::isPlacementValid(int x, int y, Tile* tile) {
 	// Either coordinate cant be > 144 or < 1
 	// Board configured so that edge will have an extra row and column to check
-    if(x > 144 || x < 1 || y < 1 || y > 144) return false;    //Invalid Board coordinate
+    if(x > 152 || x < 0 || y < 0 || y > 152) return false;    //Invalid Board coordinate
     if(board[x][y] != NULL) return false;  //Tile already placed in coordinate
 
     /*
