@@ -10,8 +10,8 @@
 
 #include "Tile.hpp"
 
-TEST_CASE("Testing tile class") {
-    Tile t(Tile::sideLake, Tile::sideJungle, Tile::sideTrail, Tile::sideTrail, Tile::centerLake, false);
+TEST_CASE("Testing Tile class") {
+    Tile t(Tile::sideLake, Tile::sideJungle, Tile::sideTrail, Tile::sideTrail, Tile::centerLake);
     
     SECTION("rotating the tile") {
         INFO("Rotating 3 times")
