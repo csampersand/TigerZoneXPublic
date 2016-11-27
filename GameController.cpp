@@ -5,43 +5,44 @@
 #include "Player.hpp"
 #include "Board.hpp"
 
-GameController::GameController(Player* playerOne, Player* playerTwo): turnIndex(0) {
-	this->board = new Board(Deck.drawTile());
-	this->players[0] = playerOne;
-	this->players[1] = playerTwo;
+GameController::GameController(int playerCount) {
+	
+	startGame(playerCount);
+
 }
 
-void GameController::startGame() {
-	MoveEntity currentMove;
-
-	while (Deck.size() > 0) {
-		//Request move from current player
-		currentMove = players[turnIndex]->takeTurn(Deck.drawTile);
-		
-		if (!currentMove.forfeit) {
-			//TODO
-			//Attempt to play move
-			//if the move is invalid the current player forfeits
-		}
-		else {
-			endGame(turnIndex);
-			return;
-		}
-
-		//update turn index
-		turnIndex = ++turnIndex % 2;
+void GameController::nextTurn() {
+	++this->turnIndex;
+	if (this->turnIndex >= players.size()) {
+		this->turnIndex = 0;
 	}
-
-	endGame();
 }
 
-void GameController::endGame() { // Choose winner, call end game scoring
+void GameController::startGame(int playerCount) {
+	this->turnIndex = 0;
+	if (playerCount >= 2) {
+		std::vector<Player*> players(playerCount);
+		for (int i = 0; i < playerCount; i++) {
+			Player *temp = new Player();
+			players[i] = temp;
+		}
+		this->players = players;
+	}
+	else {
+		std::cout << "ERROR: the player count needs to be 2 or greater!\n";
+	}
+	//initilalize board
+	Board *newBoard = new Board();
+	this->board = newBoard;
+	//initialize tileDeck
+}
+
+int GameController::endGame() { // Choose winner, call end game scoring
 	//return the index of the player that won
 	
-}
 
-void GameController::endGame(int forfeitingPlayer) {
 
+	return 0;
 }
 
 void GameController::scoreGame() {
