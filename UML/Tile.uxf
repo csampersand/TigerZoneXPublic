@@ -159,7 +159,6 @@ setters()</panel_attributes>
     </coordinates>
     <panel_attributes>*Board*
 --
--deck: TileDeck
 -tiles: TileRelation*[][]
 -landmarks: vector&lt;TileLandmark*&gt;[][]
 -startTile: TileRelation*
@@ -235,13 +234,13 @@ placeTile(int x, int y, Tile* tile)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>637</x>
+      <x>520</x>
       <y>286</y>
-      <w>949</w>
+      <w>1066</w>
       <h>65</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;710.0;30.0</additional_attributes>
+    <additional_attributes>10.0;10.0;800.0;30.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -350,14 +349,14 @@ tiles: vector&lt;TileLandmark*&gt;*
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>507</x>
+      <x>390</x>
       <y>52</y>
       <w>507</w>
       <h>247</h>
     </coordinates>
     <panel_attributes>*GameController*
 --
--game: Game*
+-Deck: TileDeck
 --
 nextTurn() // Call player turn method &amp; pass tile &amp; board
 playTile(x, y, Tile*, Player*)
@@ -372,11 +371,11 @@ endTurn() // Return meeples if necessary, and update score
     <coordinates>
       <x>494</x>
       <y>286</y>
-      <w>169</w>
+      <w>52</w>
       <h>234</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>110.0;10.0;10.0;160.0</additional_attributes>
+    <additional_attributes>20.0;10.0;10.0;160.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -449,5 +448,16 @@ endTurn() // Return meeples if necessary, and update score
 +MoveEntity() //Forfeit Constructor
 +MoveEntity(Tile*, int, int, int, bool, int)</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>91</x>
+      <y>286</y>
+      <w>416</w>
+      <h>533</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>300.0;10.0;10.0;390.0</additional_attributes>
   </element>
 </diagram>

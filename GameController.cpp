@@ -5,10 +5,22 @@
 #include "Player.hpp"
 #include "Board.hpp"
 
-GameController::GameController(int playerCount) {
-	
-	startGame(playerCount);
+GameController::GameController(int playerCount): turnIndex(0) {
+	this->board = new Board(Deck.drawTile());
 
+	/*if (playerCount >= 2) {
+		std::vector<Player*> players(playerCount);
+		for (int i = 0; i < playerCount; i++) {
+			Player *temp = new Player();
+			players[i] = temp;
+		}
+		this->players = players;
+	}
+	else {
+		std::cout << "ERROR: the player count needs to be 2 or greater!\n";
+	}
+	*/
+	
 }
 
 void GameController::nextTurn() {

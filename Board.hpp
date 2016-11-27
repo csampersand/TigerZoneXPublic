@@ -14,14 +14,12 @@
 
 class Board {
 public:
-    Board();
+    Board(Tile*);
     bool isPlacementValid(int, int, Tile*);
     bool placeTile(int, int, Tile*);
 private:
     TileRelation* board[153][153];
-    TileDeck deck;
     TileRelation* firstTile;
-	//Make sure to start at 45,45
 };
 
 #endif /* Board_hpp */

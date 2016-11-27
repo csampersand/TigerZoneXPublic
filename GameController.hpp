@@ -8,7 +8,7 @@
 #include "TileRelation.hpp" //Change to Board? TODO: 
 #include "Player.hpp"
 #include "Board.hpp"
-
+#include "TileDeck.hpp"
 
 class GameController {
 public:
@@ -23,6 +23,7 @@ public:
 	//TODO
 private:
 	Board* board;
+	TileDeck Deck;
 	std::vector<Player*> players;
 	int turnIndex;
 };
