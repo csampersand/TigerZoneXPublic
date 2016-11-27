@@ -312,7 +312,9 @@ vector&lt;Tile*&gt; surroundingTiles;</panel_attributes>
 nextTrail: TileTrail*
 prevTrail: TileTrail*
 bool trailEnds
-bool hasCrocodile</panel_attributes>
+bool hasCrocodile
+--
+appendTo(TileTrail*)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -340,7 +342,9 @@ bool hasCrocodile</panel_attributes>
 --
 tigerOwnedBy: Player*
 landmark: Landmark*
-</panel_attributes>
+zone: int
+--
+static createTileLandmark(int, LandmarkType)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>

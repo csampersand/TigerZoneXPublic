@@ -6,6 +6,7 @@
 //
 
 #include "Board.hpp"
+#include "Landmark.hpp"
 
 Board::Board(Tile* startingTile) {
     this->firstTile = new TileRelation(startingTile);
@@ -91,5 +92,90 @@ bool Board::placeTile(int x, int y, Tile* tile) {
     if (newTile->getWTileRelation() != NULL) {
         newTile->getWTileRelation()->setETileRelation(newTile);
     }
+    
+    // Landmarks
+    
+    // Trails
+    
+    // Count the number of trail sides
+    int trailSides = 0;
+    if (tile->getNType() == Tile::sideTrail)
+        trailSides++;
+    if (tile->getEType() == Tile::sideTrail)
+        trailSides++;
+    if (tile->getSType() == Tile::sideTrail)
+        trailSides++;
+    if (tile->getWType() == Tile::sideTrail)
+        trailSides++;
+    
+    // Create trails with proper zones
+    std::vector<TileLandmark*> tileLandmarks;
+    if (trailSides == 1) {
+        if (tile->getNType() == Tile::sideTrail) {
+            tileLandmarks.push_back(TileLandmark::createTileLandmark(2, landmarkTrail));
+        }
+        else if (tile->getWType() == Tile::sideTrail) {
+            tileLandmarks.push_back(TileLandmark::createTileLandmark(4, landmarkTrail));
+        }
+        else if (tile->getEType() == Tile::sideTrail) {
+            tileLandmarks.push_back(TileLandmark::createTileLandmark(6, landmarkTrail));
+        }
+        else if (tile->getSType() == Tile::sideTrail) {
+            tileLandmarks.push_back(TileLandmark::createTileLandmark(8, landmarkTrail));
+        }
+        static_cast<TileTrail&>(*tileLandmarks.front()).trailEnd(true);
+    }
+    else if (trailSides == 2) {
+        if (tile->getNType() == Tile::sideTrail) {
+            tileLandmarks.push_back(TileLandmark::createTileLandmark(2, landmarkTrail));
+        }
+        else if (tile->getWType() == Tile::sideTrail) {
+            tileLandmarks.push_back(TileLandmark::createTileLandmark(4, landmarkTrail));
+        }
+        else if (tile->getEType() == Tile::sideTrail) {
+            tileLandmarks.push_back(TileLandmark::createTileLandmark(6, landmarkTrail));
+        }
+        else if (tile->getSType() == Tile::sideTrail) {
+            tileLandmarks.push_back(TileLandmark::createTileLandmark(8, landmarkTrail));
+        }
+        static_cast<TileTrail&>(*tileLandmarks.front()).trailEnd(false);
+    }
+    else if (trailSides == 3) {
+        if (tile->getNType() == Tile::sideTrail) {
+            tileLandmarks.push_back(TileLandmark::createTileLandmark(2, landmarkTrail));
+            static_cast<TileTrail&>(*tileLandmarks.front()).trailEnd(true);
+        }
+        if (tile->getWType() == Tile::sideTrail) {
+            tileLandmarks.push_back(TileLandmark::createTileLandmark(4, landmarkTrail));
+            static_cast<TileTrail&>(*tileLandmarks.front()).trailEnd(true);
+        }
+        if (tile->getEType() == Tile::sideTrail) {
+            tileLandmarks.push_back(TileLandmark::createTileLandmark(6, landmarkTrail));
+            static_cast<TileTrail&>(*tileLandmarks.front()).trailEnd(true);
+        }
+        if (tile->getSType() == Tile::sideTrail) {
+            tileLandmarks.push_back(TileLandmark::createTileLandmark(8, landmarkTrail));
+            static_cast<TileTrail&>(*tileLandmarks.front()).trailEnd(true);
+        }
+    }
+    else if (trailSides == 4) {
+        if (tile->getNType() == Tile::sideTrail) {
+            tileLandmarks.push_back(TileLandmark::createTileLandmark(2, landmarkTrail));
+            static_cast<TileTrail&>(*tileLandmarks.front()).trailEnd(true);
+        }
+        if (tile->getWType() == Tile::sideTrail) {
+            tileLandmarks.push_back(TileLandmark::createTileLandmark(4, landmarkTrail));
+            static_cast<TileTrail&>(*tileLandmarks.front()).trailEnd(true);
+        }
+        if (tile->getEType() == Tile::sideTrail) {
+            tileLandmarks.push_back(TileLandmark::createTileLandmark(6, landmarkTrail));
+            static_cast<TileTrail&>(*tileLandmarks.front()).trailEnd(true);
+        }
+        if (tile->getSType() == Tile::sideTrail) {
+            tileLandmarks.push_back(TileLandmark::createTileLandmark(8, landmarkTrail));
+            static_cast<TileTrail&>(*tileLandmarks.front()).trailEnd(true);
+        }
+    }
+    
     return true;
 }

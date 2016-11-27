@@ -20,9 +20,16 @@ class Trail;
 class Lake;
 class Den;
 
-// TODO: Consider adding quadrants to this
+enum LandmarkType {
+    landmarkTrail = 'T',
+    landmarkLake = 'L',
+    landmarkDen = 'D'
+};
+
 class TileLandmark {
     friend class Landmark;
+public:
+    static TileLandmark* createTileLandmark(int, LandmarkType);
 private:
     Player* tigerOwnedBy;
     // The parent landmark, containing all tile landmarks
@@ -36,6 +43,8 @@ private:
     TileTrail* prevTrail;
     bool trailEnds;
     bool hasCrocodile;
+public:
+    void trailEnd(bool);
 };
 
 class TileLake : public TileLandmark {
