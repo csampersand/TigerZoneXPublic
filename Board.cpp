@@ -8,8 +8,8 @@
 #include "Board.hpp"
 #include "Landmark.hpp"
 
-Board::Board() {
-    this->firstTile = new TileRelation(this->deck.drawTile());
+Board::Board(Tile* startingTile) {
+    this->firstTile = new TileRelation(startingTile);
     board[76][76] = this->firstTile;
 }
 

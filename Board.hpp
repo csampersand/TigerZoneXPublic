@@ -22,7 +22,7 @@ private:
     //Make sure to start at 45,45
     void placeLandmarks(int, int, Tile*);
 public:
-    Board();
+    Board(Tile*);
     bool isPlacementValid(int, int, Tile*);
     bool placeTile(int, int, Tile*);
     static int getLowestZone(int, int, TileLandmark*);
