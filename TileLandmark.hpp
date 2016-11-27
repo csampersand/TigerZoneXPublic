@@ -20,6 +20,18 @@ class Trail;
 class Lake;
 class Den;
 
+enum Position {
+    NW = 1,
+    N = 2,
+    NE = 3,
+    W = 4,
+    C = 5,
+    E = 6,
+    SW = 7,
+    S = 8,
+    SE = 9
+};
+
 enum LandmarkType {
     landmarkTrail = 'T',
     landmarkLake = 'L',
@@ -29,7 +41,7 @@ enum LandmarkType {
 class TileLandmark {
     friend class Landmark;
 public:
-    static TileLandmark* createTileLandmark(int, LandmarkType);
+    static TileLandmark* createTileLandmark(LandmarkType);
 private:
     Player* tigerOwnedBy;
     // The parent landmark, containing all tile landmarks

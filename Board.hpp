@@ -11,15 +11,21 @@
 #include <stdio.h>
 #include "TileRelation.hpp"
 #include "TileDeck.hpp"
+#include "TileLandmark.hpp"
 
 class Board {
+private:
+    TileRelation* board[145][145];
+    TileLandmark* landmarks[145][145][9];
+    TileDeck deck;
+    TileRelation* firstTile;
+    //Make sure to start at 45,45
+    void placeLandmarks(int, int, Tile*);
 public:
-    Board(Tile*);
+    Board();
     bool isPlacementValid(int, int, Tile*);
     bool placeTile(int, int, Tile*);
-private:
-    TileRelation* board[153][153];
-    TileRelation* firstTile;
+    static int getLowestZone(int, int, TileLandmark*);
 };
 
 #endif /* Board_hpp */

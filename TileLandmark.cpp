@@ -8,7 +8,7 @@
 
 #include "TileLandmark.hpp"
 
-TileLandmark* TileLandmark::createTileLandmark(int zone, LandmarkType type) {
+TileLandmark* TileLandmark::createTileLandmark(LandmarkType type) {
     if (type == landmarkTrail) {
         TileTrail* trail = new TileTrail();
         return trail;
