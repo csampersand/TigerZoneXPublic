@@ -15,7 +15,7 @@
 
 class Landmark {
 public:
-    virtual bool isComplete() = 0i;
+    virtual bool isComplete() = 0;
     // tile landmark segments that make up the entire landmark
     std::vector<TileLandmark*> tiles;
 };
