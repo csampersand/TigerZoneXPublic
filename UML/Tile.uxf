@@ -183,6 +183,7 @@ placeTile(int x, int y, Tile* tile)</panel_attributes>
 +drawTile()
 +static defineTiles()
 +Deck(int size)
++size(): int //number of remaining tiles
 -shuffle()
 -static createTileFromTemplate()</panel_attributes>
     <additional_attributes/>
@@ -357,13 +358,15 @@ tiles: vector&lt;TileLandmark*&gt;*
     <panel_attributes>*GameController*
 --
 -Deck: TileDeck
+-board: Board*
+-players: Player*[2]
+-turnIndex: int
 --
-nextTurn() // Call player turn method &amp; pass tile &amp; board
-playTile(x, y, Tile*, Player*)
-endTurn() // Return meeples if necessary, and update score
--startGame(int playerCount) // init stuff
--endGame() // Choose winner, call end game scoring
--scoreGame()</panel_attributes>
++GameController(Player*, Player*)
++startGame(): void
+-endGame(): void // Choose winner, call end game scoring
+-endGame(int): void //int is the index of the forfeiting player
+-scoreGame(): void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
