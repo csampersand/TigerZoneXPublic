@@ -59,11 +59,12 @@ public:
     //Landmarks
     // Check if landmark is complete
     bool isComplete(TileLandmark*);
+    bool isComplete(TileTrail*);
+    bool isComplete(TileLake*, std::unordered_map<TileLandmark*, bool>*);
     static TileLandmark* createTileLandmark(LandmarkType);
-    bool append(TileLandmark*, TileLandmark*);
-    
-    // TileTrails
-    void appendTrails(TileTrail*, TileTrail*);
+    bool append(TileLandmark*, TileLandmark*, Position);
+    void append(TileTrail*, TileTrail*);
+    void append(TileLake*, TileLake*, Position);
     
     //Player
     // Setup 2-player game and alot tigers & crocodiles

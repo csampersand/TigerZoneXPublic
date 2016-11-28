@@ -10,9 +10,11 @@
 #include "Game.hpp"
 #include "Tile.hpp"
 #include "TileDeck.hpp"
+#include "TileLandmark.hpp"
 #include <algorithm>
 #include <random>
 #include <chrono>
+#include <unordered_map>
 
 GameInteractor::GameInteractor() {
     this->game = new Game();
@@ -582,7 +584,7 @@ bool GameInteractor::isPlacementValid(int x, int y, Tile* tile) {
 }
 
 void GameInteractor::placeLandmarks(int x, int y, Tile* tile) {
-    // Trails
+    //Trails
     
     // Count the number of trail sides
     int trailSides = 0;
@@ -630,26 +632,75 @@ void GameInteractor::placeLandmarks(int x, int y, Tile* tile) {
             static_cast<TileTrail*>(game->board->getTileLandmark(x,y,S))->setTrailEnds(true);
         }
     }
+
+    //Lakes
+    
+    // Create lakes with proper zones & crocodiles
+    if (tile->getCenterType() == Tile::centerLake) {
+        TileLandmark* newLandmark = GameInteractor::createTileLandmark(landmarkLake);
+        TileLake* newLake = static_cast<TileLake*>(newLandmark);
+        game->board->setTileLandmark(x,y,C,newLake);
+        if (tile->getNType() == Tile::sideLake) {
+            game->board->setTileLandmark(x,y,N,newLake);
+            newLake->setNOpen(true);
+        }
+        else if (tile->getEType() == Tile::sideLake) {
+            game->board->setTileLandmark(x,y,E,newLake);
+            newLake->setEOpen(true);
+        }
+        else if (tile->getWType() == Tile::sideLake) {
+            game->board->setTileLandmark(x,y,W,newLake);
+            newLake->setWOpen(true);
+        }
+        else if (tile->getSType() == Tile::sideLake) {
+            game->board->setTileLandmark(x,y,S,newLake);
+            newLake->setSOpen(true);
+        }
+        
+        static_cast<TileLake&>(*newLake).setHasCrocodile(tile->getPreyType() == Tile::preyCroc);
+    }
+    else {
+        if (tile->getNType() == Tile::sideLake) {
+            TileLake* newLake = static_cast<TileLake*>(GameInteractor::createTileLandmark(landmarkLake));
+            newLake->setNOpen(true);
+            game->board->setTileLandmark(x,y,N,newLake);
+        }
+        if (tile->getWType() == Tile::sideLake) {
+            TileLake* newLake = static_cast<TileLake*>(GameInteractor::createTileLandmark(landmarkLake));
+            newLake->setWOpen(true);
+            game->board->setTileLandmark(x,y,W,newLake);
+        }
+        if (tile->getEType() == Tile::sideLake) {
+            TileLake* newLake = static_cast<TileLake*>(GameInteractor::createTileLandmark(landmarkLake));
+            newLake->setEOpen(true);
+            game->board->setTileLandmark(x,y,E,newLake);
+        }
+        if (tile->getSType() == Tile::sideLake) {
+            TileLake* newLake = static_cast<TileLake*>(GameInteractor::createTileLandmark(landmarkLake));
+            newLake->setSOpen(true);
+            game->board->setTileLandmark(x,y,S,newLake);
+        }
+    }
     
     // Append adjacent landmarks
     if (game->board->getTileLandmark(x,y+1,S) != NULL) {
         if (game->board->getTileLandmark(x,y+1,S)->getLandmarkType() == game->board->getTileLandmark(x,y,N)->getLandmarkType()) {
-            append(game->board->getTileLandmark(x,y,N), game->board->getTileLandmark(x,y+1,S));
+            append(game->board->getTileLandmark(x,y,N), game->board->getTileLandmark(x,y+1,S), N);
         }
     }
     if (game->board->getTileLandmark(x+1,y,W) != NULL) {
         if (game->board->getTileLandmark(x+1,y,W)->getLandmarkType() == game->board->getTileLandmark(x,y,E)->getLandmarkType()) {
-            append(game->board->getTileLandmark(x,y,E), game->board->getTileLandmark(x+1,y,W));
+            append(game->board->getTileLandmark(x,y,E), game->board->getTileLandmark(x+1,y,W), E);
         }
     }
     if (game->board->getTileLandmark(x,y-1,N) != NULL) {
         if (game->board->getTileLandmark(x,y-1,N)->getLandmarkType() == game->board->getTileLandmark(x,y,S)->getLandmarkType()) {
-            append(game->board->getTileLandmark(x,y,S), game->board->getTileLandmark(x,y-1,N));
+            append(game->board->getTileLandmark(x,y,S), game->board->getTileLandmark(x,y-1,N), S);
         }
     }
     if (game->board->getTileLandmark(x-1,y,E) != NULL) {
         if (game->board->getTileLandmark(x-1,y,E)->getLandmarkType() == game->board->getTileLandmark(x,y,W)->getLandmarkType()) {
-            append(game->board->getTileLandmark(x,y,W), game->board->getTileLandmark(x-1,y,E));
+            append(game->board->getTileLandmark(x,y,W), game->board->getTileLandmark(x-1,y,E), W);
         }
     }
 }
@@ -688,27 +739,72 @@ void GameInteractor::setupBoard() {
 
 bool GameInteractor::isComplete(TileLandmark* landmark) {
     if (landmark->getLandmarkType() == landmarkTrail) {
-        TileTrail* start = static_cast<TileTrail*>(landmark);
-        TileTrail* prev = start;
-        TileTrail* next = start;
-        
-        // Go to ends of trail
-        while(prev->getPrevTrail() != NULL && prev->getTrailEnds() == false)
-            prev = prev->getPrevTrail();
-        while(next->getNextTrail() != NULL && next->getTrailEnds() == false)
-            next = next->getNextTrail();
-        
-        // Trail is complete if both ends of trail go to actual ends
-        if (prev->getTrailEnds() && next->getTrailEnds())
-            return true;
-        else {
-            return false;
-        }
+        return isComplete(&static_cast<TileTrail&>(*landmark));
+    }
+    else if (landmark->getLandmarkType() == landmarkLake) {
+        std::unordered_map<TileLandmark*, bool> visited;
+        return isComplete(&static_cast<TileLake&>(*landmark), &visited);
     }
     
     
     // remove this later
     return false;
+}
+
+bool GameInteractor::isComplete(TileTrail* trail) {
+    TileTrail* start = trail;
+    TileTrail* prev = start;
+    TileTrail* next = start;
+    
+    // Go to ends of trail
+    while(prev->getPrevTrail() != NULL && prev->getTrailEnds() == false)
+        prev = prev->getPrevTrail();
+    while(next->getNextTrail() != NULL && next->getTrailEnds() == false)
+        next = next->getNextTrail();
+    
+    // Trail is complete if both ends of trail go to actual ends
+    if (prev->getTrailEnds() && next->getTrailEnds())
+        return true;
+    else {
+        return false;
+    }
+}
+
+bool GameInteractor::isComplete(TileLake* lake, std::unordered_map<TileLandmark*, bool>* visited) {
+    bool complete = true;
+    if (lake->getNOpen() == true) {
+        if (lake->getNLake() == NULL)
+            return false;
+        else if (visited->at(lake->getNLake()) != true) {
+            visited->emplace(lake->getNLake(), true);
+            complete = isComplete(lake->getNLake(), visited);
+        }
+    }
+    if (lake->getEOpen() == true) {
+        if (lake->getELake() == NULL)
+            return false;
+        else if (visited->at(lake->getELake()) != true) {
+            visited->emplace(lake->getELake(), true);
+            complete = isComplete(lake->getELake(), visited);
+        }
+    }
+    if (lake->getSOpen() == true) {
+        if (lake->getSLake() == NULL)
+            return false;
+        else if (visited->at(lake->getSLake()) != true) {
+            visited->emplace(lake->getSLake(), true);
+            complete = isComplete(lake->getSLake(), visited);
+        }
+    }
+    if (lake->getWOpen() == true) {
+        if (lake->getWLake() == NULL)
+            return false;
+        else if (visited->at(lake->getWLake()) != true) {
+            visited->emplace(lake->getWLake(), true);
+            complete = isComplete(lake->getWLake(), visited);
+        }
+    }
+    return complete; // no
 }
 
 TileLandmark* GameInteractor::createTileLandmark(LandmarkType type) {
@@ -732,18 +828,21 @@ TileLandmark* GameInteractor::createTileLandmark(LandmarkType type) {
     }
 }
 
-bool GameInteractor::append(TileLandmark* first, TileLandmark* second) {
+bool GameInteractor::append(TileLandmark* first, TileLandmark* second, Position direction) {
     if (first->getLandmarkType() != second->getLandmarkType())
         return false;
     else if (first->getLandmarkType() == landmarkTrail) {
-        this->appendTrails(static_cast<TileTrail*>(first), static_cast<TileTrail*>(second));
+        this->append(static_cast<TileTrail*>(first), static_cast<TileTrail*>(second));
+    }
+    else if (first->getLandmarkType() == landmarkLake) {
+        this->append(static_cast<TileLake*>(first), static_cast<TileLake*>(second), direction);
     }
     
     return true;
 }
 
 // TEST: make sure this->prevTrail->nextTrail and this->nextTrail->prevTrail never equals this
-void GameInteractor::appendTrails(TileTrail* first, TileTrail* second) {
+void GameInteractor::append(TileTrail* first, TileTrail* second) {
     if (second->getPrevTrail() == NULL) {
         if (first->getNextTrail() == NULL) {
             first->setNextTrail(second);
@@ -786,6 +885,25 @@ void GameInteractor::appendTrails(TileTrail* first, TileTrail* second) {
             first->setPrevTrail(second);
             second->setNextTrail(first);
         }
+    }
+}
+
+void GameInteractor::append(TileLake* first, TileLake* second, Position direction) {
+    if (direction == N) {
+        first->setNLake(second);
+        second->setSLake(first);
+    }
+    else if (direction == E) {
+        first->setELake(second);
+        second->setWLake(first);
+    }
+    else if (direction == S) {
+        first->setSLake(second);
+        second->setNLake(first);
+    }
+    else if (direction == W) {
+        first->setWLake(second);
+        second->setELake(first);
     }
 }
 

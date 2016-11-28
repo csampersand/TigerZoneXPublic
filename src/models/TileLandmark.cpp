@@ -43,3 +43,60 @@ bool TileTrail::getTrailEnds() {
 void TileTrail::setTrailEnds(bool ends) {
     this->trailEnds = ends;
 }
+
+bool TileLake::getHasCrocodile() {
+    return this->hasCrocodile;
+}
+
+void TileLake::setHasCrocodile(bool crocodile) {
+    this->hasCrocodile = crocodile;
+}
+
+TileLake* TileLake::getNLake() {
+    return this->nLake;
+}
+TileLake* TileLake::getELake() {
+    return this->eLake;
+}
+TileLake* TileLake::getSLake() {
+    return this->sLake;
+}
+TileLake* TileLake::getWLake() {
+    return this->wLake;
+}
+void TileLake::setNLake(TileLake* TileLake) {
+    this->nLake = TileLake;
+}
+void TileLake::setELake(TileLake* TileLake) {
+    this->eLake = TileLake;
+}
+void TileLake::setSLake(TileLake* TileLake) {
+    this->sLake = TileLake;
+}
+void TileLake::setWLake(TileLake* TileLake) {
+    this->wLake = TileLake;
+}
+bool TileLake::getNOpen() {
+    return this->nOpen;
+}
+bool TileLake::getEOpen() {
+    return this->eOpen;
+}
+bool TileLake::getSOpen() {
+    return this->sOpen;
+}
+bool TileLake::getWOpen() {
+    return this->wOpen;
+}
+void TileLake::setNOpen(bool open) {
+    this->nOpen = open;
+}
+void TileLake::setEOpen(bool open) {
+    this->eOpen = open;
+}
+void TileLake::setSOpen(bool open) {
+    this->sOpen = open;
+}
+void TileLake::setWOpen(bool open) {
+    this->wOpen = open;
+}

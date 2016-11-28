@@ -74,8 +74,31 @@ private:
     TileLake* eLake;
     TileLake* sLake;
     TileLake* wLake;
+    bool nOpen;
+    bool eOpen;
+    bool sOpen;
+    bool wOpen;
     bool lakeEnds;
     bool hasCrocodile;
+public:
+    bool getHasCrocodile();
+    void setHasCrocodile(bool);
+    TileLake* getNLake();
+    TileLake* getELake();
+    TileLake* getSLake();
+    TileLake* getWLake();
+    void setNLake(TileLake*);
+    void setELake(TileLake*);
+    void setSLake(TileLake*);
+    void setWLake(TileLake*);
+    bool getNOpen();
+    bool getEOpen();
+    bool getSOpen();
+    bool getWOpen();
+    void setNOpen(bool);
+    void setEOpen(bool);
+    void setSOpen(bool);
+    void setWOpen(bool);
 };
 
 class TileDen : public TileLandmark {
