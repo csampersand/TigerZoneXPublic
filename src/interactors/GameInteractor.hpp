@@ -10,13 +10,14 @@
 #define GameInteractor_hpp
 
 #include <stdio.h>
+#include <unordered_map>
 #include "Game.hpp"
 #include "Tile.hpp"
 #include "TileDeck.hpp"
 #include "TileLandmark.hpp"
 
 class GameInteractor {
-private:
+protected:
     Game* game;
 public:
     // Initialize game, setup deck, setup board
