@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.2">
-  <zoom_level>5</zoom_level>
+  <zoom_level>7</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>410</x>
-      <y>460</y>
-      <w>110</w>
-      <h>120</h>
+      <x>553</x>
+      <y>637</y>
+      <w>154</w>
+      <h>168</h>
     </coordinates>
     <panel_attributes>*Tile*
 --
@@ -27,10 +27,10 @@ rotate(int rotations)</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>550</x>
-      <y>640</y>
-      <w>105</w>
-      <h>75</h>
+      <x>749</x>
+      <y>889</y>
+      <w>147</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>*object: Tile*
 (type H)
@@ -46,10 +46,10 @@ hasPennant: bool=false</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>460</x>
-      <y>575</y>
-      <w>155</w>
-      <h>75</h>
+      <x>623</x>
+      <y>798</y>
+      <w>217</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 &lt;&lt;instanceOf&gt;&gt;</panel_attributes>
@@ -58,10 +58,10 @@ hasPennant: bool=false</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>285</x>
-      <y>640</y>
-      <w>105</w>
-      <h>75</h>
+      <x>378</x>
+      <y>889</y>
+      <w>147</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>*object: Tile*
 (type A)
@@ -77,10 +77,10 @@ hasPennant: bool=false</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>325</x>
-      <y>575</y>
-      <w>150</w>
-      <h>75</h>
+      <x>434</x>
+      <y>798</y>
+      <w>210</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 &lt;&lt;instanceOf&gt;&gt;</panel_attributes>
@@ -89,10 +89,10 @@ hasPennant: bool=false</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>415</x>
-      <y>640</y>
-      <w>105</w>
-      <h>75</h>
+      <x>560</x>
+      <y>889</y>
+      <w>147</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>*object: Tile*
 (type F)
@@ -108,10 +108,10 @@ hasPennant: bool=true</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>460</x>
-      <y>575</y>
-      <w>55</w>
-      <h>70</h>
+      <x>623</x>
+      <y>798</y>
+      <w>77</w>
+      <h>98</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 &lt;&lt;instanceOf&gt;&gt;</panel_attributes>
@@ -120,10 +120,10 @@ hasPennant: bool=true</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>460</x>
-      <y>405</y>
-      <w>15</w>
-      <h>65</h>
+      <x>623</x>
+      <y>560</y>
+      <w>21</w>
+      <h>91</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
@@ -131,10 +131,10 @@ hasPennant: bool=true</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>410</x>
-      <y>330</y>
-      <w>105</w>
-      <h>80</h>
+      <x>553</x>
+      <y>455</y>
+      <w>147</w>
+      <h>112</h>
     </coordinates>
     <panel_attributes>*TileRelation*
 --
@@ -152,16 +152,16 @@ setters()</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>410</x>
-      <y>205</y>
-      <w>105</w>
-      <h>95</h>
+      <x>553</x>
+      <y>280</y>
+      <w>147</w>
+      <h>133</h>
     </coordinates>
     <panel_attributes>*Board*
 --
 -deck: TileDeck
--tiles: TileRelation*[145][145]
--landmarks: TileLandmark*[145][145][9]
+-tiles: TileRelation*[153][153]
+-landmarks: TileLandmark*[153][153][9]
 -startTile: TileRelation*
 --
 Board() // Place 1st tile &amp; init board
@@ -174,10 +174,10 @@ static getLowestZone(x, y, TileLandmark*)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>460</x>
-      <y>295</y>
-      <w>15</w>
-      <h>45</h>
+      <x>623</x>
+      <y>406</y>
+      <w>21</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
@@ -185,10 +185,10 @@ static getLowestZone(x, y, TileLandmark*)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>320</x>
-      <y>410</y>
-      <w>155</w>
-      <h>60</h>
+      <x>427</x>
+      <y>567</y>
+      <w>217</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;290.0;100.0</additional_attributes>
@@ -196,10 +196,10 @@ static getLowestZone(x, y, TileLandmark*)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>460</x>
-      <y>130</y>
-      <w>15</w>
-      <h>85</h>
+      <x>623</x>
+      <y>175</y>
+      <w>21</w>
+      <h>119</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
@@ -207,10 +207,10 @@ static getLowestZone(x, y, TileLandmark*)
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>670</x>
-      <y>430</y>
-      <w>105</w>
-      <h>75</h>
+      <x>917</x>
+      <y>595</y>
+      <w>147</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>*TileLake*
 {friend Lake}
@@ -226,10 +226,10 @@ bool hasCrocodile</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>780</x>
-      <y>430</y>
-      <w>105</w>
-      <h>75</h>
+      <x>1071</x>
+      <y>595</y>
+      <w>147</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>*TileDen*
 {friend Den}
@@ -240,10 +240,10 @@ vector&lt;Tile*&gt; surroundingTiles;</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>560</x>
-      <y>430</y>
-      <w>105</w>
-      <h>75</h>
+      <x>763</x>
+      <y>595</y>
+      <w>147</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>*TileTrail*
 {friend Trail}
@@ -259,10 +259,10 @@ appendTo(TileTrail*)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>460</x>
-      <y>295</y>
-      <w>275</w>
-      <h>50</h>
+      <x>623</x>
+      <y>406</y>
+      <w>385</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;530.0;80.0</additional_attributes>
@@ -270,28 +270,32 @@ appendTo(TileTrail*)</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>670</x>
-      <y>335</y>
-      <w>105</w>
-      <h>75</h>
+      <x>917</x>
+      <y>462</y>
+      <w>147</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Virtual&gt;&gt;
 /TileLandmark/
 {friend Landmark}
 --
 tigerOwnedBy: Player*
+tigerCount: int
 landmark: Landmark*
+hasCrocodile: bool
 --
-static createTileLandmark(LandmarkType)</panel_attributes>
+static createTileLandmark(LandmarkType)
+virtual bool append(TileLandmark*)
+virtual bool isComplete()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>610</x>
-      <y>405</y>
-      <w>125</w>
-      <h>35</h>
+      <x>833</x>
+      <y>560</y>
+      <w>175</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>230.0;10.0;10.0;50.0</additional_attributes>
@@ -299,10 +303,10 @@ static createTileLandmark(LandmarkType)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>720</x>
-      <y>405</y>
-      <w>15</w>
-      <h>35</h>
+      <x>987</x>
+      <y>560</y>
+      <w>21</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
@@ -310,10 +314,10 @@ static createTileLandmark(LandmarkType)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>720</x>
-      <y>405</y>
-      <w>130</w>
-      <h>35</h>
+      <x>987</x>
+      <y>560</y>
+      <w>182</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;240.0;50.0</additional_attributes>
@@ -321,10 +325,10 @@ static createTileLandmark(LandmarkType)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>105</x>
-      <y>130</y>
-      <w>370</w>
-      <h>95</h>
+      <x>126</x>
+      <y>175</y>
+      <w>518</w>
+      <h>133</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=2..n</panel_attributes>
@@ -333,10 +337,10 @@ m1=2..n</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>865</x>
-      <y>140</y>
-      <w>105</w>
-      <h>70</h>
+      <x>1190</x>
+      <y>189</y>
+      <w>147</w>
+      <h>98</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Virtual&gt;&gt;
 /Landmark/
@@ -350,10 +354,10 @@ virtual bool isComplete()
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>975</x>
-      <y>235</y>
-      <w>105</w>
-      <h>75</h>
+      <x>1344</x>
+      <y>322</y>
+      <w>147</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>*Den*
 --
@@ -364,10 +368,10 @@ bool isComplete()</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>865</x>
-      <y>235</y>
-      <w>105</w>
-      <h>75</h>
+      <x>1190</x>
+      <y>322</y>
+      <w>147</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>*Lake*
 --
@@ -378,10 +382,10 @@ bool isComplete()</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>755</x>
-      <y>235</y>
-      <w>105</w>
-      <h>75</h>
+      <x>1036</x>
+      <y>322</y>
+      <w>147</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>*Trail*
 --
@@ -392,10 +396,10 @@ bool isComplete()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>800</x>
-      <y>205</y>
-      <w>125</w>
-      <h>40</h>
+      <x>1099</x>
+      <y>280</y>
+      <w>175</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>230.0;10.0;10.0;60.0</additional_attributes>
@@ -403,10 +407,10 @@ bool isComplete()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>910</x>
-      <y>205</y>
-      <w>130</w>
-      <h>40</h>
+      <x>1253</x>
+      <y>280</y>
+      <w>182</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;240.0;60.0</additional_attributes>
@@ -414,10 +418,10 @@ bool isComplete()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>910</x>
-      <y>205</y>
-      <w>15</w>
-      <h>40</h>
+      <x>1253</x>
+      <y>280</y>
+      <w>21</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
@@ -425,10 +429,10 @@ bool isComplete()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>725</x>
-      <y>205</y>
-      <w>200</w>
-      <h>140</h>
+      <x>994</x>
+      <y>280</y>
+      <w>280</w>
+      <h>196</h>
     </coordinates>
     <panel_attributes>lt=&lt;-&gt;
 m1=n..1</panel_attributes>
@@ -437,10 +441,10 @@ m1=n..1</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>335</x>
-      <y>270</y>
-      <w>70</w>
-      <h>35</h>
+      <x>448</x>
+      <y>371</y>
+      <w>98</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>Board has a lot of
 business logic, so
@@ -452,10 +456,10 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>35</x>
-      <y>210</y>
-      <w>170</w>
-      <h>105</h>
+      <x>28</x>
+      <y>287</y>
+      <w>238</w>
+      <h>147</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Virtual&gt;&gt;
 *Player*
@@ -474,10 +478,10 @@ bg=blue</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>60</x>
-      <y>310</y>
-      <w>70</w>
-      <h>55</h>
+      <x>63</x>
+      <y>427</y>
+      <w>98</w>
+      <h>77</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 &lt;&lt;instanceOf&gt;&gt;</panel_attributes>
@@ -486,10 +490,10 @@ bg=blue</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>120</x>
-      <y>310</y>
-      <w>75</w>
-      <h>55</h>
+      <x>147</x>
+      <y>427</y>
+      <w>105</w>
+      <h>77</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 &lt;&lt;instanceOf&gt;&gt;</panel_attributes>
@@ -498,10 +502,10 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>15</x>
-      <y>355</y>
-      <w>105</w>
-      <h>35</h>
+      <x>0</x>
+      <y>490</y>
+      <w>147</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>*AIPlayer*
 --
@@ -511,10 +515,10 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>130</x>
-      <y>355</y>
-      <w>105</w>
-      <h>35</h>
+      <x>161</x>
+      <y>490</y>
+      <w>147</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>*NetworkPlayer*
 --
@@ -524,10 +528,10 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>90</x>
-      <y>450</y>
-      <w>165</w>
-      <h>105</h>
+      <x>105</x>
+      <y>623</y>
+      <w>231</w>
+      <h>147</h>
     </coordinates>
     <panel_attributes>*MoveEntity*
 --
@@ -546,10 +550,10 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>365</x>
-      <y>40</y>
-      <w>195</w>
-      <h>95</h>
+      <x>490</x>
+      <y>49</y>
+      <w>273</w>
+      <h>133</h>
     </coordinates>
     <panel_attributes>*GameController*
 --
@@ -568,10 +572,10 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>270</x>
-      <y>320</y>
-      <w>105</w>
-      <h>95</h>
+      <x>357</x>
+      <y>441</y>
+      <w>147</w>
+      <h>133</h>
     </coordinates>
     <panel_attributes>*TileDeck*
 --
@@ -588,10 +592,10 @@ bg=blue</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>320</x>
-      <y>130</y>
-      <w>155</w>
-      <h>200</h>
+      <x>427</x>
+      <y>175</y>
+      <w>217</w>
+      <h>280</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>290.0;10.0;10.0;380.0</additional_attributes>

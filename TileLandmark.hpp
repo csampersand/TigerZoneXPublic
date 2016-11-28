@@ -42,8 +42,10 @@ class TileLandmark {
     friend class Landmark;
 private:
     Player* tigerOwnedBy;
-    // The parent landmark, containing all tile landmarks
+    int tigerCount;
+    bool hasCrocodile;
 public:
+    // The parent landmark, containing all tile landmarks
     Landmark* landmark;
     static TileLandmark* createTileLandmark(LandmarkType);
     LandmarkType type;
