@@ -16,6 +16,7 @@
 class GameInteractor;
 
 class Game {
+    Game();
     friend GameInteractor;
 private:
     Board* board;

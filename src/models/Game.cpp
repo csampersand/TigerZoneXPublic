@@ -7,3 +7,12 @@
 //
 
 #include "Game.hpp"
+
+Game::Game() {
+    board = new Board();
+    deck = new TileDeck;
+    for (Player* player : players) {
+        player = new Player();
+    }
+    turnIndex = 0;
+}
