@@ -21,6 +21,7 @@ public:
     Tile* drawTile();
 	int size();
     std::vector<Tile*> getDeck();
+    Tile* createTileFromSequence(std::string);
 private:
     static Tile* createTileFromTemplate(char);
     void shuffle();

@@ -21,17 +21,22 @@ public:
     GameInteractor();
     GameInteractor(Game*);
     
+    //TileDeck
 	void shuffleDeck(TileDeck*);
-	void static createTileFromTemplate();
-	void static defineTiles();
+	static Tile* createTileFromSequence(std::string);
+    static Tile* createTileFromTemplate(char);
+    static std::vector<Tile*> defineTiles();
 
-
-    //
-    void rotateTile(Tile*);
-    void rotateTile(Tile*, int);
     
+
+    //Tile
+    static void rotateTile(Tile*);
+    static void rotateTile(Tile*, int);
+    
+    //Board
     bool isPlacementValid(int, int, Tile*);
     bool placeTile(int, int, Tile*);
+
 };
 
 #endif /* GameInteractor_hpp */

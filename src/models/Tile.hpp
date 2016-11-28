@@ -28,6 +28,7 @@ public:
         preyBoar = 'b',
         preyBuffalo = 'u',
         preyDeer = 'd',
+        preyCroc = 'c',
         null = NULL
     };
     Tile(SideType, SideType, SideType, SideType, CenterType, PreyType prey = null);
