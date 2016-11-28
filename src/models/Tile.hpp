@@ -37,8 +37,10 @@ public:
     SideType getWType();
     CenterType getCenterType();
     PreyType getPreyType();
-    void rotate();
-    void rotate(int);
+    void setNType(SideType);
+    void setEType(SideType);
+    void setSType(SideType);
+    void setWType(SideType);
 private:
     SideType nType;
     SideType eType;

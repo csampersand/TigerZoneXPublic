@@ -35,16 +35,15 @@ Tile::CenterType Tile::getCenterType() {
 Tile::PreyType Tile::getPreyType() {
     return this->preyType;
 }
-
-void Tile::rotate() {
-    SideType oldNType = nType;
-    nType = wType;
-    wType = sType;
-    sType = eType;
-    eType = oldNType;
+void Tile::setNType(SideType type) {
+    this->nType = type;
 }
-
-void Tile::rotate(int rotations) {
-    while(rotations--)
-        this->rotate();
+void Tile::setEType(SideType type) {
+    this->eType = type;
+}
+void Tile::setSType(SideType type) {
+    this->sType = type;
+}
+void Tile::setWType(SideType type) {
+    this->wType = type;
 }

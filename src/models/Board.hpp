@@ -15,7 +15,7 @@
 
 class Board {
 private:
-    TileRelation* board[153][153];
+    TileRelation* tiles[153][153];
     TileLandmark* landmarks[153][153][9];
     TileDeck deck;
     TileRelation* firstTile;
@@ -27,12 +27,6 @@ public:
     TileLandmark* getTileLandmark(int,int,int);
     TileRelation* getTileRelation(int,int);
     TileDeck getDeck();
-    
-    
-    
-    bool isPlacementValid(int, int, Tile*);
-    bool placeTile(int, int, Tile*);
-    static int getLowestZone(int, int, TileLandmark*);
 };
 
 #endif /* Board_hpp */

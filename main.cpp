@@ -7,30 +7,9 @@
 //
 
 #include <iostream>
-#include "Tile.hpp"
-#include "TileTest.hpp"
-#include "TileDeck.hpp"
-#include "Test.hpp"
+#include "Game.hpp"
 
 int main(int argc, const char * argv[]) {
-    std::cout << "Drawing some tiles from the deck:\n";
-    TileDeck deck;
-    TileTest::printTile(*deck.drawTile());
-    TileTest::printTile(*deck.drawTile());
-    TileTest::printTile(*deck.drawTile());
-    TileTest::printTile(*deck.drawTile());
-    TileTest::printTile(*deck.drawTile());
-    TileTest::printTile(*deck.drawTile());
-    TileTest::printTile(*deck.drawTile());
-    TileTest::printTile(*deck.drawTile());
-
-	std::cout << "Test starts here\n";
-
-
-
-	std::cout << "Press enter\n";
-	int i = 0;
-	std::cin >> i;
     
     return 0;
 }
