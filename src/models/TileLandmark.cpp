@@ -131,3 +131,19 @@ void TileLake::setWOpen(bool open) {
 TileDen::TileDen(){
     this->surroundingTiles = NULL;
 }
+
+int TileDen::getX() {
+    return this->x;
+}
+
+int TileDen::getY() {
+    return this->y;
+}
+
+void TileDen::setX(int x) {
+    this->x = x;
+}
+
+void TileDen::setY(int y) {
+    this->y = y;
+}

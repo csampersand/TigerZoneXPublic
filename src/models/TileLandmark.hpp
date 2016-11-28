@@ -106,10 +106,16 @@ public:
 
 class TileDen : public TileLandmark {
     friend class Den;
-private:
-    std::vector<Tile*> surroundingTiles;
 public:
     TileDen();
+    int getX();
+    int getY();
+    void setX(int);
+    void setY(int);
+private:
+    std::vector<Tile*> surroundingTiles;
+    int x;
+    int y;
 };
 
 #endif /* TileLandmark_hpp */

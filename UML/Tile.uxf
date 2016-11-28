@@ -137,7 +137,13 @@ bool hasCrocodile</panel_attributes>
     <panel_attributes>*TileDen*
 {friend Den}
 --
-vector&lt;Tile*&gt; surroundingTiles;</panel_attributes>
+x: int
+y: int
+--
+getX()
+getY()
+setX(int)
+setY(int)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>

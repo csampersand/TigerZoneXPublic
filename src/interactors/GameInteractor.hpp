@@ -61,6 +61,7 @@ public:
     bool isComplete(TileLandmark*);
     bool isComplete(TileTrail*);
     bool isComplete(TileLake*, std::unordered_map<TileLandmark*, bool>*);
+    bool isComplete(TileDen*);
     static TileLandmark* createTileLandmark(LandmarkType);
     bool append(TileLandmark*, TileLandmark*, Position);
     void appendTrails(TileTrail*, TileTrail*);

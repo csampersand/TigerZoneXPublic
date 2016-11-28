@@ -682,6 +682,16 @@ void GameInteractor::placeLandmarks(int x, int y, Tile* tile) {
         }
     }
     
+    //Dens
+    
+    // Create den with proper zone
+    if (tile->getCenterType() == Tile::centerDen) {
+        TileDen* newDen = static_cast<TileDen*>(GameInteractor::createTileLandmark(landmarkDen));
+        newDen->setX(x);
+        newDen->setY(y);
+        game->board->setTileLandmark(x, y, C, newDen);
+    }
+    
     // Append adjacent landmarks
     if (game->board->getTileLandmark(x,y+1,S) != NULL) {
         if (game->board->getTileLandmark(x,y+1,S)->getLandmarkType() == game->board->getTileLandmark(x,y,N)->getLandmarkType()) {
@@ -745,6 +755,9 @@ bool GameInteractor::isComplete(TileLandmark* landmark) {
         std::unordered_map<TileLandmark*, bool> visited;
         return isComplete(&static_cast<TileLake&>(*landmark), &visited);
     }
+    else if (landmark->getLandmarkType() == landmarkDen) {
+        return isComplete(&static_cast<TileDen&>(*landmark));
+    }
     
     
     // remove this later
@@ -805,6 +818,24 @@ bool GameInteractor::isComplete(TileLake* lake, std::unordered_map<TileLandmark*
         }
     }
     return complete; // no
+}
+
+bool GameInteractor::isComplete(TileDen* den) {
+    if (
+        game->board->getTileRelation(den->getX()-1,den->getY()-1) != NULL &&
+        game->board->getTileRelation(den->getX(),den->getY()-1) != NULL &&
+        game->board->getTileRelation(den->getX()+1,den->getY()-1) != NULL &&
+        game->board->getTileRelation(den->getX()-1,den->getY()) != NULL &&
+        game->board->getTileRelation(den->getX()+1,den->getY()) != NULL &&
+        game->board->getTileRelation(den->getX()-1,den->getY()+1) != NULL &&
+        game->board->getTileRelation(den->getX(),den->getY()+1) != NULL &&
+        game->board->getTileRelation(den->getX()+1,den->getY()+1) != NULL
+        ) {
+        return true;
+    }
+    else {
+        return false;
+    }
 }
 
 TileLandmark* GameInteractor::createTileLandmark(LandmarkType type) {
