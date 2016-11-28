@@ -4,10 +4,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>406</x>
-      <y>812</y>
+      <x>413</x>
+      <y>777</y>
       <w>154</w>
-      <h>168</h>
+      <h>126</h>
     </coordinates>
     <panel_attributes>*Tile*
 --
@@ -25,8 +25,8 @@ Tile(n, s, e, w, center, hasPennant)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>476</x>
-      <y>735</y>
+      <x>483</x>
+      <y>700</y>
       <w>21</w>
       <h>91</h>
     </coordinates>
@@ -36,8 +36,8 @@ Tile(n, s, e, w, center, hasPennant)</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>406</x>
-      <y>630</y>
+      <x>413</x>
+      <y>595</y>
       <w>147</w>
       <h>112</h>
     </coordinates>
@@ -57,8 +57,8 @@ setters()</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>406</x>
-      <y>511</y>
+      <x>413</x>
+      <y>476</y>
       <w>147</w>
       <h>77</h>
     </coordinates>
@@ -74,8 +74,8 @@ Board() // Place 1st tile &amp; init board</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>476</x>
-      <y>581</y>
+      <x>483</x>
+      <y>546</y>
       <w>21</w>
       <h>63</h>
     </coordinates>
@@ -85,8 +85,8 @@ Board() // Place 1st tile &amp; init board</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>280</x>
-      <y>679</y>
+      <x>287</x>
+      <y>644</y>
       <w>217</w>
       <h>147</h>
     </coordinates>
@@ -96,8 +96,8 @@ Board() // Place 1st tile &amp; init board</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>476</x>
-      <y>448</y>
+      <x>483</x>
+      <y>413</y>
       <w>21</w>
       <h>77</h>
     </coordinates>
@@ -107,8 +107,8 @@ Board() // Place 1st tile &amp; init board</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>812</x>
-      <y>770</y>
+      <x>819</x>
+      <y>735</y>
       <w>147</w>
       <h>105</h>
     </coordinates>
@@ -126,8 +126,8 @@ bool hasCrocodile</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>966</x>
-      <y>770</y>
+      <x>973</x>
+      <y>735</y>
       <w>147</w>
       <h>105</h>
     </coordinates>
@@ -140,8 +140,8 @@ vector&lt;Tile*&gt; surroundingTiles;</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>658</x>
-      <y>770</y>
+      <x>665</x>
+      <y>735</y>
       <w>147</w>
       <h>105</h>
     </coordinates>
@@ -157,8 +157,8 @@ bool hasCrocodile</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>476</x>
-      <y>581</y>
+      <x>483</x>
+      <y>546</y>
       <w>420</w>
       <h>49</h>
     </coordinates>
@@ -168,8 +168,8 @@ bool hasCrocodile</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>812</x>
-      <y>616</y>
+      <x>819</x>
+      <y>581</y>
       <w>147</w>
       <h>126</h>
     </coordinates>
@@ -186,8 +186,8 @@ hasCrocodile: bool</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>728</x>
-      <y>735</y>
+      <x>735</x>
+      <y>700</y>
       <w>175</w>
       <h>49</h>
     </coordinates>
@@ -197,8 +197,8 @@ hasCrocodile: bool</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>875</x>
-      <y>735</y>
+      <x>882</x>
+      <y>700</y>
       <w>28</w>
       <h>49</h>
     </coordinates>
@@ -208,8 +208,8 @@ hasCrocodile: bool</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>882</x>
-      <y>735</y>
+      <x>889</x>
+      <y>700</y>
       <w>182</w>
       <h>49</h>
     </coordinates>
@@ -219,8 +219,8 @@ hasCrocodile: bool</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>266</x>
-      <y>448</y>
+      <x>273</x>
+      <y>413</y>
       <w>231</w>
       <h>77</h>
     </coordinates>
@@ -231,8 +231,8 @@ m1=2..n</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>259</x>
-      <y>378</y>
+      <x>266</x>
+      <y>343</y>
       <w>98</w>
       <h>49</h>
     </coordinates>
@@ -246,8 +246,8 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>210</x>
-      <y>511</y>
+      <x>217</x>
+      <y>476</y>
       <w>147</w>
       <h>77</h>
     </coordinates>
@@ -263,8 +263,8 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>378</x>
-      <y>322</y>
+      <x>385</x>
+      <y>287</y>
       <w>210</w>
       <h>133</h>
     </coordinates>
@@ -279,8 +279,8 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>210</x>
-      <y>616</y>
+      <x>217</x>
+      <y>581</y>
       <w>147</w>
       <h>70</h>
     </coordinates>
@@ -293,8 +293,8 @@ bg=blue</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>280</x>
-      <y>448</y>
+      <x>287</x>
+      <y>413</y>
       <w>217</w>
       <h>182</h>
     </coordinates>
@@ -304,8 +304,8 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>126</x>
-      <y>805</y>
+      <x>133</x>
+      <y>770</y>
       <w>231</w>
       <h>147</h>
     </coordinates>
@@ -326,8 +326,8 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>658</x>
-      <y>532</y>
+      <x>665</x>
+      <y>497</y>
       <w>147</w>
       <h>49</h>
     </coordinates>
@@ -340,8 +340,8 @@ bool isComplete()</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>812</x>
-      <y>532</y>
+      <x>819</x>
+      <y>497</y>
       <w>147</w>
       <h>49</h>
     </coordinates>
@@ -354,8 +354,8 @@ bool isComplete()</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>966</x>
-      <y>532</y>
+      <x>973</x>
+      <y>497</y>
       <w>147</w>
       <h>49</h>
     </coordinates>
@@ -368,8 +368,8 @@ bool isComplete()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>882</x>
-      <y>490</y>
+      <x>889</x>
+      <y>455</y>
       <w>175</w>
       <h>56</h>
     </coordinates>
@@ -379,8 +379,8 @@ bool isComplete()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>875</x>
-      <y>490</y>
+      <x>882</x>
+      <y>455</y>
       <w>28</w>
       <h>56</h>
     </coordinates>
@@ -390,8 +390,8 @@ bool isComplete()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>721</x>
-      <y>490</y>
+      <x>728</x>
+      <y>455</y>
       <w>182</w>
       <h>56</h>
     </coordinates>
@@ -401,8 +401,8 @@ bool isComplete()</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>819</x>
-      <y>399</y>
+      <x>826</x>
+      <y>364</y>
       <w>147</w>
       <h>98</h>
     </coordinates>
@@ -418,8 +418,8 @@ virtual bool isComplete()
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>875</x>
-      <y>490</y>
+      <x>882</x>
+      <y>455</y>
       <w>28</w>
       <h>140</h>
     </coordinates>
@@ -429,8 +429,8 @@ virtual bool isComplete()
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>378</x>
-      <y>35</y>
+      <x>385</x>
+      <y>0</y>
       <w>210</w>
       <h>245</h>
     </coordinates>
@@ -441,10 +441,10 @@ game: Game*
 // StartGame
 shuffleDeck()
 static createTileFromTemplate(char)
-static defineTiles()
+defineTiles()
+setupTileDeck()
 // init Players
 // init Board
-// init TileDeck
 
 // PlayTurn
 isPlacementValid(int x, int y, Tile*)
@@ -468,8 +468,8 @@ scoreBoard(Board*)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>476</x>
-      <y>273</y>
+      <x>483</x>
+      <y>238</y>
       <w>21</w>
       <h>63</h>
     </coordinates>

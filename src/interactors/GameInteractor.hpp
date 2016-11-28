@@ -23,17 +23,16 @@ public:
     GameInteractor(Game*);
     
     //TileDeck
-    // Rotate a tile clockwise once
-	void shuffleDeck(TileDeck*);
+	void shuffleDeck();
 	static Tile* createTileFromSequence(std::string);
     static Tile* createTileFromTemplate(char);
     static std::vector<Tile*> defineTiles();
+    void setupTileDeck();
 
-    
-
-    // Rotate a tile clockwise n times
     //Tile
+    // Rotate a tile clockwise once
     static void rotateTile(Tile*);
+    // Rotate a tile clockwise n times
     static void rotateTile(Tile*, int);
     
     //Board

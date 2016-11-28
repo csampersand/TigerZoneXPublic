@@ -14,14 +14,16 @@
 #include <random>
 #include <chrono>
 
-void GameInteractor::shuffleDeck(TileDeck* deck) {
+void GameInteractor::shuffleDeck() {
+    std::vector<Tile*> tiles = game->deck->getTiles();
 	typedef std::chrono::high_resolution_clock myclock;
 	myclock::time_point beginning = myclock::now();
 	myclock::duration d = myclock::now() - beginning;
 	unsigned seed = d.count();
 	auto engine = std::default_random_engine{};
 	engine.seed(seed);
-	std::shuffle(std::begin(game->deck->getDeck()), std::end(game->deck->getDeck()), engine);
+	std::shuffle(std::begin(tiles), std::end(tiles), engine);
+    game->deck->setTiles(tiles);
 }
 
 Tile* GameInteractor::createTileFromSequence(std::string str){
@@ -501,6 +503,14 @@ std::vector<Tile*> GameInteractor::defineTiles() {
         tiles.push_back(createTileFromTemplate('@'));
         
         return tiles;
+}
+
+void GameInteractor::setupTileDeck() {
+    game->deck->setTiles(defineTiles());
+    this->shuffleDeck();
+    
+    //Push starting tile to top of deck
+    game->deck->addTile(createTileFromTemplate('S'));
 }
 
 void GameInteractor::rotateTile(Tile* tile) {
