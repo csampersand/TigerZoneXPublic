@@ -55,6 +55,9 @@ public:
     // Set first tile, at (73,73), to tile at top of deck
     void setupBoard();
     
+    //Landmarks
+    bool isComplete(TileLandmark*);
+    
     //Player
     // Setup 2-player game and alot tigers & crocodiles
     void setupPlayers();

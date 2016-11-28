@@ -7,9 +7,9 @@
 //
 
 #include <iostream>
-#include "Game.hpp"
+#include "GameInteractor.hpp"
 
 int main(int argc, const char * argv[]) {
-    
+    GameInteractor gi;
     return 0;
 }

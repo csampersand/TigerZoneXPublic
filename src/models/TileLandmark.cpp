@@ -35,7 +35,7 @@ void TileTrail::trailEnd(bool end) {
 
 // TEST: make sure this->prevTrail->nextTrail and this->nextTrail->prevTrail never equals this
 bool TileTrail::append(TileLandmark* toLandmark) {
-    if (toLandmark->type != this->type)
+    if (toLandmark->getLandmarkType() != this->getLandmarkType())
         return false;
     
     TileTrail* toTrail = &static_cast<TileTrail&>(*toLandmark);
@@ -92,4 +92,32 @@ bool TileLake::append(TileLandmark* toLandmark) {
 
 bool TileDen::append(TileLandmark* toLandmark) {
     return false;
+}
+
+LandmarkType TileLandmark::getLandmarkType() {
+    return this->type;
+}
+
+TileTrail* TileTrail::getNextTrail() {
+    return this->nextTrail;
+}
+
+TileTrail* TileTrail::getPrevTrail() {
+    return this->prevTrail;
+}
+
+void TileTrail::setNextTrail(TileTrail* next) {
+    this->nextTrail = next;
+}
+
+void TileTrail::setPrevTrail(TileTrail* prev) {
+    this->prevTrail = prev;
+}
+
+bool TileTrail::getTrailEnds() {
+    return this->trailEnds;
+}
+
+void TileTrail::setTrailEnds(bool ends) {
+    this->trailEnds = ends;
 }

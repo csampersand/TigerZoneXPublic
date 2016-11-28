@@ -13,7 +13,7 @@ std::vector<Tile*> TileDeck::getTiles(){
 };
 
 int TileDeck::size() {
-	return tiles.size();
+	return (int)tiles.size();
 }
 
 void TileDeck::setTiles(std::vector<Tile*> tiles) {

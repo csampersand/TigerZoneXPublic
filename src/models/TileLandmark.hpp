@@ -44,11 +44,10 @@ private:
     Player* tigerOwnedBy;
     int tigerCount;
     bool hasCrocodile;
-public:
-    // The parent landmark, containing all tile landmarks
-    Landmark* landmark;
-    static TileLandmark* createTileLandmark(LandmarkType);
     LandmarkType type;
+public:
+    LandmarkType getLandmarkType();
+    static TileLandmark* createTileLandmark(LandmarkType);
     virtual bool append(TileLandmark*) = 0;
 };
 
@@ -59,8 +58,14 @@ private:
     TileTrail* prevTrail;
     bool trailEnds;
     bool hasCrocodile;
-public:
     void trailEnd(bool);
+public:
+    TileTrail* getNextTrail();
+    TileTrail* getPrevTrail();
+    void setNextTrail(TileTrail*);
+    void setPrevTrail(TileTrail*);
+    bool getTrailEnds();
+    void setTrailEnds(bool);
     bool append(TileLandmark*);
 };
 

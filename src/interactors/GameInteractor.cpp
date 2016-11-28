@@ -609,45 +609,45 @@ void GameInteractor::placeLandmarks(int x, int y, Tile* tile) {
         else if (tile->getSType() == Tile::sideTrail) {
             game->board->setTileLandmark(x,y,S,newTrail);
         }
-        static_cast<TileTrail&>(*newTrail).trailEnd(trailSides == 1);
+        static_cast<TileTrail&>(*newTrail).setTrailEnds(trailSides == 1);
     }
     else if (trailSides == 3 || trailSides == 4) {
         if (tile->getNType() == Tile::sideTrail) {
             game->board->setTileLandmark(x,y,N,TileLandmark::createTileLandmark(landmarkTrail));
-            static_cast<TileTrail&>(*game->board->getTileLandmark(x,y,N)).trailEnd(true);
+            static_cast<TileTrail&>(*game->board->getTileLandmark(x,y,N)).setTrailEnds(true);
         }
         if (tile->getWType() == Tile::sideTrail) {
             game->board->setTileLandmark(x,y,E,TileLandmark::createTileLandmark(landmarkTrail));
-            static_cast<TileTrail&>(*game->board->getTileLandmark(x,y,E)).trailEnd(true);
+            static_cast<TileTrail&>(*game->board->getTileLandmark(x,y,E)).setTrailEnds(true);
         }
         if (tile->getEType() == Tile::sideTrail) {
             game->board->setTileLandmark(x,y,W,TileLandmark::createTileLandmark(landmarkTrail));
-            static_cast<TileTrail&>(*game->board->getTileLandmark(x,y,W)).trailEnd(true);
+            static_cast<TileTrail&>(*game->board->getTileLandmark(x,y,W)).setTrailEnds(true);
         }
         if (tile->getSType() == Tile::sideTrail) {
             game->board->setTileLandmark(x,y,S,TileLandmark::createTileLandmark(landmarkTrail));
-            static_cast<TileTrail&>(*game->board->getTileLandmark(x,y,S)).trailEnd(true);
+            static_cast<TileTrail&>(*game->board->getTileLandmark(x,y,S)).setTrailEnds(true);
         }
     }
     
     // Append adjacent landmarks
     if (game->board->getTileLandmark(x,y+1,S) != NULL) {
-        if (game->board->getTileLandmark(x,y+1,S)->type == game->board->getTileLandmark(x,y,N)->type) {
+        if (game->board->getTileLandmark(x,y+1,S)->getLandmarkType() == game->board->getTileLandmark(x,y,N)->getLandmarkType()) {
             game->board->getTileLandmark(x,y+1,S)->append(game->board->getTileLandmark(x,y,N));
         }
     }
     if (game->board->getTileLandmark(x+1,y,W) != NULL) {
-        if (game->board->getTileLandmark(x+1,y,W)->type == game->board->getTileLandmark(x,y,E)->type) {
+        if (game->board->getTileLandmark(x+1,y,W)->getLandmarkType() == game->board->getTileLandmark(x,y,E)->getLandmarkType()) {
             game->board->getTileLandmark(x+1,y,W)->append(game->board->getTileLandmark(x,y,E));
         }
     }
     if (game->board->getTileLandmark(x,y-1,N) != NULL) {
-        if (game->board->getTileLandmark(x,y-1,N)->type == game->board->getTileLandmark(x,y,S)->type) {
+        if (game->board->getTileLandmark(x,y-1,N)->getLandmarkType() == game->board->getTileLandmark(x,y,S)->getLandmarkType()) {
             game->board->getTileLandmark(x,y-1,N)->append(game->board->getTileLandmark(x,y,S));
         }
     }
     if (game->board->getTileLandmark(x-1,y,E) != NULL) {
-        if (game->board->getTileLandmark(x-1,y,E)->type == game->board->getTileLandmark(x,y,W)->type) {
+        if (game->board->getTileLandmark(x-1,y,E)->getLandmarkType() == game->board->getTileLandmark(x,y,W)->getLandmarkType()) {
             game->board->getTileLandmark(x-1,y,E)->append(game->board->getTileLandmark(x,y,W));
         }
     }
@@ -682,6 +682,31 @@ bool GameInteractor::placeTile(int x, int y, Tile* tile) {
 void GameInteractor::setupBoard() {
     game->board->setFirstTile(new TileRelation(drawTile()));
     game->board->setTileRelation(73,73,game->board->getFirstTile());
+}
+
+bool GameInteractor::isComplete(TileLandmark* landmark) {
+    if (landmark->getLandmarkType() == landmarkTrail) {
+        TileTrail* start = &dynamic_cast<TileTrail&>(*landmark);
+        TileTrail* prev = start;
+        TileTrail* next = start;
+        
+        // Go to ends of trail
+        while(prev->getPrevTrail() != NULL && prev->getTrailEnds() == false)
+            prev = prev->getPrevTrail();
+        while(next->getNextTrail() != NULL && next->getTrailEnds() == false)
+            next = next->getNextTrail();
+        
+        // Trail is complete if both ends of trail go to actual ends
+        if (prev->getTrailEnds() && next->getTrailEnds())
+            return true;
+        else {
+            return false;
+        }
+    }
+    
+    
+    // remove this later
+    return false;
 }
 
 void GameInteractor::setupPlayers() {
