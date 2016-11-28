@@ -21,7 +21,7 @@ void GameInteractor::shuffleDeck(TileDeck* deck) {
 	unsigned seed = d.count();
 	auto engine = std::default_random_engine{};
 	engine.seed(seed);
-	std::shuffle(std::begin(deck), std::end(deck), engine);
+	std::shuffle(std::begin(game->deck->getDeck()), std::end(game->deck->getDeck()), engine);
 }
 
 Tile* GameInteractor::createTileFromSequence(std::string str){
