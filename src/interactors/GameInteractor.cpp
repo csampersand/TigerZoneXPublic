@@ -18,6 +18,7 @@ GameInteractor::GameInteractor() {
     this->game = new Game();
     this->setupTileDeck();
     this->setupBoard();
+    this->setupPlayers();
 }
 
 void GameInteractor::shuffleDeck() {
@@ -633,22 +634,22 @@ void GameInteractor::placeLandmarks(int x, int y, Tile* tile) {
     // Append adjacent landmarks
     if (game->board->getTileLandmark(x,y+1,S) != NULL) {
         if (game->board->getTileLandmark(x,y+1,S)->getLandmarkType() == game->board->getTileLandmark(x,y,N)->getLandmarkType()) {
-            game->board->getTileLandmark(x,y+1,S)->append(game->board->getTileLandmark(x,y,N));
+            append(game->board->getTileLandmark(x,y,N), game->board->getTileLandmark(x,y+1,S));
         }
     }
     if (game->board->getTileLandmark(x+1,y,W) != NULL) {
         if (game->board->getTileLandmark(x+1,y,W)->getLandmarkType() == game->board->getTileLandmark(x,y,E)->getLandmarkType()) {
-            game->board->getTileLandmark(x+1,y,W)->append(game->board->getTileLandmark(x,y,E));
+            append(game->board->getTileLandmark(x,y,E), game->board->getTileLandmark(x+1,y,W));
         }
     }
     if (game->board->getTileLandmark(x,y-1,N) != NULL) {
         if (game->board->getTileLandmark(x,y-1,N)->getLandmarkType() == game->board->getTileLandmark(x,y,S)->getLandmarkType()) {
-            game->board->getTileLandmark(x,y-1,N)->append(game->board->getTileLandmark(x,y,S));
+            append(game->board->getTileLandmark(x,y,S), game->board->getTileLandmark(x,y-1,N));
         }
     }
     if (game->board->getTileLandmark(x-1,y,E) != NULL) {
         if (game->board->getTileLandmark(x-1,y,E)->getLandmarkType() == game->board->getTileLandmark(x,y,W)->getLandmarkType()) {
-            game->board->getTileLandmark(x-1,y,E)->append(game->board->getTileLandmark(x,y,W));
+            append(game->board->getTileLandmark(x,y,W), game->board->getTileLandmark(x-1,y,E));
         }
     }
 }
@@ -681,12 +682,12 @@ bool GameInteractor::placeTile(int x, int y, Tile* tile) {
 
 void GameInteractor::setupBoard() {
     game->board->setFirstTile(new TileRelation(drawTile()));
-    game->board->setTileRelation(73,73,game->board->getFirstTile());
+    game->board->setTileRelation(76,76,game->board->getFirstTile());
 }
 
 bool GameInteractor::isComplete(TileLandmark* landmark) {
     if (landmark->getLandmarkType() == landmarkTrail) {
-        TileTrail* start = &dynamic_cast<TileTrail&>(*landmark);
+        TileTrail* start = &static_cast<TileTrail&>(*landmark);
         TileTrail* prev = start;
         TileTrail* next = start;
         
@@ -709,8 +710,66 @@ bool GameInteractor::isComplete(TileLandmark* landmark) {
     return false;
 }
 
+bool GameInteractor::append(TileLandmark* first, TileLandmark* second) {
+    if (first->getLandmarkType() != second->getLandmarkType())
+        return false;
+    else if (first->getLandmarkType() == landmarkTrail) {
+        this->appendTrails(&static_cast<TileTrail&>(*first), &static_cast<TileTrail&>(*second));
+    }
+    
+    return true;
+}
+
+// TEST: make sure this->prevTrail->nextTrail and this->nextTrail->prevTrail never equals this
+void GameInteractor::appendTrails(TileTrail* first, TileTrail* second) {
+    if (second->getPrevTrail() == NULL) {
+        if (first->getNextTrail() == NULL) {
+            first->setNextTrail(second);
+            second->setPrevTrail(first);
+        }
+        // Linked list reversal algorithm
+        else {
+            TileTrail* currTrail = first;
+            TileTrail* nextTrail = NULL;
+            TileTrail* prevTrail = NULL;
+            while (currTrail != NULL) {
+                nextTrail = currTrail->getNextTrail();
+                currTrail->setNextTrail(prevTrail);
+                prevTrail = currTrail;
+                currTrail = nextTrail;
+            }
+            first->setNextTrail(second);
+            second->setPrevTrail(first);
+        }
+    }
+    else if (second->getNextTrail() == NULL) {
+        if (first->getPrevTrail() == NULL) {
+            first->setPrevTrail(second);
+            second->setNextTrail(first);
+        }
+        // Linked list reversal algorithm
+        else {
+            TileTrail* currTrail = second;
+            // Go to beginning of trail being reversed
+            while(currTrail->getPrevTrail() != NULL)
+                currTrail = currTrail->getPrevTrail();
+            TileTrail* nextTrail = NULL;
+            TileTrail* prevTrail = NULL;
+            while (currTrail != NULL) {
+                nextTrail = currTrail->getNextTrail();
+                currTrail->setNextTrail(prevTrail);
+                prevTrail = currTrail;
+                currTrail = nextTrail;
+            }
+            first->setPrevTrail(second);
+            second->setNextTrail(first);
+        }
+    }
+}
+
 void GameInteractor::setupPlayers() {
     for (Player* player : game->players) {
+        player = new Player();
         player->setScore(0);
         player->setTigerCount(7);
         player->setCrocodileCount(2);

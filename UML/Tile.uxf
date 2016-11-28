@@ -351,13 +351,14 @@ rotateTile(Tile*, int)
 placeTiger(int x, int y, int zone, Player*)
 placeCrocodile(int x, int y, Player*)
 
--append(TileLandmark*, TileLandmark*)
-static createTileLandmark(LandmarkType)
-
 setupBoard();
 
-// ScoreTurn
+// Landmarks
 isComplete(TileLandmark*)
+append(TileLandmark*, TileLandmark*)
+static createTileLandmark(LandmarkType)
+// TileTrail
+appendTrails(TileTrail*, TileTrail*)
 
 // EndGame
 scoreBoard(Board*)</panel_attributes>

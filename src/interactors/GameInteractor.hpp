@@ -56,7 +56,11 @@ public:
     void setupBoard();
     
     //Landmarks
+    // Check if landmark is complete
     bool isComplete(TileLandmark*);
+    bool append(TileLandmark*, TileLandmark*);
+    // TileTrails
+    void appendTrails(TileTrail*, TileTrail*);
     
     //Player
     // Setup 2-player game and alot tigers & crocodiles

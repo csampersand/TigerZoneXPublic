@@ -48,7 +48,6 @@ private:
 public:
     LandmarkType getLandmarkType();
     static TileLandmark* createTileLandmark(LandmarkType);
-    virtual bool append(TileLandmark*) = 0;
 };
 
 class TileTrail : public TileLandmark {
@@ -66,7 +65,6 @@ public:
     void setPrevTrail(TileTrail*);
     bool getTrailEnds();
     void setTrailEnds(bool);
-    bool append(TileLandmark*);
 };
 
 class TileLake : public TileLandmark {
@@ -78,16 +76,12 @@ private:
     TileLake* wLake;
     bool lakeEnds;
     bool hasCrocodile;
-public:
-    bool append(TileLandmark*);
 };
 
 class TileDen : public TileLandmark {
     friend class Den;
 private:
     std::vector<Tile*> surroundingTiles;
-public:
-    bool append(TileLandmark*);
 };
 
 #endif /* TileLandmark_hpp */
