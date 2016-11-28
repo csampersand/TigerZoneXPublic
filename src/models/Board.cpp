@@ -6,7 +6,6 @@
 //
 
 #include "Board.hpp"
-#include "Landmark.hpp"
 
 TileRelation* Board::getTileRelation(int x, int y){
     return this->tiles[x][y];

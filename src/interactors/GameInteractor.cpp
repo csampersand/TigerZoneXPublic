@@ -610,24 +610,24 @@ void GameInteractor::placeLandmarks(int x, int y, Tile* tile) {
         else if (tile->getSType() == Tile::sideTrail) {
             game->board->setTileLandmark(x,y,S,newTrail);
         }
-        static_cast<TileTrail&>(*newTrail).setTrailEnds(trailSides == 1);
+        static_cast<TileTrail*>(newTrail)->setTrailEnds(trailSides == 1);
     }
     else if (trailSides == 3 || trailSides == 4) {
         if (tile->getNType() == Tile::sideTrail) {
             game->board->setTileLandmark(x,y,N,GameInteractor::createTileLandmark(landmarkTrail));
-            static_cast<TileTrail&>(*game->board->getTileLandmark(x,y,N)).setTrailEnds(true);
+            static_cast<TileTrail*>(game->board->getTileLandmark(x,y,N))->setTrailEnds(true);
         }
         if (tile->getWType() == Tile::sideTrail) {
             game->board->setTileLandmark(x,y,E,GameInteractor::createTileLandmark(landmarkTrail));
-            static_cast<TileTrail&>(*game->board->getTileLandmark(x,y,E)).setTrailEnds(true);
+            static_cast<TileTrail*>(game->board->getTileLandmark(x,y,E))->setTrailEnds(true);
         }
         if (tile->getEType() == Tile::sideTrail) {
             game->board->setTileLandmark(x,y,W,GameInteractor::createTileLandmark(landmarkTrail));
-            static_cast<TileTrail&>(*game->board->getTileLandmark(x,y,W)).setTrailEnds(true);
+            static_cast<TileTrail*>(game->board->getTileLandmark(x,y,W))->setTrailEnds(true);
         }
         if (tile->getSType() == Tile::sideTrail) {
             game->board->setTileLandmark(x,y,S,GameInteractor::createTileLandmark(landmarkTrail));
-            static_cast<TileTrail&>(*game->board->getTileLandmark(x,y,S)).setTrailEnds(true);
+            static_cast<TileTrail*>(game->board->getTileLandmark(x,y,S))->setTrailEnds(true);
         }
     }
     
@@ -687,7 +687,7 @@ void GameInteractor::setupBoard() {
 
 bool GameInteractor::isComplete(TileLandmark* landmark) {
     if (landmark->getLandmarkType() == landmarkTrail) {
-        TileTrail* start = &static_cast<TileTrail&>(*landmark);
+        TileTrail* start = static_cast<TileTrail*>(landmark);
         TileTrail* prev = start;
         TileTrail* next = start;
         
@@ -735,7 +735,7 @@ bool GameInteractor::append(TileLandmark* first, TileLandmark* second) {
     if (first->getLandmarkType() != second->getLandmarkType())
         return false;
     else if (first->getLandmarkType() == landmarkTrail) {
-        this->appendTrails(&static_cast<TileTrail&>(*first), &static_cast<TileTrail&>(*second));
+        this->appendTrails(static_cast<TileTrail*>(first), static_cast<TileTrail*>(second));
     }
     
     return true;
