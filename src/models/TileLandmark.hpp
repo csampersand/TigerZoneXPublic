@@ -47,7 +47,7 @@ private:
     LandmarkType type;
 public:
     LandmarkType getLandmarkType();
-    static TileLandmark* createTileLandmark(LandmarkType);
+    void setLandmarkType(LandmarkType);
 };
 
 class TileTrail : public TileLandmark {

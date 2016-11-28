@@ -8,33 +8,16 @@
 
 #include "TileLandmark.hpp"
 
-TileLandmark* TileLandmark::createTileLandmark(LandmarkType type) {
-    if (type == landmarkTrail) {
-        TileTrail* trail = new TileTrail();
-        trail->type = type;
-        return trail;
-    }
-    else if (type == landmarkLake) {
-        TileLake* lake = new TileLake();
-        lake->type = type;
-        return lake;
-    }
-    else if (type == landmarkDen) {
-        TileDen* den = new TileDen();
-        den->type = type;
-        return den;
-    }
-    else {
-        return NULL;
-    }
-}
-
 void TileTrail::trailEnd(bool end) {
     trailEnds = end;
 }
 
 LandmarkType TileLandmark::getLandmarkType() {
     return this->type;
+}
+
+void TileLandmark::setLandmarkType(LandmarkType type) {
+    this->type = type;
 }
 
 TileTrail* TileTrail::getNextTrail() {

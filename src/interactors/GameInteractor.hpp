@@ -58,7 +58,9 @@ public:
     //Landmarks
     // Check if landmark is complete
     bool isComplete(TileLandmark*);
+    static TileLandmark* createTileLandmark(LandmarkType);
     bool append(TileLandmark*, TileLandmark*);
+    
     // TileTrails
     void appendTrails(TileTrail*, TileTrail*);
     

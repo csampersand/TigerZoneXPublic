@@ -597,7 +597,7 @@ void GameInteractor::placeLandmarks(int x, int y, Tile* tile) {
     
     // Create trails with proper zones
     if (trailSides > 0 && trailSides <= 2) {
-        TileLandmark* newTrail = TileLandmark::createTileLandmark(landmarkTrail);
+        TileLandmark* newTrail = GameInteractor::createTileLandmark(landmarkTrail);
         if (tile->getNType() == Tile::sideTrail) {
             game->board->setTileLandmark(x,y,N,newTrail);
         }
@@ -614,19 +614,19 @@ void GameInteractor::placeLandmarks(int x, int y, Tile* tile) {
     }
     else if (trailSides == 3 || trailSides == 4) {
         if (tile->getNType() == Tile::sideTrail) {
-            game->board->setTileLandmark(x,y,N,TileLandmark::createTileLandmark(landmarkTrail));
+            game->board->setTileLandmark(x,y,N,GameInteractor::createTileLandmark(landmarkTrail));
             static_cast<TileTrail&>(*game->board->getTileLandmark(x,y,N)).setTrailEnds(true);
         }
         if (tile->getWType() == Tile::sideTrail) {
-            game->board->setTileLandmark(x,y,E,TileLandmark::createTileLandmark(landmarkTrail));
+            game->board->setTileLandmark(x,y,E,GameInteractor::createTileLandmark(landmarkTrail));
             static_cast<TileTrail&>(*game->board->getTileLandmark(x,y,E)).setTrailEnds(true);
         }
         if (tile->getEType() == Tile::sideTrail) {
-            game->board->setTileLandmark(x,y,W,TileLandmark::createTileLandmark(landmarkTrail));
+            game->board->setTileLandmark(x,y,W,GameInteractor::createTileLandmark(landmarkTrail));
             static_cast<TileTrail&>(*game->board->getTileLandmark(x,y,W)).setTrailEnds(true);
         }
         if (tile->getSType() == Tile::sideTrail) {
-            game->board->setTileLandmark(x,y,S,TileLandmark::createTileLandmark(landmarkTrail));
+            game->board->setTileLandmark(x,y,S,GameInteractor::createTileLandmark(landmarkTrail));
             static_cast<TileTrail&>(*game->board->getTileLandmark(x,y,S)).setTrailEnds(true);
         }
     }
@@ -708,6 +708,27 @@ bool GameInteractor::isComplete(TileLandmark* landmark) {
     
     // remove this later
     return false;
+}
+
+TileLandmark* GameInteractor::createTileLandmark(LandmarkType type) {
+    if (type == landmarkTrail) {
+        TileTrail* trail = new TileTrail();
+        trail->setLandmarkType(type);
+        return trail;
+    }
+    else if (type == landmarkLake) {
+        TileLake* lake = new TileLake();
+        lake->setLandmarkType(type);
+        return lake;
+    }
+    else if (type == landmarkDen) {
+        TileDen* den = new TileDen();
+        den->setLandmarkType(type);
+        return den;
+    }
+    else {
+        return NULL;
+    }
 }
 
 bool GameInteractor::append(TileLandmark* first, TileLandmark* second) {
