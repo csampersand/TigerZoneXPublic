@@ -16,7 +16,7 @@
 class Board {
 private:
     TileRelation* board[153][153];
-    TileLandmark* landmarks[145][145][9];
+    TileLandmark* landmarks[153][153][9];
     TileDeck deck;
     TileRelation* firstTile;
     //Make sure to start at 45,45
