@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include "Game.hpp"
 #include "Tile.hpp"
+#include "TileDeck.hpp"
 
 class GameInteractor {
 private:
@@ -20,6 +21,11 @@ public:
     GameInteractor();
     GameInteractor(Game*);
     
+	void shuffleDeck(TileDeck*);
+	void static createTileFromTemplate();
+	void static defineTiles();
+
+
     //
     void rotateTile(Tile*);
     void rotateTile(Tile*, int);
