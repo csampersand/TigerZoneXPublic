@@ -832,17 +832,17 @@ bool GameInteractor::append(TileLandmark* first, TileLandmark* second, Position 
     if (first->getLandmarkType() != second->getLandmarkType())
         return false;
     else if (first->getLandmarkType() == landmarkTrail) {
-        this->append(static_cast<TileTrail*>(first), static_cast<TileTrail*>(second));
+        this->appendTrails(static_cast<TileTrail*>(first), static_cast<TileTrail*>(second));
     }
     else if (first->getLandmarkType() == landmarkLake) {
-        this->append(static_cast<TileLake*>(first), static_cast<TileLake*>(second), direction);
+        this->appendLakes(static_cast<TileLake*>(first), static_cast<TileLake*>(second), direction);
     }
     
     return true;
 }
 
 // TEST: make sure this->prevTrail->nextTrail and this->nextTrail->prevTrail never equals this
-void GameInteractor::append(TileTrail* first, TileTrail* second) {
+void GameInteractor::appendTrails(TileTrail* first, TileTrail* second) {
     if (second->getPrevTrail() == NULL) {
         if (first->getNextTrail() == NULL) {
             first->setNextTrail(second);
@@ -888,7 +888,7 @@ void GameInteractor::append(TileTrail* first, TileTrail* second) {
     }
 }
 
-void GameInteractor::append(TileLake* first, TileLake* second, Position direction) {
+void GameInteractor::appendLakes(TileLake* first, TileLake* second, Position direction) {
     if (direction == N) {
         first->setNLake(second);
         second->setSLake(first);
