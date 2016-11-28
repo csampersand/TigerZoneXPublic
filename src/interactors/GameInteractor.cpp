@@ -683,6 +683,7 @@ bool GameInteractor::placeTile(int x, int y, Tile* tile) {
 void GameInteractor::setupBoard() {
     game->board->setFirstTile(new TileRelation(drawTile()));
     game->board->setTileRelation(76,76,game->board->getFirstTile());
+    this->placeLandmarks(76,76,game->board->getFirstTile()->getTile());
 }
 
 bool GameInteractor::isComplete(TileLandmark* landmark) {
