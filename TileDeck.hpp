@@ -20,10 +20,11 @@ public:
     static std::vector<Tile*> defineTiles();
     Tile* drawTile();
 	int size();
+    std::vector<Tile*> getDeck();
 private:
     static Tile* createTileFromTemplate(char);
     void shuffle();
-    std::vector<Tile*> deck;
+    std::vector<Tile*> tiles;
 };
 
 #endif /* TileDeck_hpp */

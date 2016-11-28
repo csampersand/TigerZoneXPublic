@@ -13,6 +13,18 @@ Board::Board(Tile* startingTile) {
     board[76][76] = this->firstTile;
 }
 
+TileDeck Board::getDeck(){
+    return this->deck;
+};
+
+TileRelation* Board::getTileRelation(int x, int y){
+    return this->board[x][y];
+};
+
+TileLandmark* Board::getTileLandmark(int x, int y, int c){
+    return this->landmarks[x][y][c];
+}
+
 bool Board::isPlacementValid(int x, int y, Tile* tile) {
 	// Either coordinate cant be > 144 or < 1
 	// Board configured so that edge will have an extra row and column to check

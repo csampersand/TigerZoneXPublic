@@ -23,6 +23,13 @@ private:
     void placeLandmarks(int, int, Tile*);
 public:
     Board(Tile*);
+    
+    TileLandmark* getTileLandmark(int,int,int);
+    TileRelation* getTileRelation(int,int);
+    TileDeck getDeck();
+    
+    
+    
     bool isPlacementValid(int, int, Tile*);
     bool placeTile(int, int, Tile*);
     static int getLowestZone(int, int, TileLandmark*);

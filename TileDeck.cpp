@@ -11,6 +11,10 @@
 #include <chrono>
 #include "TileDeck.hpp"
 
+std::vector<Tile*> TileDeck::getDeck(){
+    return this->tiles;
+};
+
 Tile* TileDeck::createTileFromTemplate(char tileTemplate) {
     Tile* tile;
     switch(tileTemplate) {
@@ -393,15 +397,15 @@ void TileDeck::shuffle() {
     unsigned seed = d.count();
     auto engine = std::default_random_engine{};
     engine.seed(seed);
-    std::shuffle(std::begin(this->deck), std::end(this->deck), engine);
+    std::shuffle(std::begin(this->tiles), std::end(this->tiles), engine);
 }
 
 TileDeck::TileDeck() {
-    this->deck = TileDeck::defineTiles();
+    this->tiles = TileDeck::defineTiles();
     this->shuffle();
 
     //Push starting tile to top of deck
-    this->deck.push_back(createTileFromTemplate('S'));
+    this->tiles.push_back(createTileFromTemplate('S'));
 }
 
 TileDeck::TileDeck(char* tileList, int n) {
@@ -409,16 +413,16 @@ TileDeck::TileDeck(char* tileList, int n) {
 	for (int i = 0; i < n; ++i) {
 		tiles.push_back(createTileFromTemplate(tileList[n]));
 	}
-	this->deck = tiles;
+	this->tiles = tiles;
 }
 
 
 Tile* TileDeck::drawTile() {
-    Tile* tile = this->deck.back();
-    this->deck.pop_back();
+    Tile* tile = this->tiles.back();
+    this->tiles.pop_back();
     return tile;
 }
 
 int TileDeck::size() {
-	return deck.size();
+	return tiles.size();
 }
