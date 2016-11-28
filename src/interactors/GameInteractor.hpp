@@ -44,8 +44,11 @@ public:
     static void rotateTile(Tile*, int);
     
     //Board
+    // Check if tile placement is valid
     bool isPlacementValid(int, int, Tile*);
+    // Implement landmarks from tile placement
     void placeLandmarks(int, int, Tile*);
+    // If valid placement, create a tile relation at coordinates and set up landmarks
     bool placeTile(int, int, Tile*);
     bool placeTiger(int, int, int, Player*);
     bool placeCrocodile(int, int, Player*);
