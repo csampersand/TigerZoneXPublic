@@ -8,6 +8,29 @@
 
 #include "GameInteractor.hpp"
 #include "Game.hpp"
+#include "Tile.hpp"
+#include "TileDeck.hpp"
+#include <algorithm>
+#include <random>
+#include <chrono>
+
+void GameInteractor::shuffleDeck(TileDeck* deck) {
+	typedef std::chrono::high_resolution_clock myclock;
+	myclock::time_point beginning = myclock::now();
+	myclock::duration d = myclock::now() - beginning;
+	unsigned seed = d.count();
+	auto engine = std::default_random_engine{};
+	engine.seed(seed);
+	std::shuffle(std::begin(deck), std::end(deck), engine);
+}
+
+void static GameInteractor::createTileFromTemplate() {
+
+}
+
+void static GameInteractor::defineTiles() {
+
+}
 
 void GameInteractor::rotateTile(Tile* tile) {
     Tile::SideType oldNType = tile->getNType();
