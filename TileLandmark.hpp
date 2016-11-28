@@ -40,12 +40,14 @@ enum LandmarkType {
 
 class TileLandmark {
     friend class Landmark;
-public:
-    static TileLandmark* createTileLandmark(LandmarkType);
 private:
     Player* tigerOwnedBy;
     // The parent landmark, containing all tile landmarks
+public:
     Landmark* landmark;
+    static TileLandmark* createTileLandmark(LandmarkType);
+    LandmarkType type;
+    virtual bool append(TileLandmark*) = 0;
 };
 
 class TileTrail : public TileLandmark {
@@ -57,6 +59,7 @@ private:
     bool hasCrocodile;
 public:
     void trailEnd(bool);
+    bool append(TileLandmark*);
 };
 
 class TileLake : public TileLandmark {
@@ -68,12 +71,16 @@ private:
     TileLake* wLake;
     bool lakeEnds;
     bool hasCrocodile;
+public:
+    bool append(TileLandmark*);
 };
 
 class TileDen : public TileLandmark {
     friend class Den;
 private:
     std::vector<Tile*> surroundingTiles;
+public:
+    bool append(TileLandmark*);
 };
 
 #endif /* TileLandmark_hpp */

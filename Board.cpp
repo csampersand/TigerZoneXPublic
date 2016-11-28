@@ -121,6 +121,29 @@ void Board::placeLandmarks(int x, int y, Tile* tile) {
             static_cast<TileTrail&>(*landmarks[x][y][S]).trailEnd(true);
         }
     }
+    
+    // Append adjacent landmarks
+    if (landmarks[x][y+1] != NULL) {
+        if (landmarks[x][y+1][S]->type == landmarks[x][y][N]->type) {
+            landmarks[x][y+1][S]->append(landmarks[x][y][N]);
+        }
+    }
+    if (landmarks[x+1][y] != NULL) {
+        if (landmarks[x+1][y][W]->type == landmarks[x][y][E]->type) {
+            landmarks[x+1][y][W]->append(landmarks[x][y][E]);
+        }
+    }
+    if (landmarks[x][y-1] != NULL) {
+        if (landmarks[x][y-1][N]->type == landmarks[x][y][S]->type) {
+            landmarks[x][y-1][N]->append(landmarks[x][y][S]);
+        }
+    }
+    if (landmarks[x-1][y] != NULL) {
+        if (landmarks[x-1][y][E]->type == landmarks[x][y][W]->type) {
+            landmarks[x-1][y][E]->append(landmarks[x][y][W]);
+        }
+    }
+    
 }
 
 bool Board::placeTile(int x, int y, Tile* tile) {
@@ -144,7 +167,7 @@ bool Board::placeTile(int x, int y, Tile* tile) {
         newTile->getWTileRelation()->setETileRelation(newTile);
     }
     
-    placeLandmarks(x, y, tile);
+    this->placeLandmarks(x, y, tile);
     
     return true;
 }
