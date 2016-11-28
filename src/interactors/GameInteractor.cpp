@@ -576,58 +576,83 @@ void GameInteractor::placeLandmarks(int x, int y, Tile* tile) {
     if (trailSides > 0 && trailSides <= 2) {
         TileLandmark* newTrail = TileLandmark::createTileLandmark(landmarkTrail);
         if (tile->getNType() == Tile::sideTrail) {
-            landmarks(x,y)[N] = newTrail;
+            game->board->setTileLandmark(x,y,N,newTrail);
         }
         else if (tile->getWType() == Tile::sideTrail) {
-            landmarks(x,y)[E] = newTrail;
+            game->board->setTileLandmark(x,y,E,newTrail);
         }
         else if (tile->getEType() == Tile::sideTrail) {
-            landmarks(x,y)[W] = newTrail;
+            game->board->setTileLandmark(x,y,W,newTrail);
         }
         else if (tile->getSType() == Tile::sideTrail) {
-            landmarks(x,y)[S] = newTrail;
+            game->board->setTileLandmark(x,y,S,newTrail);
         }
         static_cast<TileTrail&>(*newTrail).trailEnd(trailSides == 1);
     }
     else if (trailSides == 3 || trailSides == 4) {
         if (tile->getNType() == Tile::sideTrail) {
-            landmarks(x,y)[N] = TileLandmark::createTileLandmark(landmarkTrail);
-            static_cast<TileTrail&>(*landmarks(x,y)[N]).trailEnd(true);
+            game->board->setTileLandmark(x,y,N,TileLandmark::createTileLandmark(landmarkTrail));
+            static_cast<TileTrail&>(*game->board->getTileLandmark(x,y,N)).trailEnd(true);
         }
         if (tile->getWType() == Tile::sideTrail) {
-            landmarks(x,y)[E] = TileLandmark::createTileLandmark(landmarkTrail);
-            static_cast<TileTrail&>(*landmarks(x,y)[E]).trailEnd(true);
+            game->board->setTileLandmark(x,y,E,TileLandmark::createTileLandmark(landmarkTrail));
+            static_cast<TileTrail&>(*game->board->getTileLandmark(x,y,E)).trailEnd(true);
         }
         if (tile->getEType() == Tile::sideTrail) {
-            landmarks(x,y)[W] = TileLandmark::createTileLandmark(landmarkTrail);
-            static_cast<TileTrail&>(*landmarks(x,y)[W]).trailEnd(true);
+            game->board->setTileLandmark(x,y,W,TileLandmark::createTileLandmark(landmarkTrail));
+            static_cast<TileTrail&>(*game->board->getTileLandmark(x,y,W)).trailEnd(true);
         }
         if (tile->getSType() == Tile::sideTrail) {
-            landmarks(x,y)[S] = TileLandmark::createTileLandmark(landmarkTrail);
-            static_cast<TileTrail&>(*landmarks(x,y)[S]).trailEnd(true);
+            game->board->setTileLandmark(x,y,S,TileLandmark::createTileLandmark(landmarkTrail));
+            static_cast<TileTrail&>(*game->board->getTileLandmark(x,y,S)).trailEnd(true);
         }
     }
     
     // Append adjacent landmarks
-    if (landmarks(x,y+1) != NULL) {
-        if (landmarks(x,y+1)[S]->type == landmarks(x,y)[N]->type) {
-            landmarks(x,y+1)[S]->append(landmarks(x,y)[N]);
+    if (game->board->getTileLandmark(x,y+1,S) != NULL) {
+        if (game->board->getTileLandmark(x,y+1,S)->type == game->board->getTileLandmark(x,y,N)->type) {
+            game->board->getTileLandmark(x,y+1,S)->append(game->board->getTileLandmark(x,y,N));
         }
     }
-    if (landmarks(x+1,y) != NULL) {
-        if (landmarks(x+1,y)[W]->type == landmarks(x,y)[E]->type) {
-            landmarks(x+1,y)[W]->append(landmarks(x,y)[E]);
+    if (game->board->getTileLandmark(x+1,y,W) != NULL) {
+        if (game->board->getTileLandmark(x+1,y,W)->type == game->board->getTileLandmark(x,y,E)->type) {
+            game->board->getTileLandmark(x+1,y,W)->append(game->board->getTileLandmark(x,y,E));
         }
     }
-    if (landmarks(x,y-1) != NULL) {
-        if (landmarks(x,y-1)[N]->type == landmarks(x,y)[S]->type) {
-            landmarks(x,y-1)[N]->append(landmarks(x,y)[S]);
+    if (game->board->getTileLandmark(x,y-1,N) != NULL) {
+        if (game->board->getTileLandmark(x,y-1,N)->type == game->board->getTileLandmark(x,y,S)->type) {
+            game->board->getTileLandmark(x,y-1,N)->append(game->board->getTileLandmark(x,y,S));
         }
     }
-    if (landmarks(x-1,y) != NULL) {
-        if (landmarks(x-1,y)[E]->type == landmarks(x,y)[W]->type) {
-            landmarks(x-1,y)[E]->append(landmarks(x,y)[W]);
+    if (game->board->getTileLandmark(x-1,y,E) != NULL) {
+        if (game->board->getTileLandmark(x-1,y,E)->type == game->board->getTileLandmark(x,y,W)->type) {
+            game->board->getTileLandmark(x-1,y,E)->append(game->board->getTileLandmark(x,y,W));
         }
+    }
+}
+
+bool GameInteractor::placeTile(int x, int y, Tile* tile) {
+    if (!this->isPlacementValid(x, y, tile))
+        return false;
+    
+    TileRelation* newTile = new TileRelation(tile, game->board->getTileRelation(x,y+1), game->board->getTileRelation(x+1,y), game->board->getTileRelation(x,y-1), game->board->getTileRelation(x-1,y));
+    game->board->setTileRelation(x,y,newTile);
+    
+    // Have all neighbors reference the newTile
+    if (newTile->getNTileRelation() != NULL) {
+        newTile->getNTileRelation()->setSTileRelation(newTile);
+    }
+    if (newTile->getETileRelation() != NULL) {
+        newTile->getETileRelation()->setWTileRelation(newTile);
+    }
+    if (newTile->getSTileRelation() != NULL) {
+        newTile->getSTileRelation()->setNTileRelation(newTile);
+    }
+    if (newTile->getWTileRelation() != NULL) {
+        newTile->getWTileRelation()->setETileRelation(newTile);
     }
     
+    this->placeLandmarks(x, y, tile);
+    
+    return true;
 }

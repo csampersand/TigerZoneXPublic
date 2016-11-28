@@ -17,16 +17,16 @@ class Board {
 private:
     TileRelation* tiles[153][153];
     TileLandmark* landmarks[153][153][9];
-    TileDeck deck;
     TileRelation* firstTile;
-    //Make sure to start at 45,45
+    //Make sure to start at 153,153
     void placeLandmarks(int, int, Tile*);
 public:
     Board(Tile*);
     
     TileLandmark* getTileLandmark(int,int,int);
     TileRelation* getTileRelation(int,int);
-    TileDeck getDeck();
+    void setTileLandmark(int,int,int,TileLandmark*);
+    void setTileRelation(int,int,TileRelation*);
 };
 
 #endif /* Board_hpp */
