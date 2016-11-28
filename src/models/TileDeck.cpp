@@ -12,12 +12,6 @@ std::vector<Tile*> TileDeck::getTiles(){
     return this->tiles;
 };
 
-Tile* TileDeck::drawTile() {
-    Tile* tile = this->tiles.back();
-    this->tiles.pop_back();
-    return tile;
-}
-
 int TileDeck::size() {
 	return tiles.size();
 }
@@ -28,4 +22,8 @@ void TileDeck::setTiles(std::vector<Tile*> tiles) {
 
 void TileDeck::addTile(Tile* tile) {
     this->tiles.push_back(tile);
+}
+
+void TileDeck::removeTile() {
+    this->tiles.pop_back();
 }

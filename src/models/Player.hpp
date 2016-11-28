@@ -9,13 +9,13 @@
 
 class Player {
 public:
-	Player(TileRelation***);
 	void incrementScore(int);
 	int getScore();
-
-protected:
-	TileRelation*** Board;
-
+    void setScore(int);
+    int getTigerCount();
+    void setTigerCount(int);
+    int getCrocodileCount();
+    void setCrocodileCount(int);
 private:
 	int tigerCount;
 	int crocodileCount;

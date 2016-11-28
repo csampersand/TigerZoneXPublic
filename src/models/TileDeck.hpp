@@ -15,12 +15,12 @@
 
 class TileDeck {
 public:
-    Tile* drawTile();
 	int size();
     std::vector<Tile*> getTiles();
     void setTiles(std::vector<Tile*>);
     Tile* createTileFromSequence(std::string);
     void addTile(Tile*);
+    void removeTile();
 private:
     static Tile* createTileFromTemplate(char);
     void shuffle();

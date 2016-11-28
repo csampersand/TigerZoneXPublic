@@ -19,14 +19,22 @@ class GameInteractor {
 private:
     Game* game;
 public:
+    // Initialize game, setup deck, setup board
     GameInteractor();
     GameInteractor(Game*);
     
     //TileDeck
+    // Shuffle the deck
 	void shuffleDeck();
+    // Create a tile from Dave's defined tile sequences
 	static Tile* createTileFromSequence(std::string);
+    // Create a tile from alphabetic template
     static Tile* createTileFromTemplate(char);
+    // Create a vector of all the game tiles
     static std::vector<Tile*> defineTiles();
+    // Return the top tile from the deck, and remove it
+    Tile* drawTile();
+    // Define tiles, shuffle them, and add tile type S at the top
     void setupTileDeck();
 
     //Tile
@@ -41,6 +49,12 @@ public:
     bool placeTile(int, int, Tile*);
     bool placeTiger(int, int, int, Player*);
     bool placeCrocodile(int, int, Player*);
+    // Set first tile, at (73,73), to tile at top of deck
+    void setupBoard();
+    
+    //Player
+    // Setup 2-player game and alot tigers & crocodiles
+    void setupPlayers();
 };
 
 #endif /* GameInteractor_hpp */

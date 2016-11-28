@@ -1,16 +1,29 @@
 #include "Player.hpp"
 
-Player::Player(TileRelation*** gameBoard) {
-	this->score = 0;
-	this->tigerCount = 7;
-	this->crocodileCount = 2;
-	this->Board = gameBoard;
-}
-
 void Player::incrementScore(int amount) {
 	this->score += amount;
 }
 
 int Player::getScore() {
-	return this->score;
+    return this->score;
+}
+
+int Player::getTigerCount() {
+    return this->tigerCount;
+}
+
+int Player::getCrocodileCount() {
+	return this->crocodileCount;
+}
+
+void Player::setScore(int score) {
+    this->score = score;
+}
+
+void Player::setTigerCount(int tigerCount) {
+    this->tigerCount = tigerCount;
+}
+
+void Player::setCrocodileCount(int crocodileCount) {
+    this->crocodileCount = crocodileCount;
 }

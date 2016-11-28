@@ -14,6 +14,12 @@
 #include <random>
 #include <chrono>
 
+GameInteractor::GameInteractor() {
+    this->game = new Game();
+    this->setupTileDeck();
+    this->setupBoard();
+}
+
 void GameInteractor::shuffleDeck() {
     std::vector<Tile*> tiles = game->deck->getTiles();
 	typedef std::chrono::high_resolution_clock myclock;
@@ -505,6 +511,12 @@ std::vector<Tile*> GameInteractor::defineTiles() {
         return tiles;
 }
 
+Tile* GameInteractor::drawTile() {
+    Tile* tile = game->deck->getTiles().back();
+    game->deck->removeTile();
+    return tile;
+}
+
 void GameInteractor::setupTileDeck() {
     game->deck->setTiles(defineTiles());
     this->shuffleDeck();
@@ -665,4 +677,17 @@ bool GameInteractor::placeTile(int x, int y, Tile* tile) {
     this->placeLandmarks(x, y, tile);
     
     return true;
+}
+
+void GameInteractor::setupBoard() {
+    game->board->setFirstTile(new TileRelation(drawTile()));
+    game->board->setTileRelation(73,73,game->board->getFirstTile());
+}
+
+void GameInteractor::setupPlayers() {
+    for (Player* player : game->players) {
+        player->setScore(0);
+        player->setTigerCount(7);
+        player->setCrocodileCount(2);
+    }
 }

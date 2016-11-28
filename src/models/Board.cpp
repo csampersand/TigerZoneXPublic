@@ -8,11 +8,6 @@
 #include "Board.hpp"
 #include "Landmark.hpp"
 
-Board::Board(Tile* startingTile) {
-    this->firstTile = new TileRelation(startingTile);
-    tiles[76][76] = this->firstTile;
-}
-
 TileRelation* Board::getTileRelation(int x, int y){
     return this->tiles[x][y];
 };
@@ -27,4 +22,12 @@ void Board::setTileLandmark(int x, int y, int zone, TileLandmark* landmark) {
 
 void Board::setTileRelation(int x, int y, TileRelation* relation) {
     this->tiles[x][y] = relation;
+}
+
+TileRelation* Board::getFirstTile() {
+    return this->firstTile;
+}
+
+void Board::setFirstTile(TileRelation* relation) {
+    this->firstTile = relation;
 }
