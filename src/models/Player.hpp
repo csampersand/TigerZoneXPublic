@@ -5,7 +5,6 @@
 
 #include "Tile.hpp"
 #include "TileRelation.hpp"
-#include "MoveEntity.hpp"
 
 
 class Player {
@@ -13,7 +12,6 @@ public:
 	Player(TileRelation***);
 	void incrementScore(int);
 	int getScore();
-	virtual MoveEntity takeTurn(Tile*) const = 0;
 
 protected:
 	TileRelation*** Board;

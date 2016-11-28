@@ -10,7 +10,6 @@
 #include "Game.hpp"
 
 int main(int argc, const char * argv[]) {
-    Game
     
     return 0;
 }
