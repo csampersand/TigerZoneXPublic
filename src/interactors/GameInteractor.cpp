@@ -601,13 +601,13 @@ void GameInteractor::placeLandmarks(int x, int y, Tile* tile) {
         if (tile->getNType() == Tile::sideTrail) {
             game->board->setTileLandmark(x,y,N,newTrail);
         }
-        else if (tile->getWType() == Tile::sideTrail) {
+        if (tile->getWType() == Tile::sideTrail) {
             game->board->setTileLandmark(x,y,E,newTrail);
         }
-        else if (tile->getEType() == Tile::sideTrail) {
+        if (tile->getEType() == Tile::sideTrail) {
             game->board->setTileLandmark(x,y,W,newTrail);
         }
-        else if (tile->getSType() == Tile::sideTrail) {
+        if (tile->getSType() == Tile::sideTrail) {
             game->board->setTileLandmark(x,y,S,newTrail);
         }
         static_cast<TileTrail*>(newTrail)->setTrailEnds(trailSides == 1);
