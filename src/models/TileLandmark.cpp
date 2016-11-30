@@ -8,6 +8,12 @@
 
 #include "TileLandmark.hpp"
 
+TileLandmark::TileLandmark(LandmarkType type){
+    this->tigerOwnedBy = NULL;
+    this->hasCrocodile = false;
+    this->type = type;
+}
+
 void TileTrail::trailEnd(bool end) {
     trailEnds = end;
 }
@@ -18,6 +24,13 @@ LandmarkType TileLandmark::getLandmarkType() {
 
 void TileLandmark::setLandmarkType(LandmarkType type) {
     this->type = type;
+}
+
+TileTrail::TileTrail(){
+    this->nextTrail = NULL;
+    this->prevTrail = NULL;
+    this->trailEnds = false;
+    this->hasCrocodile = false;
 }
 
 TileTrail* TileTrail::getNextTrail() {
@@ -42,6 +55,19 @@ bool TileTrail::getTrailEnds() {
 
 void TileTrail::setTrailEnds(bool ends) {
     this->trailEnds = ends;
+}
+
+TileLake::TileLake(){
+    this->nLake = NULL;
+    this->eLake = NULL;
+    this->sLake = NULL;
+    this->wLake = NULL;
+    this->nOpen = false;
+    this->eOpen = false;
+    this->sOpen = false;
+    this->wOpen = false;
+    this->lakeEnds = false;
+    this->hasCrocodile = false;
 }
 
 bool TileLake::getHasCrocodile() {
@@ -99,4 +125,8 @@ void TileLake::setSOpen(bool open) {
 }
 void TileLake::setWOpen(bool open) {
     this->wOpen = open;
+}
+
+TileDen::TileDen(){
+    this->surroundingTiles = NULL;
 }

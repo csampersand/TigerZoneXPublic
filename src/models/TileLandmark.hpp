@@ -46,6 +46,7 @@ private:
     bool hasCrocodile;
     LandmarkType type;
 public:
+    TileLandmark();
     LandmarkType getLandmarkType();
     void setLandmarkType(LandmarkType);
 };
@@ -59,6 +60,7 @@ private:
     bool hasCrocodile;
     void trailEnd(bool);
 public:
+    TileTrail();
     TileTrail* getNextTrail();
     TileTrail* getPrevTrail();
     void setNextTrail(TileTrail*);
