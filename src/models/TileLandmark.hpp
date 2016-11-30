@@ -47,8 +47,8 @@ private:
     LandmarkType type;
 public:
     TileLandmark();
-    LandmarkType getLandmarkType();
-    void setLandmarkType(LandmarkType);
+    LandmarkType getType();
+    void setType(LandmarkType);
     Player* getTigerOwner();
     void setTigerOwner(Player*);
 };
@@ -109,13 +109,11 @@ public:
 class TileDen : public TileLandmark {
     friend class Den;
 public:
-    TileDen();
     int getX();
     int getY();
     void setX(int);
     void setY(int);
 private:
-    std::vector<Tile*> surroundingTiles;
     int x;
     int y;
 };

@@ -837,17 +837,17 @@ bool GameInteractor::isComplete(TileDen* den) {
 TileLandmark* GameInteractor::createTileLandmark(LandmarkType type) {
     if (type == landmarkTrail) {
         TileTrail* trail = new TileTrail();
-        trail->setLandmarkType(type);
+        trail->setType(type);
         return trail;
     }
     else if (type == landmarkLake) {
         TileLake* lake = new TileLake();
-        lake->setLandmarkType(type);
+        lake->setType(type);
         return lake;
     }
     else if (type == landmarkDen) {
         TileDen* den = new TileDen();
-        den->setLandmarkType(type);
+        den->setType(type);
         return den;
     }
     else {

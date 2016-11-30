@@ -9,10 +9,9 @@
 #include "TileLandmark.hpp"
 
 TileLandmark::TileLandmark(){
-    this->tigerOwnedBy = NULL;
+    this->tigerOwner = NULL;
     this->tigerCount = 0;
     this->hasCrocodile = false;
-    this->type = NULL;
 }
 
 void TileTrail::trailEnd(bool end) {
@@ -23,7 +22,7 @@ LandmarkType TileLandmark::getType() {
     return this->type;
 }
 
-void TileLandmark::setLandmarkType(LandmarkType type) {
+void TileLandmark::setType(LandmarkType type) {
     this->type = type;
 }
 
@@ -126,10 +125,6 @@ void TileLake::setSOpen(bool open) {
 }
 void TileLake::setWOpen(bool open) {
     this->wOpen = open;
-}
-
-TileDen::TileDen(){
-    this->surroundingTiles = NULL;
 }
 
 int TileDen::getX() {
