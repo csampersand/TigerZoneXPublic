@@ -350,6 +350,8 @@ TEST_CASE("Testing isComplete and lakes") {
 		//player 2 must have 2
 		//player 3 must have 1
 
+
+
         INFO("checking isComplete and landmark")
         REQUIRE(firstTest);
         REQUIRE(getP2 == player2);
@@ -457,3 +459,105 @@ TEST_CASE("Testing isComplete and lakes") {
 //    }
 //	
 //}
+
+TEST_CASE("Testing isComplete for trails and Dens") {
+
+	//Start a test game interactor
+	TestGameInteractor* gi = new TestGameInteractor();
+
+	Tile* t7677 = gi->createTileFromTemplate('F');
+	gi->rotateTile(t7677, 3);
+	Tile* t7577 = gi->createTileFromTemplate('F');
+	gi->rotateTile(t7577, 2);
+	Tile* t7576 = gi->createTileFromTemplate('E');
+	Tile* t7575 = gi->createTileFromTemplate('F');
+	gi->rotateTile(t7575, 1);
+	Tile* t7574 = gi->createTileFromTemplate('B');
+	Tile* t7573 = gi->createTileFromTemplate('A');
+	Tile* t7473 = gi->createTileFromTemplate('A');
+	Tile* t7474 = gi->createTileFromTemplate('A');
+	Tile* t7475 = gi->createTileFromTemplate('A');
+	// Tile* t7675 = gi->createTileFromTemplate('F');
+	Tile* t7674 = gi->createTileFromTemplate('A');
+	Tile* t7673 = gi->createTileFromTemplate('A');
+
+	gi->placeTile( 76, 77, t7677);
+	gi->placeLandmarks( 76, 77, t7677);
+	gi->placeTile( 75, 77, t7577);
+	gi->placeLandmarks( 75, 77, t7577);
+	gi->placeTile( 75, 76, t7576);
+	gi->placeLandmarks( 75, 76, t7576);
+	gi->placeTile( 75, 75, t7575);
+	gi->placeLandmarks( 75, 75, t7575);
+	gi->placeTile( 75, 74, t7574);
+	gi->placeLandmarks( 75, 74, t7574);
+	gi->placeTile( 75, 73, t7573);
+	gi->placeLandmarks( 75, 73, t7573);
+	gi->placeTile( 74, 73, t7473);
+	gi->placeLandmarks( 74, 73, t7473);
+	gi->placeTile( 74, 74, t7474);
+	gi->placeLandmarks( 74, 74, t7474);
+	gi->placeTile( 74, 75, t7475);
+	gi->placeLandmarks( 74, 75, t7475);
+	// gi->placeTile( 76, 75, t7675);
+	// gi->placeLandmarks( 76, 75, t7675);
+	gi->placeTile( 76, 74, t7674);
+	gi->placeLandmarks( 76, 74, t7674);
+	gi->placeTile( 76, 73, t7673);
+	gi->placeLandmarks( 76, 73, t7673);
+	//int i;
+	//std::cin >> i;
+
+	
+	
+	// gi->placeLandmarks( 75, 75, t7575);
+	// gi->placeLandmarks( 75, 74, t7574);
+	// gi->placeLandmarks( 75, 73, t7573);
+	// gi->placeLandmarks( 74, 73, t7473);
+	// gi->placeLandmarks( 74, 74, t7474);
+	// gi->placeLandmarks( 74, 75, t7475);
+	// gi->placeLandmarks( 76, 75, t7675);
+	// gi->placeLandmarks( 76, 74, t7674);
+	// gi->placeLandmarks( 76, 73, t7673);
+
+//placeLandmarks
+	
+    SECTION("Layed some sweet tile") {
+    	//grabbing tile landmark at 76 76 should get completed Trail
+    	TileLandmark* tl = gi->getGame()->getBoard()->getLandmark(76,76,2);
+
+		//std::cout << "going into isComplete\n";
+    	bool firstTest = gi->isComplete(tl);
+		//std::cout << "tl: " << firstTest << std::endl;
+    	//should be completed den
+    	TileLandmark* t2 = gi->getGame()->getBoard()->getLandmark(75,74,5);
+    	
+    	bool secondTest = gi->isComplete(t2);
+		//std::cout << "t2: " << secondTest << std::endl;
+
+    	//Player* getP2 = gi->getOwner(tl); 
+
+        INFO("checking isComplete and landmark")
+        REQUIRE(!firstTest);
+        REQUIRE(!secondTest);
+        //REQUIRE()
+    }
+	
+}
+
+TEST_CASE("Test playTurn for all possible illegal moves"){
+	TestGameInteractor* gi = new TestGameInteractor();
+	//add to deck in reverse order
+	gi->getGame()->getDeck()->addTile(gi->createTileFromTemplate('A'));
+	gi->getGame()->getDeck()->addTile(gi->createTileFromTemplate('H'));
+	gi->getGame()->getDeck()->addTile(gi->createTileFromTemplate('A'));
+	bool t1 = gi->playTurn(76, 77, 0, false, false, 0);//road to lake
+	bool t2 = gi->playTurn(76, 77, 0, false, false, 0);//road to jungle
+	bool t3 = gi->playTurn(75, 76, 0, false, false, 0);//jungle to lake
+	SECTION("incorrect landmark") {
+		REQUIRE(!t1);
+		REQUIRE(!t2);
+		REQUIRE(!t3);
+	}
+}
+
