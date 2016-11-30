@@ -72,9 +72,9 @@ public:
     bool isPlacementValid(int, int, Tile*);
     // Implement landmarks from tile placement
     void placeLandmarks(int, int, Tile*);
-    // If valid placement, create a tile relation at coordinates and set up landmarks
+    // Create a tile relation at coordinates
     bool placeTile(int, int, Tile*);
-    // Set first tile, at (73,73), to tile at top of deck
+    // Set first tile, at (76,76), to tile at top of deck
     void setupBoard();
     
     //Landmarks

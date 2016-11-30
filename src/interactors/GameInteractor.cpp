@@ -712,9 +712,6 @@ void GameInteractor::placeLandmarks(int x, int y, Tile* tile) {
 }
 
 bool GameInteractor::placeTile(int x, int y, Tile* tile) {
-    if (!this->isPlacementValid(x, y, tile))
-        return false;
-    
     TileRelation* newTile = new TileRelation(tile, game->board->getTileRelation(x,y+1), game->board->getTileRelation(x+1,y), game->board->getTileRelation(x,y-1), game->board->getTileRelation(x-1,y));
     game->board->setTileRelation(x,y,newTile);
     
@@ -731,8 +728,6 @@ bool GameInteractor::placeTile(int x, int y, Tile* tile) {
     if (newTile->getWTileRelation() != NULL) {
         newTile->getWTileRelation()->setETileRelation(newTile);
     }
-    
-    this->placeLandmarks(x, y, tile);
     
     return true;
 }
@@ -1171,13 +1166,11 @@ bool GameInteractor::playTurn(int x, int y, bool tiger, bool croc, int zone) {
     Tile* tile = this->drawTile();
     
     // Make sure tile is attached to other tiles, and the sides match
-    // TODO: placeTile() does this already. Account for this
     if (!isPlacementValid(x, y, tile))
         return false;
     
     placeTile(x, y, tile);
 
-    // TODO: placeTile() calls this already. Account for this
     placeLandmarks(x, y, tile);
     
     // Can't place a tiger and croc at the same time
