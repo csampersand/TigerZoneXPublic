@@ -1091,16 +1091,93 @@ void GameInteractor::setupPlayers() {
     }
 }
 
+std::unordered_map<TileLandmark*,bool> GameInteractor::getCompleteLandmarks(int x, int y) {
+    std::unordered_map<TileLandmark*,bool> completed;
+    for (int i = 1; i < 10; i++) {
+        TileLandmark* l = game->board->getTileLandmark(x, y, i);
+        if (completed.find(l) == completed.end()) {
+            bool complete = isComplete(l);
+            completed[l] = (complete);
+        }
+    }
+    return completed;
+}
+
+void GameInteractor::returnTigers(int x, int y) {
+    std::unordered_map<TileLandmark*,bool> completed = getCompleteLandmarks(x, y);
+    for (auto i : completed) {
+        if (i.second) {
+            returnTigers(i.first);
+        }
+    }
+}
+
+void GameInteractor::returnTigers(TileLandmark* landmark) {
+    if (landmark->getType() == landmarkTrail) {
+        returnTigers(static_cast<TileTrail*>(landmark));
+    }
+    else if (landmark->getType() == landmarkLake) {
+        std::unordered_map<TileLake*,bool> visited;
+        returnTigers(static_cast<TileLake*>(landmark), visited);
+    }
+    else if (landmark->getType() == landmarkDen) {
+        returnTigers(static_cast<TileTrail*>(landmark));
+    }
+}
+
+void GameInteractor::returnTigers(TileTrail* trail) {
+    TileTrail* start = trail;
+    TileTrail* prev = start;
+    TileTrail* next = start;
+    
+    if (start->getTigerOwner() != NULL)
+        start->getTigerOwner()->giveTiger();
+    
+    while(prev->getPrevTrail() != NULL) {
+        prev = prev->getPrevTrail();
+        if (prev->getTigerOwner() != NULL)
+            prev->getTigerOwner()->giveTiger();
+    }
+    while(next->getNextTrail() != NULL) {
+        next = next->getNextTrail();
+        if (next->getTigerOwner() != NULL)
+            next->getTigerOwner()->giveTiger();
+    }
+}
+
+void GameInteractor::returnTigers(TileLake* lake, std::unordered_map<TileLake*,bool>& visited) {
+    lake->getTigerOwner()->giveTiger();
+    if (lake->getNLake() != NULL && visited[lake->getNLake()] != true) {
+        visited.emplace(lake->getNLake(), true);
+        returnTigers(lake->getNLake());
+    }
+    if (lake->getELake() != NULL && visited[lake->getELake()] != true) {
+        visited.emplace(lake->getELake(), true);
+        returnTigers(lake->getELake());
+    }
+    if (lake->getSLake() != NULL && visited[lake->getSLake()] != true) {
+        visited.emplace(lake->getSLake(), true);
+        returnTigers(lake->getSLake());
+    }
+    if (lake->getWLake() != NULL && visited[lake->getWLake()] != true) {
+        visited.emplace(lake->getWLake(), true);
+        returnTigers(lake->getWLake());
+    }
+}
+
 // TODO: This removes the tile from the deck before checking if the placement is allowed. Figure out how to handle that.
 // Actually, figure out how to handle any invalid move. Exceptions?
 bool GameInteractor::playTurn(int x, int y, bool tiger, bool croc, int zone) {
     Tile* tile = this->drawTile();
     
     // Make sure tile is attached to other tiles, and the sides match
+    // TODO: placeTile() does this already. Account for this
     if (!isPlacementValid(x, y, tile))
         return false;
     
     placeTile(x, y, tile);
+
+    // TODO: placeTile() calls this already. Account for this
     placeLandmarks(x, y, tile);
     
     // Can't place a tiger and croc at the same time

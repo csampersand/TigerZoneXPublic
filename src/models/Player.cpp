@@ -12,6 +12,10 @@ int Player::getTigerCount() {
     return this->tigerCount;
 }
 
+void Player::giveTiger() {
+    this->tigerCount++;
+}
+
 int Player::getCrocodileCount() {
 	return this->crocodileCount;
 }

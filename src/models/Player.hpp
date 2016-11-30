@@ -14,6 +14,7 @@ public:
     void setScore(int);
     int getTigerCount();
     void setTigerCount(int);
+    void giveTiger();
     int getCrocodileCount();
     void setCrocodileCount(int);
 private:

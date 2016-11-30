@@ -37,6 +37,9 @@ protected:
     bool placeTiger(TileLandmark*);
     bool placeTigerOnSkip(TileLandmark*);
     bool placeCrocodile(TileLandmark*);
+    void returnTigers(TileTrail*);
+    void returnTigers(TileLake*, std::unordered_map<TileLake*,bool>&);
+    void returnTigers(TileDen*);
 public:
     // Initialize game, setup deck, setup board
     GameInteractor();
@@ -81,13 +84,17 @@ public:
     bool hasOwner(TileLandmark*);
     // Return owner of landmark based on tigers. NULL if two owners or none
     Player* getOwner(TileLandmark*);
+    // Get the unique completed landmarks at coordinates
+    std::unordered_map<TileLandmark*,bool> getCompleteLandmarks(int x, int y);
     
     //Player
     // Setup 2-player game and alot tigers & crocodiles
     void setupPlayers();
     
-    // Gives tigers back to the players when landmarks at the coordinates are completed
-    void returnTigers(int, int);
+    // For every landmark on the tile, return the landmark's tigers to the players if the landmark is completed
+    void returnTigers(int x, int y);
+    // Give any tigers on the landmark back to players
+    void returnTigers(TileLandmark*);
     
     //Game
     // Place the next tile at the given xy-coordinate and place a tiger or croc in the specified zone
