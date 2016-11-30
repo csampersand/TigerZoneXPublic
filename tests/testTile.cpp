@@ -117,10 +117,15 @@ TEST_CASE("Testing the Place Landmark function"){
     TestGameInteractor* tgi = new TestGameInteractor();
     //76 76
     tgi->placeTile(75,76, tile1);
+    tgi->placeLandmarks(75,76, tile1);
     tgi->placeTile(75,75, tile1);
+    tgi->placeLandmarks(75,75, tile1);
     tgi->placeTile(75,74, tile1);
+    tgi->placeLandmarks(75,74, tile1);
     tgi->placeTile(76,74, tile1);
+    tgi->placeLandmarks(76,74, tile1);
     tgi->placeTile(76,75, tile1);
+    tgi->placeLandmarks(76,75, tile1);
 
 
     SECTION("tile placed has connected two trails"){
@@ -259,7 +264,7 @@ TEST_CASE("Testing isComplete and lakes") {
 	Tile* t7777 = gi->createTileFromTemplate('J');
 	Tile* t7778 = gi->createTileFromTemplate('F');
 	gi->rotateTile(t7778, 2);
-	Tile* t7878 = gi->createTileFromTemplate('F');
+	Tile* t7878 = gi->createTileFromTemplate('M');
 	gi->rotateTile(t7878,2);
 	Tile* t7877 = gi->createTileFromTemplate('H');
 	Tile* t7876 = gi->createTileFromTemplate('M');
