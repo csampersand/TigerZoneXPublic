@@ -1091,3 +1091,49 @@ void GameInteractor::setupPlayers() {
     }
 }
 
+// TODO: This removes the tile from the deck before checking if the placement is allowed. Figure out how to handle that.
+// Actually, figure out how to handle any invalid move. Exceptions?
+bool GameInteractor::playTurn(int x, int y, bool tiger, bool croc, int zone) {
+    Tile* tile = this->drawTile();
+    
+    // Make sure tile is attached to other tiles, and the sides match
+    if (!isPlacementValid(x, y, tile))
+        return false;
+    
+    placeTile(x, y, tile);
+    placeLandmarks(x, y, tile);
+    
+    // Can't place a tiger and croc at the same time
+    if (tiger && croc)
+        return false;
+    
+    // Invalid zone
+    if (zone > 9 || zone < 1)
+        return false;
+    
+    TileLandmark* landmark = game->board->getTileLandmark(x, y, zone);
+    
+    // Landmark didn't exist, can't place tiger
+    // TODO: Doesn't account for jungles, consider changing this?
+    if (landmark == NULL) {
+        return false;
+    }
+    
+    // Landmark already has an owner
+    // TODO: Can double-place during a skip. Account for this
+    if (hasOwner(landmark)) {
+        return false;
+    }
+    
+    landmark->setTigerOwner(game->players[game->turnIndex]);
+    
+    // TODO: Scoring nigga
+    
+    // Move to next player's turn
+    game->turnIndex++;
+    if (game->turnIndex > 1) {
+        game->turnIndex = 0;
+    }
+    
+    return true;
+}
