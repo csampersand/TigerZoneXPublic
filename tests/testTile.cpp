@@ -286,7 +286,7 @@ TEST_CASE("Testing isComplete and lakes") {
 	gi->placeTile(78, 77, t7877);
     gi->placeLandmarks(78, 77, t7877);
 	Player* player2 = new Player();
-	
+	Player* player3 = new Player();
 
 	
 	gi->placeTile(78, 76, t7876);
@@ -297,21 +297,118 @@ TEST_CASE("Testing isComplete and lakes") {
     gi->placeLandmarks(79, 76, t7976);
 	gi->placeTile(79, 75, t7975);
     gi->placeLandmarks(79, 75, t7975);
-	gi->getGame()->getBoard()->getLandmark(79, 76, 5)->setTigerOwner(player2);;
-    std::cout << "78,76" << std::endl;
-    std::cout << "n: " << gi->getGame()->getBoard()->getTileRelation(78,76)->getTile()->getNType() << std::endl;
-	std::cout << "79,75" << std::endl;
-	std::cout << "n: " << gi->getGame()->getBoard()->getTileRelation(79,75)->getTile()->getNType() << std::endl;
+	gi->getGame()->getBoard()->getLandmark(79, 76, 5)->setTigerOwner(player2);
+	gi->getGame()->getBoard()->getLandmark(77, 78, 8)->setTigerOwner(player2);
+	gi->getGame()->getBoard()->getLandmark(78, 77, 5)->setTigerOwner(player3);
+
+ //   std::cout << "78,76" << std::endl;
+ //   std::cout << "n: " << gi->getGame()->getBoard()->getTileRelation(78,76)->getTile()->getNType() << std::endl;
+	//std::cout << "79,75" << std::endl;
+	//std::cout << "n: " << gi->getGame()->getBoard()->getTileRelation(79,75)->getTile()->getNType() << std::endl;
 
     SECTION("Layed some sweet tile") {
     	//grabbing tile landmark at 79,76 zone 2
-    	TileLandmark* tl = gi->getGame()->getBoard()->getLandmark(79,76,5);
+    	TileLandmark* tl = gi->getGame()->getBoard()->getLandmark(78,77,5);
     	bool firstTest = gi->isComplete(tl);
     	Player* getP2 = gi->getOwner(tl); 
+
+		gi->returnTigers(79, 76);
+		gi->returnTigers(77, 78);
+		gi->returnTigers(78, 77);
+		//player 2 must have 2
+		//player 3 must have 1
 
         INFO("checking isComplete and landmark")
         REQUIRE(firstTest);
         REQUIRE(getP2 == player2);
+
+		REQUIRE(player2->getTigerCount() == 2);
+		REQUIRE(player3->getTigerCount() == 1);
+
     }
 	
 }
+
+//TEST_CASE("Testing isComplete for trails and Dens") {
+//
+//	//Start a test game interactor
+//	TestGameInteractor* gi = new TestGameInteractor();
+//
+//	Tile* t7677 = gi->createTileFromTemplate('F');
+//	gi->rotateTile(t7677, 3);
+//	Tile* t7577 = gi->createTileFromTemplate('F');
+//	gi->rotateTile(t7577, 2);
+//	Tile* t7576 = gi->createTileFromTemplate('E');
+//	Tile* t7575 = gi->createTileFromTemplate('F');
+//	gi->rotateTile(t7575, 1);
+//	Tile* t7574 = gi->createTileFromTemplate('B');
+//	Tile* t7573 = gi->createTileFromTemplate('A');
+//	Tile* t7473 = gi->createTileFromTemplate('A');
+//	Tile* t7474 = gi->createTileFromTemplate('A');
+//	Tile* t7475 = gi->createTileFromTemplate('A');
+//	Tile* t7675 = gi->createTileFromTemplate('F');
+//	Tile* t7674 = gi->createTileFromTemplate('A');
+//	Tile* t7673 = gi->createTileFromTemplate('A');
+//
+//	std::cout << "Placing Tile Success (76, 77) : " << gi->placeTile( 76, 77, t7677) << std::endl;
+//	gi->placeLandmarks( 76, 77, t7677);
+//	std::cout << "Placing Tile Success (75, 77) : " << gi->placeTile( 75, 77, t7577) << std::endl;
+//	gi->placeLandmarks( 75, 77, t7577);
+//	std::cout << "Placing Tile Success (75, 76) : " << gi->placeTile( 75, 76, t7576) << std::endl;
+//	gi->placeLandmarks( 75, 76, t7576);
+//	std::cout << "Placing Tile Success (75, 75) : " << gi->placeTile( 75, 75, t7575) << std::endl;
+//	gi->placeLandmarks( 75, 75, t7575);
+//	std::cout << "Placing Tile Success (75, 74) : " << gi->placeTile( 75, 74, t7574) << std::endl;
+//	gi->placeLandmarks( 75, 74, t7574);
+//	std::cout << "Placing Tile Success (75, 73) : " << gi->placeTile( 75, 73, t7573) << std::endl;
+//	gi->placeLandmarks( 75, 73, t7573);
+//	std::cout << "Placing Tile Success (74, 73) : " << gi->placeTile( 74, 73, t7473) << std::endl;
+//	gi->placeLandmarks( 74, 73, t7473);
+//	std::cout << "Placing Tile Success (74, 74) : " << gi->placeTile( 74, 74, t7474) << std::endl;
+//	gi->placeLandmarks( 74, 74, t7474);
+//	std::cout << "Placing Tile Success (74, 75) : " << gi->placeTile( 74, 75, t7475) << std::endl;
+//	gi->placeLandmarks( 74, 75, t7475);
+//	std::cout << "Placing Tile Success (76, 75) : " << gi->placeTile( 76, 75, t7675) << std::endl;
+//	gi->placeLandmarks( 76, 75, t7675);
+//	std::cout << "Placing Tile Success (76, 74) : " << gi->placeTile( 76, 74, t7674) << std::endl;
+//	gi->placeLandmarks( 76, 74, t7674);
+//	std::cout << "Placing Tile Success (76, 73) : " << gi->placeTile( 76, 73, t7673) << std::endl;
+//	gi->placeLandmarks( 76, 73, t7673);
+//	int i;
+//	std::cin >> i;
+//
+//	
+//	
+//	// gi->placeLandmarks( 75, 75, t7575);
+//	// gi->placeLandmarks( 75, 74, t7574);
+//	// gi->placeLandmarks( 75, 73, t7573);
+//	// gi->placeLandmarks( 74, 73, t7473);
+//	// gi->placeLandmarks( 74, 74, t7474);
+//	// gi->placeLandmarks( 74, 75, t7475);
+//	// gi->placeLandmarks( 76, 75, t7675);
+//	// gi->placeLandmarks( 76, 74, t7674);
+//	// gi->placeLandmarks( 76, 73, t7673);
+//
+////placeLandmarks
+//	
+//    SECTION("Layed some sweet tile") {
+//    	//grabbing tile landmark at 76 76 should get completed Trail
+//    	TileLandmark* tl = gi->getGame()->getBoard()->getLandmark(76,76,5);
+//    	
+//    	bool firstTest = gi->isComplete(tl);
+//		std::cout << "tl: " << firstTest << std::endl;
+//    	//should be completed den
+//    	TileLandmark* t2 = gi->getGame()->getBoard()->getLandmark(75,74,5);
+//    	
+//    	bool secondTest = gi->isComplete(t2);
+//		std::cout << "t2: " << secondTest << std::endl;
+//
+//    	//Player* getP2 = gi->getOwner(tl); 
+//
+//        INFO("checking isComplete and landmark")
+//        REQUIRE(firstTest);
+//        REQUIRE(secondTest);
+//        //REQUIRE()
+//    }
+//	
+//}
