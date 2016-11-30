@@ -262,7 +262,7 @@ TEST_CASE("Testing isComplete and lakes") {
 
 	Tile* t7776 = gi->createTileFromTemplate('A');
 	Tile* t7777 = gi->createTileFromTemplate('J');
-	Tile* t7778 = gi->createTileFromTemplate('F');
+	Tile* t7778 = gi->createTileFromTemplate('M');
 	gi->rotateTile(t7778, 2);
 	Tile* t7878 = gi->createTileFromTemplate('M');
 	gi->rotateTile(t7878,2);
@@ -286,7 +286,7 @@ TEST_CASE("Testing isComplete and lakes") {
 	gi->placeTile(78, 77, t7877);
     gi->placeLandmarks(78, 77, t7877);
 	Player* player2 = new Player();
-	gi->getGame()->getBoard()->getLandmark(78,77,5)->setTigerOwner(player2);;
+	gi->getGame()->getBoard()->getLandmark(79,76,5)->setTigerOwner(player2);;
 
 	
 	gi->placeTile(78, 76, t7876);
@@ -304,7 +304,7 @@ TEST_CASE("Testing isComplete and lakes") {
 
     SECTION("Layed some sweet tile") {
     	//grabbing tile landmark at 79,76 zone 2
-    	TileLandmark* tl = gi->getGame()->getBoard()->getLandmark(79,76,2);
+    	TileLandmark* tl = gi->getGame()->getBoard()->getLandmark(79,76,5);
     	bool firstTest = gi->isComplete(tl);
     	Player* getP2 = gi->getOwner(tl); 
 
