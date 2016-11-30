@@ -291,6 +291,6 @@ TEST_CASE("Testing isComplete and lakes") {
         INFO("checking isComplete and landmark")
         REQUIRE(firstTest);
         REQUIRE(getP2 == player2);
-
     }
+	
 }
