@@ -75,6 +75,12 @@ public:
     TileDeck* getDeck(){
         return this->deck;
     }
+    Player* getPlayer1() {
+        return this->players[0];
+    }
+    Player* getPlayer2() {
+        return this->players[1];
+    }
 };
 
 class TestGameInteractor : public GameInteractor {
@@ -252,6 +258,32 @@ TEST_CASE("Does the trails append?"){
         REQUIRE(!testgi->isComplete(tl));
 
     }
+}
+
+//returnTigers Test
+TEST_CASE("TESTing tigers"){
+    TestGameInteractor* testGame = new TestGameInteractor();
+    
+    std::cout << testGame->getGame()->getPlayer1()->getTigerCount();
+    Tile* tile1 = TestGameInteractor::createTileFromTemplate('E');
+    
+    
+    testGame->placeTile(76, 77, tile1);
+    testGame->placeLandmarks(76, 77, tile1);
+    testGame->placeTile(76, 78, tile1);
+    testGame->placeLandmarks(76, 78, tile1);
+ //   testGame->setupPlayers();
+    testGame->getGame()->getBoard()->getTileLandmark(76, 77, 2)->setTigerOwner(testGame->getGame()->getPlayer1());
+    SECTION("testing tiger placement"){
+        INFO("owner of tiger that was placed is the player or the board game!")
+            REQUIRE(testGame->getGame()->getBoard()->getTileLandmark(76, 77, 2)->getTigerOwner() == testGame->getGame()->getPlayer1());
+    }
+//    SECTION("RETURN TIGERS"){
+//        testGame->returnTigers(76, 77);
+//        INFO("DID TIGER RETURN?")
+//        REQUIRE(testGame->getGame()->getPlayer1()->getTigerCount() == 7);
+//    }
+    
 }
 
 //Testing has Owner

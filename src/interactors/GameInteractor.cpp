@@ -11,6 +11,7 @@
 #include <random>
 #include <chrono>
 #include <unordered_map>
+#include <iostream>
 
 GameInteractor::GameInteractor() {
     this->game = new Game();
@@ -1078,12 +1079,14 @@ Player* GameInteractor::getOwner(TileDen* den) {
 }
 
 void GameInteractor::setupPlayers() {
-    for (Player* player : game->players) {
-        player = new Player();
-        player->setScore(0);
-        player->setTigerCount(7);
-        player->setCrocodileCount(2);
+    int n = sizeof(game->players)/sizeof(game->players[0]);
+    for (int i = 0; i < n; i++) {
+        game->players[i] = new Player();
+        game->players[i]->setScore(0);
+        game->players[i]->setTigerCount(7);
+        game->players[i]->setCrocodileCount(2);
     }
+   // std::cout<< "pointer player: " << game->players[0] << " player[0]->getTigerCount " << game->players[0]->getTigerCount() << std::endl;
 }
 
 std::unordered_map<TileLandmark*,bool> GameInteractor::getCompleteLandmarks(int x, int y) {
