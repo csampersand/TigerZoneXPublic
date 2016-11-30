@@ -14,6 +14,14 @@ TileLandmark::TileLandmark(){
     this->hasCrocodile = false;
 }
 
+bool TileLandmark::getHasCrocodile() {
+    return this->hasCrocodile;
+}
+
+void TileLandmark::setHasCrocodile(bool crocodile) {
+    this->hasCrocodile = crocodile;
+}
+
 void TileTrail::trailEnd(bool end) {
     trailEnds = end;
 }
@@ -27,6 +35,9 @@ void TileLandmark::setType(LandmarkType type) {
 }
 
 TileTrail::TileTrail(){
+    this->tigerOwner = NULL;
+    this->tigerCount = 0;
+    this->hasCrocodile = false;
     this->nextTrail = NULL;
     this->prevTrail = NULL;
     this->trailEnds = false;
@@ -58,6 +69,9 @@ void TileTrail::setTrailEnds(bool ends) {
 }
 
 TileLake::TileLake(){
+    this->tigerOwner = NULL;
+    this->tigerCount = 0;
+    this->hasCrocodile = false;
     this->nLake = NULL;
     this->eLake = NULL;
     this->sLake = NULL;
@@ -68,14 +82,6 @@ TileLake::TileLake(){
     this->wOpen = false;
     this->lakeEnds = false;
     this->hasCrocodile = false;
-}
-
-bool TileLake::getHasCrocodile() {
-    return this->hasCrocodile;
-}
-
-void TileLake::setHasCrocodile(bool crocodile) {
-    this->hasCrocodile = crocodile;
 }
 
 TileLake* TileLake::getNLake() {
@@ -125,6 +131,12 @@ void TileLake::setSOpen(bool open) {
 }
 void TileLake::setWOpen(bool open) {
     this->wOpen = open;
+}
+
+TileDen::TileDen() {
+    this->tigerOwner = NULL;
+    this->tigerCount = 0;
+    this->hasCrocodile = false;
 }
 
 int TileDen::getX() {

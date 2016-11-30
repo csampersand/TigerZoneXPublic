@@ -40,13 +40,15 @@ enum LandmarkType {
 
 class TileLandmark {
     friend class Landmark;
-private:
+protected:
     Player* tigerOwner;
     int tigerCount;
-    bool hasCrocodile;
     LandmarkType type;
+    bool hasCrocodile;
 public:
     TileLandmark();
+    bool getHasCrocodile();
+    void setHasCrocodile(bool);
     LandmarkType getType();
     void setType(LandmarkType);
     Player* getTigerOwner();
@@ -59,7 +61,6 @@ private:
     TileTrail* nextTrail;
     TileTrail* prevTrail;
     bool trailEnds;
-    bool hasCrocodile;
     void trailEnd(bool);
 public:
     TileTrail();
@@ -83,11 +84,8 @@ private:
     bool sOpen;
     bool wOpen;
     bool lakeEnds;
-    bool hasCrocodile;
 public:
     TileLake();
-    bool getHasCrocodile();
-    void setHasCrocodile(bool);
     TileLake* getNLake();
     TileLake* getELake();
     TileLake* getSLake();
@@ -109,6 +107,7 @@ public:
 class TileDen : public TileLandmark {
     friend class Den;
 public:
+    TileDen();
     int getX();
     int getY();
     void setX(int);

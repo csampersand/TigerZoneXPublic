@@ -993,6 +993,22 @@ bool GameInteractor::hasOwner(TileDen* den) {
     return den->getTigerOwner() != NULL;
 }
 
+Player* GameInteractor::getOwner(TileLandmark* landmark) {
+    Player* owner = NULL;
+    if (landmark->getType() == landmarkTrail) {
+        owner = getOwner(static_cast<TileTrail*>(landmark));
+    }
+    else if (landmark->getType() == landmarkLake) {
+        std::unordered_map<TileLake*, bool> visited;
+        owner = getOwner(static_cast<TileLake*>(landmark), visited, owner);
+    }
+    else if (landmark->getType() == landmarkDen) {
+        owner = getOwner(static_cast<TileDen*>(landmark));
+    }
+    
+    return owner;
+}
+
 Player* GameInteractor::getOwner(TileTrail* trail) {
     Player* owner = NULL;
     
@@ -1191,11 +1207,14 @@ bool GameInteractor::playTurn(int x, int y, bool tiger, bool croc, int zone) {
     
     // Landmark already has an owner
     // TODO: Can double-place during a skip. Account for this
-    if (hasOwner(landmark)) {
+    else if (hasOwner(landmark)) {
         return false;
     }
     
-    landmark->setTigerOwner(game->players[game->turnIndex]);
+    // Place tiger if conditions are satisfied
+    else {
+        landmark->setTigerOwner(game->players[game->turnIndex]);
+    }
     
     // Give tigers back for completed landmarks
     // Tigers stay on landmarks
