@@ -18,8 +18,6 @@ private:
     TileRelation* tiles[153][153];
     TileLandmark* landmarks[153][153][10];
     TileRelation* firstTile;
-    //Make sure to start at 153,153
-    void placeLandmarks(int, int, Tile*);
 public:
     TileLandmark* getTileLandmark(int,int,int);
     TileRelation* getTileRelation(int,int);
