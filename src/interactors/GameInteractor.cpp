@@ -1050,46 +1050,35 @@ Player* GameInteractor::getOwner(TileTrail* trail) {
 }
 
 Player* GameInteractor::getOwner(TileLake* lake, std::unordered_map<TileLake*,bool>& visited, Player* owner) {
-    if (lake->getNLake() != NULL && visited[lake->getNLake()] != true) {
-        visited[lake->getNLake()] = true;
-        Player* foundOwner = getOwner(lake->getNLake(), visited, owner);
+    
+    Player* foundOwner = lake->getTigerOwner();
+    if (foundOwner != NULL) {
         if (owner == NULL || foundOwner == owner) {
             owner = foundOwner;
         }
         else {
             owner = NULL;
         }
+    }
+    
+    
+    if (lake->getNLake() != NULL && visited[lake->getNLake()] != true) {
+        visited[lake->getNLake()] = true;
+        owner = getOwner(lake->getNLake(), visited, owner);
     }
     if (lake->getELake() != NULL && visited[lake->getELake()] != true) {
         visited[lake->getELake()] = true;
-        Player* foundOwner = getOwner(lake->getELake(), visited, owner);
-        if (owner == NULL || foundOwner == owner) {
-            owner = foundOwner;
-        }
-        else {
-            owner = NULL;
-        }
+        owner = getOwner(lake->getELake(), visited, owner);
     }
     if (lake->getSLake() != NULL && visited[lake->getSLake()] != true) {
         visited[lake->getSLake()] = true;
-        Player* foundOwner = getOwner(lake->getSLake(), visited, owner);
-        if (owner == NULL || foundOwner == owner) {
-            owner = foundOwner;
-        }
-        else {
-            owner = NULL;
-        }
+        owner = getOwner(lake->getSLake(), visited, owner);
     }
     if (lake->getWLake() != NULL && visited[lake->getWLake()] != true) {
         visited[lake->getWLake()] = true;
-        Player* foundOwner = getOwner(lake->getWLake(), visited, owner);
-        if (owner == NULL || foundOwner == owner) {
-            owner = foundOwner;
-        }
-        else {
-            owner = NULL;
-        }
+        owner = getOwner(lake->getWLake(), visited, owner);
     }
+    
     return owner;
 }
 
