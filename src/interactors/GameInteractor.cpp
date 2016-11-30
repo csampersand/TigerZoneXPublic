@@ -1099,7 +1099,7 @@ std::unordered_map<TileLandmark*,bool> GameInteractor::getCompleteLandmarks(int 
     std::unordered_map<TileLandmark*,bool> completed;
     for (int i = 1; i < 10; i++) {
         TileLandmark* l = game->board->getTileLandmark(x, y, i);
-        if (completed.find(l) == completed.end()) {
+        if (l != NULL && completed.find(l) == completed.end()) {
             bool complete = isComplete(l);
             completed[l] = (complete);
         }

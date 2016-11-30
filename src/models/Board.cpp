@@ -15,7 +15,7 @@ Board::Board() {
 	}
 	for (int i = 0; i < 153; i++) {
 		for (int j = 0; j < 153; j++) {
-			for (int k = 0; k < 9; k++) {
+			for (int k = 0; k < 10; k++) {
 				landmarks[i][j][k] = NULL;
 			}
 		}
