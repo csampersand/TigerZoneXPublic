@@ -1226,8 +1226,9 @@ void GameInteractor::returnTigers(TileLake* lake, std::unordered_map<TileLake*,b
 
 // TODO: This removes the tile from the deck before checking if the placement is allowed. Figure out how to handle that.
 // Actually, figure out how to handle any invalid move. Exceptions?
-bool GameInteractor::playTurn(int x, int y, bool tiger, bool croc, int zone) {
+bool GameInteractor::playTurn(int x, int y, int rotations, bool tiger, bool croc, int zone) {
     Tile* tile = this->drawTile();
+    rotateTile(tile, rotations);
     
     // Make sure tile is attached to other tiles, and the sides match
     if (!isPlacementValid(x, y, tile))
