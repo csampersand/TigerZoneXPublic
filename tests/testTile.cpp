@@ -15,19 +15,24 @@
 #include "GameInteractor.hpp"
 #include <iostream>
 
-class TestTile : public Tile {
-public:
-    
-};
-
-class TestTileRelation : public TileRelation {
-public:
-    TestTile* getTile(){
-        TestTile* testTile = static_cast<TestTile*>(tile);
-        return testTile;
-    }
-    
-};
+//class TestTile : public Tile {
+//public:
+//	SideType getNType() {
+//		SideType type = static_cast<SideType>(nType);
+//	}
+//	SideType getEType();
+//	SideType getSType();
+//	SideType getWType();
+//};
+//
+//class TestTileRelation : public TileRelation {
+//public:
+//    TestTile* getTile(){
+//        TestTile* testTile = static_cast<TestTile*>(tile);
+//        return testTile;
+//    }
+//    
+//};
 
 //class TestTileLandmark : public TileLandmark {
 //public:
@@ -50,10 +55,10 @@ public:
 //        return this->tiles;
 //    }
     
-    TestTileRelation* getTiles(){
-        TestTileRelation* testTiles = static_cast<TestTileRelation*>(tiles);
-        return testTiles;
-    }
+    //TestTileRelation* getTiles(){
+    //    TestTileRelation* testTiles = static_cast<TestTileRelation*>(tiles);
+    //    return testTiles;
+    //}
 
 
     TileLandmark* getLandmark(int x, int y, int zone){
@@ -228,7 +233,7 @@ TEST_CASE("Testing the Place Landmark function"){
 
 TEST_CASE("Does the trails append?"){
     SECTION("appending now"){
-        TestGameInteractor* testgi = new TestGameInteractor::TestGameInteractor();
+        TestGameInteractor* testgi = new TestGameInteractor();
         //testgi
         Tile* tile1 = TestGameInteractor::createTileFromTemplate('S');
         //Tile* tile2 = TestGameInteractor::createTileFromTemplate('S');
@@ -271,7 +276,7 @@ TEST_CASE("Testing isComplete and lakes") {
 	gi->placeTile(78, 78, t7878);
 	gi->placeTile(78, 77, t7877);
 	Player* player2 = new Player();
-	gi->getGame()->getBoard()->getLandmark(78,77,5)->setTigerOwner(player2);;
+	//gi->getGame()->getBoard()->getLandmark(78,77,5)->setTigerOwner(player2);;
 
 	
 	gi->placeTile(78, 76, t7876);
@@ -279,8 +284,9 @@ TEST_CASE("Testing isComplete and lakes") {
 	gi->placeTile(79, 76, t7976);
 	gi->placeTile(79, 75, t7975);
     std::cout << "78,76" << std::endl;
-    std::cout << "n: " << gi->getGame()->getBoard()->tiles[78][76]->getNTile() << std::endl;
-    
+    std::cout << "n: " << gi->getGame()->getBoard()->getTileRelation(78,76)->getTile()->getNType() << std::endl;
+	std::cout << "78,75" << std::endl;
+	std::cout << "n: " << gi->getGame()->getBoard()->getTileRelation(78,75)->getTile()->getNType() << std::endl;
 
     SECTION("Layed some sweet tile") {
     	//grabbing tile landmark at 79,76 zone 2
