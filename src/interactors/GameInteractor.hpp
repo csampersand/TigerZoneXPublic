@@ -37,6 +37,8 @@ protected:
     bool placeTiger(TileLandmark*);
     bool placeTigerOnSkip(TileLandmark*);
     bool placeCrocodile(TileLandmark*);
+    // Give any tigers on the landmark back to players
+    void returnTigers(TileLandmark*);
     void returnTigers(TileTrail*);
     void returnTigers(TileLake*, std::unordered_map<TileLake*,bool>&);
     void returnTigers(TileDen*);
@@ -93,8 +95,6 @@ public:
     
     // For every landmark on the tile, return the landmark's tigers to the players if the landmark is completed
     void returnTigers(int x, int y);
-    // Give any tigers on the landmark back to players
-    void returnTigers(TileLandmark*);
     
     //Game
     // Place the next tile at the given xy-coordinate and place a tiger or croc in the specified zone

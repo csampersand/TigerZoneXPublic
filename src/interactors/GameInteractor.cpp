@@ -1206,9 +1206,7 @@ bool GameInteractor::playTurn(int x, int y, bool tiger, bool croc, int zone) {
     
     // Give tigers back for completed landmarks
     // TODO: Leaves tigers on their TileLandmarks. Is that okay?
-    if (isComplete(landmark)) {
-        
-    }
+    returnTigers(x, y);
     
     // TODO: Scoring nigga
     
