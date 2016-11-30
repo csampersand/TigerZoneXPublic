@@ -287,6 +287,8 @@ TEST_CASE("Testing isComplete and lakes") {
     gi->placeLandmarks(78, 77, t7877);
 	Player* player2 = new Player();
 	Player* player3 = new Player();
+	player2->setTigerCount(0);
+	player3->setTigerCount(0);
 
 	
 	gi->placeTile(78, 76, t7876);
