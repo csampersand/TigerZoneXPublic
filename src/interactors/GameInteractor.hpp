@@ -86,6 +86,9 @@ public:
     // Setup 2-player game and alot tigers & crocodiles
     void setupPlayers();
     
+    // Gives tigers back to the players when landmarks at the coordinates are completed
+    void returnTigers(int, int);
+    
     //Game
     // Place the next tile at the given xy-coordinate and place a tiger or croc in the specified zone
     bool playTurn(int x, int y, bool tiger = false, bool croc = false, int zone = 0);

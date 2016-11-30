@@ -1127,6 +1127,12 @@ bool GameInteractor::playTurn(int x, int y, bool tiger, bool croc, int zone) {
     
     landmark->setTigerOwner(game->players[game->turnIndex]);
     
+    // Give tigers back for completed landmarks
+    // TODO: Leaves tigers on their TileLandmarks. Is that okay?
+    if (isComplete(landmark)) {
+        
+    }
+    
     // TODO: Scoring nigga
     
     // Move to next player's turn
