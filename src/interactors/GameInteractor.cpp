@@ -1176,16 +1176,16 @@ int GameInteractor::getCrocodileCount(TileLake* lake, std::unordered_map<TileLak
     visited[lake] = true;
     
     if (lake->getNLake() != NULL && visited[lake->getNLake()] != true) {
-        returnTigers(lake->getNLake());
+        crocodileCount += getCrocodileCount(lake->getNLake(), visited, crocodileCount);
     }
     if (lake->getELake() != NULL && visited[lake->getELake()] != true) {
-        returnTigers(lake->getELake());
+		crocodileCount += getCrocodileCount(lake->getELake(), visited, crocodileCount);
     }
     if (lake->getSLake() != NULL && visited[lake->getSLake()] != true) {
-        returnTigers(lake->getSLake());
+		crocodileCount += getCrocodileCount(lake->getSLake(), visited, crocodileCount);
     }
     if (lake->getWLake() != NULL && visited[lake->getWLake()] != true) {
-        returnTigers(lake->getWLake());
+		crocodileCount += getCrocodileCount(lake->getWLake(), visited, crocodileCount);
     }
     return crocodileCount;
 }

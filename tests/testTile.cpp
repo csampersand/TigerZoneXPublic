@@ -396,6 +396,7 @@ TEST_CASE("Testing isComplete for trails and Dens") {
     SECTION("Layed some sweet tile") {
     	//grabbing tile landmark at 76 76 should get completed Trail
     	TileLandmark* tl = gi->getGame()->getBoard()->getLandmark(76,76,2);
+
 		//std::cout << "going into isComplete\n";
     	bool firstTest = gi->isComplete(tl);
 		//std::cout << "tl: " << firstTest << std::endl;
@@ -413,4 +414,20 @@ TEST_CASE("Testing isComplete for trails and Dens") {
         //REQUIRE()
     }
 	
+}
+
+TEST_CASE("Test playTurn for all possible illegal moves"){
+	TestGameInteractor* gi = new TestGameInteractor();
+	//add to deck in reverse order
+	gi->getGame()->getDeck()->addTile(gi->createTileFromTemplate('A'));
+	gi->getGame()->getDeck()->addTile(gi->createTileFromTemplate('H'));
+	gi->getGame()->getDeck()->addTile(gi->createTileFromTemplate('A'));
+	bool t1 = gi->playTurn(76, 77, 0, false, false, 0);//road to lake
+	bool t2 = gi->playTurn(76, 77, 0, false, false, 0);//road to jungle
+	bool t3 = gi->playTurn(75, 76, 0, false, false, 0);//jungle to lake
+	SECTION("incorrect landmark") {
+		REQUIRE(!t1);
+		REQUIRE(!t2);
+		REQUIRE(!t3);
+	}
 }
