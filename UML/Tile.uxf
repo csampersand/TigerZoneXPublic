@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>280</x>
-      <y>784</y>
+      <x>294</x>
+      <y>1134</y>
       <w>154</w>
       <h>126</h>
     </coordinates>
@@ -25,8 +25,8 @@ Tile(n, s, e, w, center, hasPennant)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>350</x>
-      <y>707</y>
+      <x>364</x>
+      <y>1057</y>
       <w>21</w>
       <h>91</h>
     </coordinates>
@@ -36,8 +36,8 @@ Tile(n, s, e, w, center, hasPennant)</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>280</x>
-      <y>602</y>
+      <x>294</x>
+      <y>952</y>
       <w>147</w>
       <h>112</h>
     </coordinates>
@@ -57,8 +57,8 @@ setters()</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>280</x>
-      <y>483</y>
+      <x>294</x>
+      <y>833</y>
       <w>147</w>
       <h>77</h>
     </coordinates>
@@ -74,8 +74,8 @@ Board() // Place 1st tile &amp; init board</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>350</x>
-      <y>553</y>
+      <x>364</x>
+      <y>903</y>
       <w>21</w>
       <h>63</h>
     </coordinates>
@@ -85,8 +85,8 @@ Board() // Place 1st tile &amp; init board</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>154</x>
-      <y>651</y>
+      <x>168</x>
+      <y>1001</y>
       <w>217</w>
       <h>147</h>
     </coordinates>
@@ -96,8 +96,8 @@ Board() // Place 1st tile &amp; init board</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>350</x>
-      <y>420</y>
+      <x>364</x>
+      <y>770</y>
       <w>21</w>
       <h>77</h>
     </coordinates>
@@ -107,8 +107,8 @@ Board() // Place 1st tile &amp; init board</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>686</x>
-      <y>742</y>
+      <x>700</x>
+      <y>1092</y>
       <w>147</w>
       <h>105</h>
     </coordinates>
@@ -126,8 +126,8 @@ bool hasCrocodile</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>840</x>
-      <y>742</y>
+      <x>854</x>
+      <y>1092</y>
       <w>147</w>
       <h>105</h>
     </coordinates>
@@ -140,8 +140,8 @@ vector&lt;Tile*&gt; surroundingTiles;</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>532</x>
-      <y>742</y>
+      <x>546</x>
+      <y>1092</y>
       <w>147</w>
       <h>105</h>
     </coordinates>
@@ -157,8 +157,8 @@ bool hasCrocodile</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>350</x>
-      <y>553</y>
+      <x>364</x>
+      <y>903</y>
       <w>420</w>
       <h>49</h>
     </coordinates>
@@ -168,8 +168,8 @@ bool hasCrocodile</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>686</x>
-      <y>588</y>
+      <x>700</x>
+      <y>938</y>
       <w>147</w>
       <h>126</h>
     </coordinates>
@@ -188,8 +188,8 @@ getLandmarkType()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>602</x>
-      <y>707</y>
+      <x>616</x>
+      <y>1057</y>
       <w>175</w>
       <h>49</h>
     </coordinates>
@@ -199,8 +199,8 @@ getLandmarkType()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>749</x>
-      <y>707</y>
+      <x>763</x>
+      <y>1057</y>
       <w>28</w>
       <h>49</h>
     </coordinates>
@@ -210,8 +210,8 @@ getLandmarkType()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>756</x>
-      <y>707</y>
+      <x>770</x>
+      <y>1057</y>
       <w>182</w>
       <h>49</h>
     </coordinates>
@@ -221,8 +221,8 @@ getLandmarkType()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>140</x>
-      <y>420</y>
+      <x>154</x>
+      <y>770</y>
       <w>231</w>
       <h>77</h>
     </coordinates>
@@ -233,8 +233,8 @@ m1=2..n</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>133</x>
-      <y>350</y>
+      <x>147</x>
+      <y>700</y>
       <w>98</w>
       <h>49</h>
     </coordinates>
@@ -248,8 +248,8 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>84</x>
-      <y>483</y>
+      <x>98</x>
+      <y>833</y>
       <w>147</w>
       <h>77</h>
     </coordinates>
@@ -265,8 +265,8 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>252</x>
-      <y>294</y>
+      <x>266</x>
+      <y>644</y>
       <w>210</w>
       <h>133</h>
     </coordinates>
@@ -282,8 +282,8 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>84</x>
-      <y>588</y>
+      <x>98</x>
+      <y>938</y>
       <w>147</w>
       <h>70</h>
     </coordinates>
@@ -296,8 +296,8 @@ bg=blue</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>154</x>
-      <y>420</y>
+      <x>168</x>
+      <y>770</y>
       <w>217</w>
       <h>182</h>
     </coordinates>
@@ -307,8 +307,8 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>0</x>
-      <y>777</y>
+      <x>14</x>
+      <y>1127</y>
       <w>231</w>
       <h>147</h>
     </coordinates>
@@ -329,8 +329,8 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>658</x>
-      <y>0</y>
+      <x>672</x>
+      <y>350</y>
       <w>210</w>
       <h>245</h>
     </coordinates>
@@ -373,12 +373,25 @@ scoreBoard(Board*)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>350</x>
-      <y>238</y>
+      <x>364</x>
+      <y>588</y>
       <w>427</w>
       <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>590.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>399</x>
+      <y>273</y>
+      <w>210</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>*NetworkHandler*
+--
+</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>
