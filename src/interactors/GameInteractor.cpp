@@ -1220,7 +1220,10 @@ void GameInteractor::returnTigers(TileTrail* trail) {
 }
 
 void GameInteractor::returnTigers(TileLake* lake, std::unordered_map<TileLake*,bool>& visited) {
-    lake->getTigerOwner()->giveTiger();
+    if (lake->getTigerOwner() != NULL) {
+        lake->getTigerOwner()->giveTiger();
+    }
+    
     if (lake->getNLake() != NULL && visited[lake->getNLake()] != true) {
         visited[lake->getNLake()] = true;
         returnTigers(lake->getNLake());
