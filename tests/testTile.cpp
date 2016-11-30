@@ -15,6 +15,19 @@
 #include "GameInteractor.hpp"
 #include <iostream>
 
+class TestTile : public Tile {
+public:
+    
+};
+
+class TestTileRelation : public TileRelation {
+public:
+    TestTile* getTile(){
+        TestTile* testTile = static_cast<TestTile*>(tile);
+        return testTile;
+    }
+    
+};
 
 //class TestTileLandmark : public TileLandmark {
 //public:
@@ -23,6 +36,8 @@
 //		this->tigerOwner = player;
 //	}
 //};
+    
+
 
 class TestBoard : public Board {
 public:
@@ -30,6 +45,16 @@ public:
 	//	TestTileLandmark* testTileLandmark = static_cast<TestTileLandmark*>(tileLandmark);
  //       return testTileLandmark;
 	//}
+    
+//    TileRelation* getTile() {
+//        return this->tiles;
+//    }
+    
+    TestTileRelation* getTiles(){
+        TestTileRelation* testTiles = static_cast<TestTileRelation*>(tiles);
+        return testTiles;
+    }
+
 
     TileLandmark* getLandmark(int x, int y, int zone){
         return this->getTileLandmark(x, y, zone);
@@ -253,7 +278,9 @@ TEST_CASE("Testing isComplete and lakes") {
 	gi->placeTile(79, 77, t7977);
 	gi->placeTile(79, 76, t7976);
 	gi->placeTile(79, 75, t7975);
-    //std::cout(gi->getGame()->getBoard()->tiles[78][76])
+    std::cout << "78,76" << std::endl;
+    std::cout << "n: " << gi->getGame()->getBoard()->tiles[78][76]->getNTile() << std::endl;
+    
 
     SECTION("Layed some sweet tile") {
     	//grabbing tile landmark at 79,76 zone 2
