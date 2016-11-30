@@ -1009,17 +1009,25 @@ Player* GameInteractor::getOwner(TileTrail* trail) {
     
     while(prev->getPrevTrail() != NULL && prev->getTrailEnds() == false) {
         prev = prev->getPrevTrail();
-        if (prev->getTigerOwner() == NULL)
-            owner = prev->getTigerOwner();
-        else
-            return NULL;
+        if (prev->getTigerOwner() != NULL) {
+            if (owner == NULL || owner == prev->getTigerOwner()) {
+                owner = owner = prev->getTigerOwner();
+            }
+            else {
+                owner = NULL;
+            }
+        }
     }
     while(next->getNextTrail() != NULL && next->getTrailEnds() == false) {
         next = next->getNextTrail();
-        if (prev->getTigerOwner() == NULL)
-            owner = prev->getTigerOwner();
-        else
-            return NULL;
+        if (next->getTigerOwner() != NULL) {
+            if (owner == NULL || owner == next->getTigerOwner()) {
+                owner = owner = next->getTigerOwner();
+            }
+            else {
+                owner = NULL;
+            }
+        }
     }
     
     return owner;
