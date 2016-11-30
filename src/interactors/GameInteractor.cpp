@@ -689,22 +689,22 @@ void GameInteractor::placeLandmarks(int x, int y, Tile* tile) {
     }
     
     // Append adjacent landmarks
-    if (game->board->getTileLandmark(x,y+1,S) != NULL) {
+    if (game->board->getTileLandmark(x,y+1,S) != NULL && game->board->getTileLandmark(x,y,N) != NULL) {
         if (game->board->getTileLandmark(x,y+1,S)->getType() == game->board->getTileLandmark(x,y,N)->getType()) {
             append(game->board->getTileLandmark(x,y,N), game->board->getTileLandmark(x,y+1,S), N);
         }
     }
-    if (game->board->getTileLandmark(x+1,y,W) != NULL) {
+    if (game->board->getTileLandmark(x+1,y,W) != NULL && game->board->getTileLandmark(x,y,E) != NULL) {
         if (game->board->getTileLandmark(x+1,y,W)->getType() == game->board->getTileLandmark(x,y,E)->getType()) {
             append(game->board->getTileLandmark(x,y,E), game->board->getTileLandmark(x+1,y,W), E);
         }
     }
-    if (game->board->getTileLandmark(x,y-1,N) != NULL) {
+    if (game->board->getTileLandmark(x,y-1,N) != NULL && game->board->getTileLandmark(x,y,S) != NULL) {
         if (game->board->getTileLandmark(x,y-1,N)->getType() == game->board->getTileLandmark(x,y,S)->getType()) {
             append(game->board->getTileLandmark(x,y,S), game->board->getTileLandmark(x,y-1,N), S);
         }
     }
-    if (game->board->getTileLandmark(x-1,y,E) != NULL) {
+    if (game->board->getTileLandmark(x-1,y,E) != NULL && game->board->getTileLandmark(x,y,W) != NULL) {
         if (game->board->getTileLandmark(x-1,y,E)->getType() == game->board->getTileLandmark(x,y,W)->getType()) {
             append(game->board->getTileLandmark(x,y,W), game->board->getTileLandmark(x-1,y,E), W);
         }
