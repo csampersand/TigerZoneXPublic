@@ -315,8 +315,6 @@ TEST_CASE("Testing isComplete and lakes") {
     	Player* getP2 = gi->getOwner(tl); 
 
 		gi->returnTigers(79, 76);
-		gi->returnTigers(77, 78);
-		gi->returnTigers(78, 77);
 		//player 2 must have 2
 		//player 3 must have 1
 

@@ -776,39 +776,32 @@ bool GameInteractor::isComplete(TileTrail* trail) {
 
 bool GameInteractor::isComplete(TileLake* lake, std::unordered_map<TileLandmark*, bool>& visited) {
     bool complete = true;
+    visited[lake] = true;
     if (lake->getNOpen() == true) {
-        TileLake* test = lake->getNLake();
         if (lake->getNLake() == NULL)
             return false;
         else if (visited[lake->getNLake()] != true) {
-            visited[lake->getNLake()] = true;
             complete = isComplete(lake->getNLake(), visited);
         }
     }
     if (lake->getEOpen() == true) {
-        TileLake* test = lake->getELake();
         if (lake->getELake() == NULL)
             return false;
         else if (visited[lake->getELake()] != true) {
-            visited[lake->getELake()] = true;
             complete = isComplete(lake->getELake(), visited);
         }
     }
     if (lake->getSOpen() == true) {
-        TileLake* test = lake->getSLake();
         if (lake->getSLake() == NULL)
             return false;
         else if (visited[lake->getSLake()] != true) {
-            visited[lake->getSLake()] = true;
             complete = isComplete(lake->getSLake(), visited);
         }
     }
     if (lake->getWOpen() == true) {
-        TileLake* test = lake->getWLake();
         if (lake->getWLake() == NULL)
             return false;
         else if (visited[lake->getWLake()] != true) {
-            visited[lake->getWLake()] = true;
             complete = isComplete(lake->getWLake(), visited);
         }
     }
@@ -974,20 +967,17 @@ bool GameInteractor::hasOwner(TileTrail* trail) {
 
 bool GameInteractor::hasOwner(TileLake* lake, std::unordered_map<TileLake*,bool>& visited) {
     bool owner = false;
+    visited[lake] = true;
     if (owner != true && lake->getNLake() != NULL && visited[lake->getNLake()] != true) {
-        visited[lake->getNLake()] = true;
         owner = hasOwner(lake->getNLake(), visited);
     }
     if (owner != true && lake->getELake() != NULL && visited[lake->getELake()] != true) {
-        visited[lake->getELake()] = true;
         owner = hasOwner(lake->getELake(), visited);
     }
     if (owner != true && lake->getSLake() != NULL && visited[lake->getSLake()] != true) {
-        visited[lake->getSLake()] = true;
         owner = hasOwner(lake->getSLake(), visited);
     }
     if (owner != true && lake->getWLake() != NULL && visited[lake->getWLake()] != true) {
-        visited[lake->getWLake()] = true;
         owner = hasOwner(lake->getWLake(), visited);
     }
     return owner;
@@ -1060,22 +1050,19 @@ Player* GameInteractor::getOwner(TileLake* lake, std::unordered_map<TileLake*,bo
             owner = NULL;
         }
     }
+    visited[lake] = true;
     
     
     if (lake->getNLake() != NULL && visited[lake->getNLake()] != true) {
-        visited[lake->getNLake()] = true;
         owner = getOwner(lake->getNLake(), visited, owner);
     }
     if (lake->getELake() != NULL && visited[lake->getELake()] != true) {
-        visited[lake->getELake()] = true;
         owner = getOwner(lake->getELake(), visited, owner);
     }
     if (lake->getSLake() != NULL && visited[lake->getSLake()] != true) {
-        visited[lake->getSLake()] = true;
         owner = getOwner(lake->getSLake(), visited, owner);
     }
     if (lake->getWLake() != NULL && visited[lake->getWLake()] != true) {
-        visited[lake->getWLake()] = true;
         owner = getOwner(lake->getWLake(), visited, owner);
     }
     
@@ -1154,20 +1141,18 @@ int GameInteractor::getCrocodileCount(TileLake* lake, std::unordered_map<TileLak
     if (lake->getHasCrocodile()) {
         crocodileCount++;
     }
+    visited[lake] = true;
+    
     if (lake->getNLake() != NULL && visited[lake->getNLake()] != true) {
-        visited[lake->getNLake()] = true;
         returnTigers(lake->getNLake());
     }
     if (lake->getELake() != NULL && visited[lake->getELake()] != true) {
-        visited[lake->getELake()] = true;
         returnTigers(lake->getELake());
     }
     if (lake->getSLake() != NULL && visited[lake->getSLake()] != true) {
-        visited[lake->getSLake()] = true;
         returnTigers(lake->getSLake());
     }
     if (lake->getWLake() != NULL && visited[lake->getWLake()] != true) {
-        visited[lake->getWLake()] = true;
         returnTigers(lake->getWLake());
     }
     return crocodileCount;
@@ -1223,21 +1208,18 @@ void GameInteractor::returnTigers(TileLake* lake, std::unordered_map<TileLake*,b
     if (lake->getTigerOwner() != NULL) {
         lake->getTigerOwner()->giveTiger();
     }
+    visited[lake] = true;
     
     if (lake->getNLake() != NULL && visited[lake->getNLake()] != true) {
-        visited[lake->getNLake()] = true;
         returnTigers(lake->getNLake(), visited);
     }
     if (lake->getELake() != NULL && visited[lake->getELake()] != true) {
-        visited[lake->getELake()] = true;
         returnTigers(lake->getELake(), visited);
     }
     if (lake->getSLake() != NULL && visited[lake->getSLake()] != true) {
-        visited[lake->getSLake()] = true;
         returnTigers(lake->getSLake(), visited);
     }
     if (lake->getWLake() != NULL && visited[lake->getWLake()] != true) {
-        visited[lake->getWLake()] = true;
         returnTigers(lake->getWLake(), visited);
     }
 }
