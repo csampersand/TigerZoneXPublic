@@ -1114,6 +1114,76 @@ std::unordered_map<TileLandmark*,bool> GameInteractor::getCompleteLandmarks(int 
     return completed;
 }
 
+//bool GameInteractor::placeCrocodile(TileLandmark*) {
+//    //
+//}
+
+int GameInteractor::getCrocodileCount(TileLandmark* landmark) {
+    int crocodileCount = 0;
+    if (landmark->getType() == landmarkTrail) {
+        crocodileCount = getCrocodileCount(static_cast<TileTrail*>(landmark));
+    }
+    else if (landmark->getType() == landmarkLake) {
+        std::unordered_map<TileLake*,bool> visited;
+        crocodileCount = getCrocodileCount(static_cast<TileLake*>(landmark), visited, crocodileCount);
+    }
+    else if (landmark->getType() == landmarkDen) {
+        crocodileCount = getCrocodileCount(static_cast<TileTrail*>(landmark));
+    }
+    return crocodileCount;
+}
+
+int GameInteractor::getCrocodileCount(TileTrail* trail) {
+    int crocodileCount = 0;
+    
+    TileTrail* start = trail;
+    TileTrail* prev = start;
+    TileTrail* next = start;
+    
+    if (start->getHasCrocodile() == true)
+        crocodileCount++;
+    
+    while(prev->getPrevTrail() != NULL) {
+        prev = prev->getPrevTrail();
+        if (prev->getHasCrocodile() == true)
+            crocodileCount++;
+    }
+    while(next->getNextTrail() != NULL) {
+        next = next->getNextTrail();
+        if (next->getHasCrocodile() == true)
+            crocodileCount++;
+    }
+    
+    return crocodileCount;
+}
+
+int GameInteractor::getCrocodileCount(TileLake* lake, std::unordered_map<TileLake*,bool>& visited, int crocodileCount) {
+    if (lake->getHasCrocodile()) {
+        crocodileCount++;
+    }
+    if (lake->getNLake() != NULL && visited[lake->getNLake()] != true) {
+        visited.emplace(lake->getNLake(), true);
+        returnTigers(lake->getNLake());
+    }
+    if (lake->getELake() != NULL && visited[lake->getELake()] != true) {
+        visited.emplace(lake->getELake(), true);
+        returnTigers(lake->getELake());
+    }
+    if (lake->getSLake() != NULL && visited[lake->getSLake()] != true) {
+        visited.emplace(lake->getSLake(), true);
+        returnTigers(lake->getSLake());
+    }
+    if (lake->getWLake() != NULL && visited[lake->getWLake()] != true) {
+        visited.emplace(lake->getWLake(), true);
+        returnTigers(lake->getWLake());
+    }
+    return crocodileCount;
+}
+
+int GameInteractor::getCrocodileCount(TileDen* den) {
+    return 0;
+}
+
 void GameInteractor::returnTigers(int x, int y) {
     std::unordered_map<TileLandmark*,bool> completed = getCompleteLandmarks(x, y);
     for (auto i : completed) {
@@ -1199,21 +1269,35 @@ bool GameInteractor::playTurn(int x, int y, bool tiger, bool croc, int zone) {
     
     TileLandmark* landmark = game->board->getTileLandmark(x, y, zone);
     
-    // Landmark didn't exist, can't place tiger
-    // TODO: Doesn't account for jungles, consider changing this?
-    if (landmark == NULL) {
-        return false;
+    if (tiger) {
+        // Landmark didn't exist, can't place tiger
+        // TODO: Doesn't account for jungles, consider changing this?
+        if (landmark == NULL) {
+            return false;
+        }
+        
+        // Landmark already has an owner
+        // TODO: Can double-place during a skip. Account for this
+        else if (hasOwner(landmark)) {
+            return false;
+        }
+        
+        // Place tiger if conditions are satisfied
+        else {
+            landmark->setTigerOwner(game->players[game->turnIndex]);
+        }
     }
     
-    // Landmark already has an owner
-    // TODO: Can double-place during a skip. Account for this
-    else if (hasOwner(landmark)) {
-        return false;
-    }
-    
-    // Place tiger if conditions are satisfied
-    else {
-        landmark->setTigerOwner(game->players[game->turnIndex]);
+    if (croc) {
+        for (int i=0; i<9; i++) {
+            TileLandmark* l = game->board->getTileLandmark(x, y, i+1);
+            
+            // TODO: Refactor this to only happen once per unique landmark
+            // TODO: Make sure the tile is of the right type
+            if (!l->getHasCrocodile()) {
+                l->setHasCrocodile(true);
+            }
+        }
     }
     
     // Give tigers back for completed landmarks

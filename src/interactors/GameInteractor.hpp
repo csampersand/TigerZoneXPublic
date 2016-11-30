@@ -34,14 +34,17 @@ protected:
     Player* getOwner(TileTrail*);
     Player* getOwner(TileLake*, std::unordered_map<TileLake*,bool>&, Player*);
     Player* getOwner(TileDen*);
-    bool placeTiger(TileLandmark*);
-    bool placeTigerOnSkip(TileLandmark*);
-    bool placeCrocodile(TileLandmark*);
+//    bool placeTiger(TileLandmark*);
+//    bool placeTigerOnSkip(TileLandmark*);
+//    bool placeCrocodile(TileLandmark*);
     // Give any tigers on the landmark back to players
     void returnTigers(TileLandmark*);
     void returnTigers(TileTrail*);
     void returnTigers(TileLake*, std::unordered_map<TileLake*,bool>&);
     void returnTigers(TileDen*);
+    int getCrocodileCount(TileTrail*);
+    int getCrocodileCount(TileLake*, std::unordered_map<TileLake*,bool>&, int);
+    int getCrocodileCount(TileDen*);
 public:
     // Initialize game, setup deck, setup board
     GameInteractor();
@@ -88,6 +91,7 @@ public:
     Player* getOwner(TileLandmark*);
     // Get the unique completed landmarks at coordinates
     std::unordered_map<TileLandmark*,bool> getCompleteLandmarks(int x, int y);
+    int getCrocodileCount(TileLandmark*);
     
     //Player
     // Setup 2-player game and alot tigers & crocodiles
