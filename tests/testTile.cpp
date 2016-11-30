@@ -7,25 +7,30 @@
 //
 
 #include "catch.hpp"
-
+#include "Player.hpp"
 #include "Tile.hpp"
+#include "TileLandmark.hpp"
+#include "Game.hpp"
+#include "TileDeck.hpp"
+#include "GameInteractor.hpp"
 
-class TestTileLandmark : public TileLandmark {
-public:
-	void setTigerCount(int tigers, Player* player){
-		this->tigerCount = tigers;
-		this->tigerOwner = player;
-	}
-};
+
+//class TestTileLandmark : public TileLandmark {
+//public:
+//	void setTigerCount(Player* player){
+//		this->tigerCount = tigers;
+//		this->tigerOwner = player;
+//	}
+//};
 
 class TestBoard : public Board {
 public:
-	TestTileLandmark* getLandmark(){
-		TestTileLandmark* testGame = static_cast<TestTileLandmark*>(tileLandmark);
-        return testTileLandmark;
-	}
+	//TestTileLandmark* getLandmark(){
+	//	TestTileLandmark* testTileLandmark = static_cast<TestTileLandmark*>(tileLandmark);
+ //       return testTileLandmark;
+	//}
 
-    TileLandmark* getLandmarks(int x, int y, int zone){
+    TileLandmark* getLandmark(int x, int y, int zone){
         return this->getTileLandmark(x, y, zone);
     }
 };
@@ -57,15 +62,16 @@ public:
 };
 
 TEST_CASE("Testing Tile class") {
-    Tile t(Tile::sideLake, Tile::sideJungle, Tile::sideTrail, Tile::sideTrail, Tile::centerLake);
-    
+	TestGameInteractor* gi = new TestGameInteractor();
+    Tile *t = new Tile(Tile::sideLake, Tile::sideJungle, Tile::sideTrail, Tile::sideTrail, Tile::centerLake);
+	gi->rotateTile(t, 3);
     SECTION("rotating the tile") {
         INFO("Rotating 3 times")
-        t.rotate(3);
-        REQUIRE(t.getNType() == Tile::sideJungle);
-        REQUIRE(t.getEType() == Tile::sideTrail);
-        REQUIRE(t.getSType() == Tile::sideTrail);
-        REQUIRE(t.getWType() == Tile::sideLake);
+        
+        REQUIRE(t->getNType() == Tile::sideJungle);
+        REQUIRE(t->getEType() == Tile::sideTrail);
+        REQUIRE(t->getSType() == Tile::sideTrail);
+        REQUIRE(t->getWType() == Tile::sideLake);
     }
 }
 
@@ -73,20 +79,20 @@ TEST_CASE("Testing Tile class") {
 TEST_CASE("Testing Tile class") {
 
 	//Start a test game interactor
-	TestGameInteractor gi = new TestGameInteractor();
+	TestGameInteractor* gi = new TestGameInteractor();
 
 	Tile* t7776 = gi->createTileFromTemplate('A');
 	Tile* t7777 = gi->createTileFromTemplate('J');
 	Tile* t7778 = gi->createTileFromTemplate('F');
-	t7778.rotate(2);
+	gi->rotateTile(t7778, 2);
 	Tile* t7878 = gi->createTileFromTemplate('F');
-	t7878.rotate(2);
+	gi->rotateTile(t7878,2);
 	Tile* t7877 = gi->createTileFromTemplate('H');
 	Tile* t7876 = gi->createTileFromTemplate('M');
 	Tile* t7977 = gi->createTileFromTemplate('J');
-	t7977.rotate(2);
+	gi->rotateTile(t7977,2);
 	Tile* t7976 = gi->createTileFromTemplate('K');
-	t7976.rotate(1);
+	gi->rotateTile(t7976,1);
 	Tile* t7975 = gi->createTileFromTemplate('M');
 
 	//gi->playTurn();
@@ -95,9 +101,10 @@ TEST_CASE("Testing Tile class") {
 	gi->placeTile(77, 78, t7778);
 	gi->placeTile(78, 78, t7878);
 	gi->placeTile(78, 77, t7877);
-	TileLandmark* tl1 = gi->getTestGame()->getTestBoard()->getLandmarks(78,77,5);
 	Player* player2 = new Player();
-	gi->getTestGame()->getTestBoard()->getLandmark()->setTigerCount(1, player2);
+	gi->getGame()->getBoard()->getLandmark(78,77,5)->setTigerOwner(player2);;
+
+	
 	gi->placeTile(78, 76, t7876);
 	gi->placeTile(79, 77, t7977);
 	gi->placeTile(79, 76, t7976);
@@ -105,7 +112,7 @@ TEST_CASE("Testing Tile class") {
 
     SECTION("Layed some sweet tile") {
     	//grabbing tile landmark at 79,76 zone 2
-    	TileLandmark* tl = gi->getGame()->getBoard()->getLandmarks(79,76,2);
+    	TileLandmark* tl = gi->getGame()->getBoard()->getLandmark(79,76,2);
     	bool firstTest = gi->isComplete(tl);
     	Player* getP2 = gi->getOwner(tl); 
 
