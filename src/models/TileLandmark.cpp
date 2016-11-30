@@ -8,10 +8,11 @@
 
 #include "TileLandmark.hpp"
 
-TileLandmark::TileLandmark(LandmarkType type){
+TileLandmark::TileLandmark(){
     this->tigerOwnedBy = NULL;
+    this->tigerCount = 0;
     this->hasCrocodile = false;
-    this->type = type;
+    this->type = NULL;
 }
 
 void TileTrail::trailEnd(bool end) {

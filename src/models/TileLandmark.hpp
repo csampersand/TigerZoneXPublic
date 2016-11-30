@@ -83,6 +83,7 @@ private:
     bool lakeEnds;
     bool hasCrocodile;
 public:
+    TileLake();
     bool getHasCrocodile();
     void setHasCrocodile(bool);
     TileLake* getNLake();
@@ -107,6 +108,8 @@ class TileDen : public TileLandmark {
     friend class Den;
 private:
     std::vector<Tile*> surroundingTiles;
+public:
+    TileDen();
 };
 
 #endif /* TileLandmark_hpp */
