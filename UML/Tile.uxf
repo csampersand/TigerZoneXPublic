@@ -356,7 +356,7 @@ setupBoard()
 
 // Landmarks
 isComplete(TileLandmark*)
-getOwner(Player*)
+Player* getOwner(TileLandmark*)
 placeTiger(TileLandmark*)
 placeTigerOnSkip(TileLandmark*)
 placeCrocodile(TileLandmark*)
