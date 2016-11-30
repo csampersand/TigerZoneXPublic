@@ -598,15 +598,19 @@ void GameInteractor::placeLandmarks(int x, int y, Tile* tile) {
         TileLandmark* newTrail = GameInteractor::createTileLandmark(landmarkTrail);
         if (tile->getNType() == Tile::sideTrail) {
             game->board->setTileLandmark(x,y,N,newTrail);
+            game->board->setTileLandmark(x,y,C,newTrail);
         }
         if (tile->getEType() == Tile::sideTrail) {
             game->board->setTileLandmark(x,y,E,newTrail);
+            game->board->setTileLandmark(x,y,C,newTrail);
         }
         if (tile->getWType() == Tile::sideTrail) {
             game->board->setTileLandmark(x,y,W,newTrail);
+            game->board->setTileLandmark(x,y,C,newTrail);
         }
         if (tile->getSType() == Tile::sideTrail) {
             game->board->setTileLandmark(x,y,S,newTrail);
+            game->board->setTileLandmark(x,y,C,newTrail);
         }
         static_cast<TileTrail*>(newTrail)->setTrailEnds(trailSides == 1);
     }
