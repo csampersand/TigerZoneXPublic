@@ -329,6 +329,19 @@ TEST_CASE("Testing isComplete and lakes") {
 	
 }
 
+//TEST_CASE("Testing playTurn") {
+//    TestGameInteractor* gi = new TestGameInteractor();
+//    gi->getGame()->getDeck()->addTile(gi->createTileFromTemplate('D'));
+//    gi->getGame()->getDeck()->addTile(gi->createTileFromTemplate('E'));
+//    gi->getGame()->getDeck()->addTile(gi->createTileFromTemplate('U'));
+//    
+//    gi->playTurn(76,75,true,false,2);
+//    gi->playTurn(76,77);
+//    gi->playTurn(76,78);
+//    
+//    REQUIRE(gi->getGame()->getPlayer(0)->getTigerCount() == 7);
+//}
+
 //TEST_CASE("Testing isComplete for trails and Dens") {
 //
 //	//Start a test game interactor
