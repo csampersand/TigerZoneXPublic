@@ -1226,19 +1226,19 @@ void GameInteractor::returnTigers(TileLake* lake, std::unordered_map<TileLake*,b
     
     if (lake->getNLake() != NULL && visited[lake->getNLake()] != true) {
         visited[lake->getNLake()] = true;
-        returnTigers(lake->getNLake());
+        returnTigers(lake->getNLake(), visited);
     }
     if (lake->getELake() != NULL && visited[lake->getELake()] != true) {
         visited[lake->getELake()] = true;
-        returnTigers(lake->getELake());
+        returnTigers(lake->getELake(), visited);
     }
     if (lake->getSLake() != NULL && visited[lake->getSLake()] != true) {
         visited[lake->getSLake()] = true;
-        returnTigers(lake->getSLake());
+        returnTigers(lake->getSLake(), visited);
     }
     if (lake->getWLake() != NULL && visited[lake->getWLake()] != true) {
         visited[lake->getWLake()] = true;
-        returnTigers(lake->getWLake());
+        returnTigers(lake->getWLake(), visited);
     }
 }
 
