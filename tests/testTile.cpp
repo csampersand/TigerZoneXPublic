@@ -286,7 +286,7 @@ TEST_CASE("Testing isComplete and lakes") {
 	gi->placeTile(78, 77, t7877);
     gi->placeLandmarks(78, 77, t7877);
 	Player* player2 = new Player();
-	gi->getGame()->getBoard()->getLandmark(79,76,5)->setTigerOwner(player2);;
+	
 
 	
 	gi->placeTile(78, 76, t7876);
@@ -297,6 +297,7 @@ TEST_CASE("Testing isComplete and lakes") {
     gi->placeLandmarks(79, 76, t7976);
 	gi->placeTile(79, 75, t7975);
     gi->placeLandmarks(79, 75, t7975);
+	gi->getGame()->getBoard()->getLandmark(79, 76, 5)->setTigerOwner(player2);;
     std::cout << "78,76" << std::endl;
     std::cout << "n: " << gi->getGame()->getBoard()->getTileRelation(78,76)->getTile()->getNType() << std::endl;
 	std::cout << "79,75" << std::endl;
