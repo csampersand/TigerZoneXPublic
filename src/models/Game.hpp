@@ -16,8 +16,9 @@
 class GameInteractor;
 
 class Game {
-    Game();
     friend GameInteractor;
+public:
+    Game();
 protected:
     Board* board;
     TileDeck* deck;
