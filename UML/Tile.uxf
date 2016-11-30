@@ -4,7 +4,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>378</x>
+      <x>280</x>
       <y>784</y>
       <w>154</w>
       <h>126</h>
@@ -25,7 +25,7 @@ Tile(n, s, e, w, center, hasPennant)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>448</x>
+      <x>350</x>
       <y>707</y>
       <w>21</w>
       <h>91</h>
@@ -36,7 +36,7 @@ Tile(n, s, e, w, center, hasPennant)</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>378</x>
+      <x>280</x>
       <y>602</y>
       <w>147</w>
       <h>112</h>
@@ -57,7 +57,7 @@ setters()</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>378</x>
+      <x>280</x>
       <y>483</y>
       <w>147</w>
       <h>77</h>
@@ -65,7 +65,7 @@ setters()</panel_attributes>
     <panel_attributes>*Board*
 --
 -tiles: TileRelation*[153][153]
--landmarks: Player*[153][153][9]
+-tigers: Player*[153][153][9]
 -startTile: TileRelation*
 --
 Board() // Place 1st tile &amp; init board</panel_attributes>
@@ -74,7 +74,7 @@ Board() // Place 1st tile &amp; init board</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>448</x>
+      <x>350</x>
       <y>553</y>
       <w>21</w>
       <h>63</h>
@@ -85,7 +85,7 @@ Board() // Place 1st tile &amp; init board</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>252</x>
+      <x>154</x>
       <y>651</y>
       <w>217</w>
       <h>147</h>
@@ -96,7 +96,7 @@ Board() // Place 1st tile &amp; init board</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>448</x>
+      <x>350</x>
       <y>420</y>
       <w>21</w>
       <h>77</h>
@@ -107,10 +107,10 @@ Board() // Place 1st tile &amp; init board</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>784</x>
+      <x>686</x>
       <y>742</y>
       <w>147</w>
-      <h>147</h>
+      <h>105</h>
     </coordinates>
     <panel_attributes>*TileLake*
 {friend Lake}
@@ -119,17 +119,14 @@ nLake: TileLake*
 eLake: TileLake*
 sLake: TileLake*
 wLake: TileLake*
-nOpen: bool
-eOpen: bool
-sOpen: bool
-wOpen: bool
+bool sidesConnect
 bool hasCrocodile</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>938</x>
+      <x>840</x>
       <y>742</y>
       <w>147</w>
       <h>105</h>
@@ -137,19 +134,13 @@ bool hasCrocodile</panel_attributes>
     <panel_attributes>*TileDen*
 {friend Den}
 --
-x: int
-y: int
---
-getX()
-getY()
-setX(int)
-setY(int)</panel_attributes>
+vector&lt;Tile*&gt; surroundingTiles;</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>630</x>
+      <x>532</x>
       <y>742</y>
       <w>147</w>
       <h>105</h>
@@ -166,7 +157,7 @@ bool hasCrocodile</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>448</x>
+      <x>350</x>
       <y>553</y>
       <w>420</w>
       <h>49</h>
@@ -177,7 +168,7 @@ bool hasCrocodile</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>784</x>
+      <x>686</x>
       <y>588</y>
       <w>147</w>
       <h>126</h>
@@ -197,7 +188,7 @@ getLandmarkType()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>700</x>
+      <x>602</x>
       <y>707</y>
       <w>175</w>
       <h>49</h>
@@ -208,7 +199,7 @@ getLandmarkType()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>847</x>
+      <x>749</x>
       <y>707</y>
       <w>28</w>
       <h>49</h>
@@ -219,7 +210,7 @@ getLandmarkType()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>854</x>
+      <x>756</x>
       <y>707</y>
       <w>182</w>
       <h>49</h>
@@ -230,7 +221,7 @@ getLandmarkType()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>238</x>
+      <x>140</x>
       <y>420</y>
       <w>231</w>
       <h>77</h>
@@ -242,7 +233,7 @@ m1=2..n</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>231</x>
+      <x>133</x>
       <y>350</y>
       <w>98</w>
       <h>49</h>
@@ -257,7 +248,7 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>182</x>
+      <x>84</x>
       <y>483</y>
       <w>147</w>
       <h>77</h>
@@ -274,7 +265,7 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>350</x>
+      <x>252</x>
       <y>294</y>
       <w>210</w>
       <h>133</h>
@@ -284,13 +275,14 @@ bg=blue</panel_attributes>
 -board: Board*
 -deck: TileDeck
 -players: Player*[2]
--turnIndex: int</panel_attributes>
+-turnIndex: int
+-landmarks: TileLandmark*[153][153][9]</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>182</x>
+      <x>84</x>
       <y>588</y>
       <w>147</w>
       <h>70</h>
@@ -304,7 +296,7 @@ bg=blue</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>252</x>
+      <x>154</x>
       <y>420</y>
       <w>217</w>
       <h>182</h>
@@ -315,7 +307,7 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>98</x>
+      <x>0</x>
       <y>777</y>
       <w>231</w>
       <h>147</h>
@@ -337,7 +329,7 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>756</x>
+      <x>658</x>
       <y>0</y>
       <w>210</w>
       <h>245</h>
@@ -359,13 +351,16 @@ placeTile(int x, int y, Tile*)
 rotateTile(Tile*)
 rotateTile(Tile*, int)
 -placeLandmarks(int x, int y, Tile*)
-placeTiger(int x, int y, int zone, Player*)
-placeCrocodile(int x, int y, Player*)
 
-setupBoard();
+setupBoard()
 
 // Landmarks
 isComplete(TileLandmark*)
+getOwner(TileLandmark*)
+placeTiger(TileLandmark*)
+placeTigerOnSkip(TileLandmark*)
+placeCrocodile(TileLandmark*)
+playTurn(int x, int y, bool tiger, bool croc, int zone)
 static createTileLandmark(LandmarkType)
 append(TileLandmark*, TileLandmark*)
 // TileTrail
@@ -378,7 +373,7 @@ scoreBoard(Board*)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>448</x>
+      <x>350</x>
       <y>238</y>
       <w>427</w>
       <h>70</h>

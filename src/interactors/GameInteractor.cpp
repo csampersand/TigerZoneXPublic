@@ -7,10 +7,6 @@
 //
 
 #include "GameInteractor.hpp"
-#include "Game.hpp"
-#include "Tile.hpp"
-#include "TileDeck.hpp"
-#include "TileLandmark.hpp"
 #include <algorithm>
 #include <random>
 #include <chrono>
@@ -694,22 +690,22 @@ void GameInteractor::placeLandmarks(int x, int y, Tile* tile) {
     
     // Append adjacent landmarks
     if (game->board->getTileLandmark(x,y+1,S) != NULL) {
-        if (game->board->getTileLandmark(x,y+1,S)->getLandmarkType() == game->board->getTileLandmark(x,y,N)->getLandmarkType()) {
+        if (game->board->getTileLandmark(x,y+1,S)->getType() == game->board->getTileLandmark(x,y,N)->getType()) {
             append(game->board->getTileLandmark(x,y,N), game->board->getTileLandmark(x,y+1,S), N);
         }
     }
     if (game->board->getTileLandmark(x+1,y,W) != NULL) {
-        if (game->board->getTileLandmark(x+1,y,W)->getLandmarkType() == game->board->getTileLandmark(x,y,E)->getLandmarkType()) {
+        if (game->board->getTileLandmark(x+1,y,W)->getType() == game->board->getTileLandmark(x,y,E)->getType()) {
             append(game->board->getTileLandmark(x,y,E), game->board->getTileLandmark(x+1,y,W), E);
         }
     }
     if (game->board->getTileLandmark(x,y-1,N) != NULL) {
-        if (game->board->getTileLandmark(x,y-1,N)->getLandmarkType() == game->board->getTileLandmark(x,y,S)->getLandmarkType()) {
+        if (game->board->getTileLandmark(x,y-1,N)->getType() == game->board->getTileLandmark(x,y,S)->getType()) {
             append(game->board->getTileLandmark(x,y,S), game->board->getTileLandmark(x,y-1,N), S);
         }
     }
     if (game->board->getTileLandmark(x-1,y,E) != NULL) {
-        if (game->board->getTileLandmark(x-1,y,E)->getLandmarkType() == game->board->getTileLandmark(x,y,W)->getLandmarkType()) {
+        if (game->board->getTileLandmark(x-1,y,E)->getType() == game->board->getTileLandmark(x,y,W)->getType()) {
             append(game->board->getTileLandmark(x,y,W), game->board->getTileLandmark(x-1,y,E), W);
         }
     }
@@ -748,14 +744,14 @@ void GameInteractor::setupBoard() {
 }
 
 bool GameInteractor::isComplete(TileLandmark* landmark) {
-    if (landmark->getLandmarkType() == landmarkTrail) {
+    if (landmark->getType() == landmarkTrail) {
         return isComplete(&static_cast<TileTrail&>(*landmark));
     }
-    else if (landmark->getLandmarkType() == landmarkLake) {
+    else if (landmark->getType() == landmarkLake) {
         std::unordered_map<TileLandmark*, bool> visited;
-        return isComplete(&static_cast<TileLake&>(*landmark), &visited);
+        return isComplete(&static_cast<TileLake&>(*landmark), visited);
     }
-    else if (landmark->getLandmarkType() == landmarkDen) {
+    else if (landmark->getType() == landmarkDen) {
         return isComplete(&static_cast<TileDen&>(*landmark));
     }
     
@@ -783,41 +779,41 @@ bool GameInteractor::isComplete(TileTrail* trail) {
     }
 }
 
-bool GameInteractor::isComplete(TileLake* lake, std::unordered_map<TileLandmark*, bool>* visited) {
+bool GameInteractor::isComplete(TileLake* lake, std::unordered_map<TileLandmark*, bool>& visited) {
     bool complete = true;
     if (lake->getNOpen() == true) {
         if (lake->getNLake() == NULL)
             return false;
-        else if (visited->at(lake->getNLake()) != true) {
-            visited->emplace(lake->getNLake(), true);
+        else if (visited[lake->getNLake()] != true) {
+            visited.emplace(lake->getNLake(), true);
             complete = isComplete(lake->getNLake(), visited);
         }
     }
     if (lake->getEOpen() == true) {
         if (lake->getELake() == NULL)
             return false;
-        else if (visited->at(lake->getELake()) != true) {
-            visited->emplace(lake->getELake(), true);
+        else if (visited[lake->getELake()] != true) {
+            visited.emplace(lake->getELake(), true);
             complete = isComplete(lake->getELake(), visited);
         }
     }
     if (lake->getSOpen() == true) {
         if (lake->getSLake() == NULL)
             return false;
-        else if (visited->at(lake->getSLake()) != true) {
-            visited->emplace(lake->getSLake(), true);
+        else if (visited[lake->getSLake()] != true) {
+            visited.emplace(lake->getSLake(), true);
             complete = isComplete(lake->getSLake(), visited);
         }
     }
     if (lake->getWOpen() == true) {
         if (lake->getWLake() == NULL)
             return false;
-        else if (visited->at(lake->getWLake()) != true) {
-            visited->emplace(lake->getWLake(), true);
+        else if (visited[lake->getWLake()] != true) {
+            visited.emplace(lake->getWLake(), true);
             complete = isComplete(lake->getWLake(), visited);
         }
     }
-    return complete; // no
+    return complete;
 }
 
 bool GameInteractor::isComplete(TileDen* den) {
@@ -860,12 +856,12 @@ TileLandmark* GameInteractor::createTileLandmark(LandmarkType type) {
 }
 
 bool GameInteractor::append(TileLandmark* first, TileLandmark* second, Position direction) {
-    if (first->getLandmarkType() != second->getLandmarkType())
+    if (first->getType() != second->getType())
         return false;
-    else if (first->getLandmarkType() == landmarkTrail) {
+    else if (first->getType() == landmarkTrail) {
         this->appendTrails(static_cast<TileTrail*>(first), static_cast<TileTrail*>(second));
     }
-    else if (first->getLandmarkType() == landmarkLake) {
+    else if (first->getType() == landmarkLake) {
         this->appendLakes(static_cast<TileLake*>(first), static_cast<TileLake*>(second), direction);
     }
     
@@ -936,6 +932,146 @@ void GameInteractor::appendLakes(TileLake* first, TileLake* second, Position dir
         first->setWLake(second);
         second->setELake(first);
     }
+}
+
+bool GameInteractor::hasOwner(TileLandmark* landmark) {
+    bool owner = false;
+    if (landmark->getType() == landmarkTrail) {
+        owner = hasOwner(static_cast<TileTrail*>(landmark));
+    }
+    else if (landmark->getType() == landmarkLake) {
+        std::unordered_map<TileLake*, bool> visited;
+        owner = hasOwner(static_cast<TileLake*>(landmark), visited);
+    }
+    else if (landmark->getType() == landmarkDen) {
+        owner = hasOwner(static_cast<TileDen*>(landmark));
+    }
+    
+    return owner;
+}
+
+bool GameInteractor::hasOwner(TileTrail* trail) {
+    
+    TileTrail* start = trail;
+    TileTrail* prev = start;
+    TileTrail* next = start;
+    
+    if (start->getTigerOwner() != NULL)
+        return true;
+    
+    while(prev->getPrevTrail() != NULL && prev->getTrailEnds() == false) {
+        prev = prev->getPrevTrail();
+        if (prev->getTigerOwner() == NULL)
+            return true;
+    }
+    while(next->getNextTrail() != NULL && next->getTrailEnds() == false) {
+        next = next->getNextTrail();
+        if (prev->getTigerOwner() == NULL)
+            return true;
+    }
+    
+    return false;
+}
+
+bool GameInteractor::hasOwner(TileLake* lake, std::unordered_map<TileLake*,bool>& visited) {
+    bool owner = false;
+    if (owner != true && lake->getNLake() != NULL && visited[lake->getNLake()] != true) {
+        visited.emplace(lake->getNLake(), true);
+        owner = hasOwner(lake->getNLake(), visited);
+    }
+    if (owner != true && lake->getELake() != NULL && visited[lake->getELake()] != true) {
+        visited.emplace(lake->getELake(), true);
+        owner = hasOwner(lake->getELake(), visited);
+    }
+    if (owner != true && lake->getSLake() != NULL && visited[lake->getSLake()] != true) {
+        visited.emplace(lake->getSLake(), true);
+        owner = hasOwner(lake->getSLake(), visited);
+    }
+    if (owner != true && lake->getWLake() != NULL && visited[lake->getWLake()] != true) {
+        visited.emplace(lake->getWLake(), true);
+        owner = hasOwner(lake->getWLake(), visited);
+    }
+    return owner;
+}
+
+bool GameInteractor::hasOwner(TileDen* den) {
+    return den->getTigerOwner() != NULL;
+}
+
+Player* GameInteractor::getOwner(TileTrail* trail) {
+    Player* owner = NULL;
+    
+    TileTrail* start = trail;
+    TileTrail* prev = start;
+    TileTrail* next = start;
+    
+    owner = start->getTigerOwner();
+    
+    while(prev->getPrevTrail() != NULL && prev->getTrailEnds() == false) {
+        prev = prev->getPrevTrail();
+        if (prev->getTigerOwner() == NULL)
+            owner = prev->getTigerOwner();
+        else
+            return NULL;
+    }
+    while(next->getNextTrail() != NULL && next->getTrailEnds() == false) {
+        next = next->getNextTrail();
+        if (prev->getTigerOwner() == NULL)
+            owner = prev->getTigerOwner();
+        else
+            return NULL;
+    }
+    
+    return owner;
+
+}
+
+Player* GameInteractor::getOwner(TileLake* lake, std::unordered_map<TileLake*,bool>& visited, Player* owner) {
+    if (lake->getNLake() != NULL && visited[lake->getNLake()] != true) {
+        visited.emplace(lake->getNLake(), true);
+        Player* foundOwner = getOwner(lake->getNLake(), visited, owner);
+        if (owner == NULL || foundOwner == owner) {
+            owner = foundOwner;
+        }
+        else {
+            owner = NULL;
+        }
+    }
+    if (lake->getELake() != NULL && visited[lake->getELake()] != true) {
+        visited.emplace(lake->getELake(), true);
+        Player* foundOwner = getOwner(lake->getELake(), visited, owner);
+        if (owner == NULL || foundOwner == owner) {
+            owner = foundOwner;
+        }
+        else {
+            owner = NULL;
+        }
+    }
+    if (lake->getSLake() != NULL && visited[lake->getSLake()] != true) {
+        visited.emplace(lake->getSLake(), true);
+        Player* foundOwner = getOwner(lake->getSLake(), visited, owner);
+        if (owner == NULL || foundOwner == owner) {
+            owner = foundOwner;
+        }
+        else {
+            owner = NULL;
+        }
+    }
+    if (lake->getWLake() != NULL && visited[lake->getWLake()] != true) {
+        visited.emplace(lake->getWLake(), true);
+        Player* foundOwner = getOwner(lake->getWLake(), visited, owner);
+        if (owner == NULL || foundOwner == owner) {
+            owner = foundOwner;
+        }
+        else {
+            owner = NULL;
+        }
+    }
+    return owner;
+}
+
+Player* GameInteractor::getOwner(TileDen* den) {
+    return den->getTigerOwner();
 }
 
 void GameInteractor::setupPlayers() {

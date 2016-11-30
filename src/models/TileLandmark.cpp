@@ -19,7 +19,7 @@ void TileTrail::trailEnd(bool end) {
     trailEnds = end;
 }
 
-LandmarkType TileLandmark::getLandmarkType() {
+LandmarkType TileLandmark::getType() {
     return this->type;
 }
 
@@ -146,4 +146,12 @@ void TileDen::setX(int x) {
 
 void TileDen::setY(int y) {
     this->y = y;
+}
+
+Player* TileLandmark::getTigerOwner() {
+    return this->tigerOwner;
+}
+
+void TileLandmark::setTigerOwner(Player* player) {
+    this->tigerOwner = player;
 }

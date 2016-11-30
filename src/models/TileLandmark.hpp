@@ -41,7 +41,7 @@ enum LandmarkType {
 class TileLandmark {
     friend class Landmark;
 private:
-    Player* tigerOwnedBy;
+    Player* tigerOwner;
     int tigerCount;
     bool hasCrocodile;
     LandmarkType type;
@@ -49,6 +49,8 @@ public:
     TileLandmark();
     LandmarkType getLandmarkType();
     void setLandmarkType(LandmarkType);
+    Player* getTigerOwner();
+    void setTigerOwner(Player*);
 };
 
 class TileTrail : public TileLandmark {

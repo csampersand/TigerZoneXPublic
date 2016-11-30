@@ -19,6 +19,24 @@
 class GameInteractor {
 protected:
     Game* game;
+//private:
+    // Check if a trail is complete
+    bool isComplete(TileTrail*);
+    // Check if a lake is complete
+    bool isComplete(TileLake*, std::unordered_map<TileLandmark*, bool>&);
+    // Check if a den is complete
+    bool isComplete(TileDen*);
+    void appendTrails(TileTrail*, TileTrail*);
+    void appendLakes(TileLake*, TileLake*, Position);
+    bool hasOwner(TileTrail*);
+    bool hasOwner(TileLake*, std::unordered_map<TileLake*,bool>&);
+    bool hasOwner(TileDen*);
+    Player* getOwner(TileTrail*);
+    Player* getOwner(TileLake*, std::unordered_map<TileLake*,bool>&, Player*);
+    Player* getOwner(TileDen*);
+    bool placeTiger(TileLandmark*);
+    bool placeTigerOnSkip(TileLandmark*);
+    bool placeCrocodile(TileLandmark*);
 public:
     // Initialize game, setup deck, setup board
     GameInteractor();
@@ -51,25 +69,26 @@ public:
     void placeLandmarks(int, int, Tile*);
     // If valid placement, create a tile relation at coordinates and set up landmarks
     bool placeTile(int, int, Tile*);
-    bool placeTiger(int, int, int, Player*);
-    bool placeCrocodile(int, int, Player*);
     // Set first tile, at (73,73), to tile at top of deck
     void setupBoard();
     
     //Landmarks
-    // Check if landmark is complete
+    // Check if landmark is complete (calls overloaded isComplete for specific landmark type)
     bool isComplete(TileLandmark*);
-    bool isComplete(TileTrail*);
-    bool isComplete(TileLake*, std::unordered_map<TileLandmark*, bool>*);
-    bool isComplete(TileDen*);
     static TileLandmark* createTileLandmark(LandmarkType);
     bool append(TileLandmark*, TileLandmark*, Position);
-    void appendTrails(TileTrail*, TileTrail*);
-    void appendLakes(TileLake*, TileLake*, Position);
+    // Returns whether or not a landmark has an owner based on tigers
+    bool hasOwner(TileLandmark*);
+    // Return owner of landmark based on tigers. NULL if two owners or none
+    Player* getOwner(TileLandmark*);
     
     //Player
     // Setup 2-player game and alot tigers & crocodiles
     void setupPlayers();
+    
+    //Game
+    // Place the next tile at the given xy-coordinate and place a tiger or croc in the specified zone
+    bool playTurn(int x, int y, bool tiger = false, bool croc = false, int zone = 0);
 };
 
 #endif /* GameInteractor_hpp */
