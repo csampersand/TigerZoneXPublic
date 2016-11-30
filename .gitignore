@@ -10,3 +10,9 @@ TigerZoneX.sublime-project
 /.vs/TigerZoneX_VS/v14
 /Debug
 *.orig
+/.vs/TigerZoneX/v14/.suo
+/TigerZoneX.VC.VC.opendb
+/TigerZoneX.VC.db
+/TigerZoneX.sln
+/TigerZoneX.vcxproj
+/TigerZoneX.vcxproj.filters
