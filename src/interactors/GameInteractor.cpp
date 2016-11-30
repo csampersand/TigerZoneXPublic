@@ -11,6 +11,7 @@
 #include <random>
 #include <chrono>
 #include <unordered_map>
+#include <iostream>
 
 GameInteractor::GameInteractor() {
     this->game = new Game();
@@ -763,13 +764,22 @@ bool GameInteractor::isComplete(TileTrail* trail) {
     TileTrail* start = trail;
     TileTrail* prev = start;
     TileTrail* next = start;
-    
+	
     // Go to ends of trail
-    while(prev->getPrevTrail() != NULL && prev->getTrailEnds() == false)
-        prev = prev->getPrevTrail();
-    while(next->getNextTrail() != NULL && next->getTrailEnds() == false)
-        next = next->getNextTrail();
-    
+	while (prev->getPrevTrail() != NULL && prev->getTrailEnds() == false) {
+		prev = prev->getPrevTrail();
+		if (prev == start) {
+			return true;
+		}
+
+	}
+	while (next->getNextTrail() != NULL && next->getTrailEnds() == false) {
+		next = next->getNextTrail();
+		if (next == start) {
+			return true;
+		}
+
+	}
     // Trail is complete if both ends of trail go to actual ends
     if (prev->getTrailEnds() && next->getTrailEnds())
         return true;
@@ -957,13 +967,19 @@ bool GameInteractor::hasOwner(TileTrail* trail) {
     
     while(prev->getPrevTrail() != NULL && prev->getTrailEnds() == false) {
         prev = prev->getPrevTrail();
-        if (prev->getTigerOwner() == NULL)
+        if (prev->getTigerOwner() != NULL)
             return true;
+        if (prev == start){
+            return false;
+        }
     }
     while(next->getNextTrail() != NULL && next->getTrailEnds() == false) {
         next = next->getNextTrail();
-        if (next->getTigerOwner() == NULL)
+        if (next->getTigerOwner() != NULL)
             return true;
+        if(next == start){
+            return false;
+        }
     }
     
     return false;
@@ -1018,9 +1034,12 @@ Player* GameInteractor::getOwner(TileTrail* trail) {
     
     while(prev->getPrevTrail() != NULL && prev->getTrailEnds() == false) {
         prev = prev->getPrevTrail();
+        if(start == prev){
+            return NULL;
+        }
         if (prev->getTigerOwner() != NULL) {
             if (owner == NULL || owner == prev->getTigerOwner()) {
-                owner = owner = prev->getTigerOwner();
+                owner = prev->getTigerOwner();
             }
             else {
                 owner = NULL;
@@ -1029,9 +1048,12 @@ Player* GameInteractor::getOwner(TileTrail* trail) {
     }
     while(next->getNextTrail() != NULL && next->getTrailEnds() == false) {
         next = next->getNextTrail();
+        if(start == next){
+            return NULL;
+        }
         if (next->getTigerOwner() != NULL) {
             if (owner == NULL || owner == next->getTigerOwner()) {
-                owner = owner = next->getTigerOwner();
+                owner = next->getTigerOwner();
             }
             else {
                 owner = NULL;
@@ -1129,11 +1151,17 @@ int GameInteractor::getCrocodileCount(TileTrail* trail) {
     
     while(prev->getPrevTrail() != NULL) {
         prev = prev->getPrevTrail();
+        if(prev == start){
+            return crocodileCount;
+        }
         if (prev->getHasCrocodile() == true)
             crocodileCount++;
     }
     while(next->getNextTrail() != NULL) {
         next = next->getNextTrail();
+        if(next == start){
+            return crocodileCount;
+        }
         if (next->getHasCrocodile() == true)
             crocodileCount++;
     }
@@ -1198,11 +1226,17 @@ void GameInteractor::returnTigers(TileTrail* trail) {
     
     while(prev->getPrevTrail() != NULL) {
         prev = prev->getPrevTrail();
+        if(prev == start){
+            return;
+        }
         if (prev->getTigerOwner() != NULL)
             prev->getTigerOwner()->giveTiger();
     }
     while(next->getNextTrail() != NULL) {
         next = next->getNextTrail();
+        if(next == start){
+            return;
+        }
         if (next->getTigerOwner() != NULL)
             next->getTigerOwner()->giveTiger();
     }
