@@ -7,6 +7,22 @@
 
 #include "Board.hpp"
 
+Board::Board() {
+	for (int i = 0; i < 153; i++) {
+		for (int j = 0; j < 153; j++) {
+			tiles[i][j] = NULL;
+		}
+	}
+	for (int i = 0; i < 153; i++) {
+		for (int j = 0; j < 153; j++) {
+			for (int k = 0; k < 9; k++) {
+				landmarks[i][j][k] = NULL;
+			}
+		}
+	}
+	firstTile = NULL;
+}
+
 TileRelation* Board::getTileRelation(int x, int y){
     return this->tiles[x][y];
 };

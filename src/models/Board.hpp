@@ -19,6 +19,7 @@ private:
     TileLandmark* landmarks[153][153][10];
     TileRelation* firstTile;
 public:
+    Board();
     TileLandmark* getTileLandmark(int,int,int);
     TileRelation* getTileRelation(int,int);
     void setTileLandmark(int,int,int,TileLandmark*);
