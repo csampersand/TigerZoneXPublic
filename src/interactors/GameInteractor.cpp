@@ -966,7 +966,7 @@ bool GameInteractor::hasOwner(TileTrail* trail) {
     }
     while(next->getNextTrail() != NULL && next->getTrailEnds() == false) {
         next = next->getNextTrail();
-        if (prev->getTigerOwner() == NULL)
+        if (next->getTigerOwner() == NULL)
             return true;
     }
     
@@ -1090,3 +1090,4 @@ void GameInteractor::setupPlayers() {
         player->setCrocodileCount(2);
     }
 }
+
