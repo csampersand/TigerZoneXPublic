@@ -1,4 +1,5 @@
-#pragma once
+#ifndef Move_hpp
+#define Move_hpp
 
 #include "Tile.hpp"
 #include <string>
@@ -21,3 +22,5 @@ struct Move {
 	bool croc;
 	int tigerZone;
 };
+
+#endif
