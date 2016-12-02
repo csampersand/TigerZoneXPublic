@@ -21,24 +21,22 @@ boost::system::system_error SocketInterface::getErrorCode()
     return error;
 }
 
-//void SocketInterface::connect()
-//{
-//    boost::asio::io_service io_service;
-//    tcp::resolver resolver(io_service);
-//    tcp::resolver::query query(IP, PORT);
-//    tcp::resolver::iterator end_point_iterator = resolver.resolve(query);
-//    tcp::resolver::iterator end;
-//    tcp::socket socket(io_service);
-//    boost::system::error_code error = boost::asio::error::host_not_found;
-//    while (error && end_point_iterator != end) {
-//        socket.close();
-//        socket.connect(*end_point_iterator++, error);
-//    }
-//    if (error)
-//        throw boost::system::system_error(error);
-//    else
-//        std::cout << "Successfully connected to tournament server." << std::endl; //DEBUG
-//}
+void SocketInterface::connect()
+{
+    tcp::resolver resolver(*io_service);
+    tcp::resolver::query query(IP, PORT);
+    tcp::resolver::iterator end_point_iterator = resolver.resolve(query);
+    tcp::resolver::iterator end;
+    boost::system::error_code error = boost::asio::error::host_not_found;
+    while (error && end_point_iterator != end) {
+        socket->close();
+        socket->connect(*end_point_iterator++, error);
+    }
+    if (error)
+        throw boost::system::system_error(error);
+    else
+        std::cout << "Successfully connected to tournament server." << std::endl; //DEBUG
+}
 
 std::string SocketInterface::readLineFromSocket() {
     boost::asio::streambuf buf;
@@ -99,22 +97,23 @@ void SocketInterface::beginMatch() {
 }
 
 void SocketInterface::playTournament() {
-    boost::asio::io_service io_service;
-    tcp::resolver resolver(io_service);
-    tcp::resolver::query query(IP, PORT);
-    tcp::resolver::iterator end_point_iterator = resolver.resolve(query);
-    tcp::resolver::iterator end;
-    socket = new tcp::socket(io_service);
-    boost::system::error_code error = boost::asio::error::host_not_found;
-    while (error && end_point_iterator != end) {
-        socket->close();
-        socket->connect(*end_point_iterator++, error);
-    }
-    if (error)
-        throw boost::system::system_error(error);
-    else
-        std::cout << "Successfully connected to tournament server." << std::endl; //DEBUG
+    io_service = new boost::asio::io_service();
+//    tcp::resolver resolver(io_service);
+//    tcp::resolver::query query(IP, PORT);
+//    tcp::resolver::iterator end_point_iterator = resolver.resolve(query);
+//    tcp::resolver::iterator end;
+    socket = new tcp::socket(*io_service);
+//    boost::system::error_code error = boost::asio::error::host_not_found;
+//    while (error && end_point_iterator != end) {
+//        socket->close();
+//        socket->connect(*end_point_iterator++, error);
+//    }
+//    if (error)
+//        throw boost::system::system_error(error);
+//    else
+//        std::cout << "Successfully connected to tournament server." << std::endl; //DEBUG
     
+    connect();
     authenticate();
     
 }

@@ -28,6 +28,7 @@ class SocketInterface {
 private:
     boost::system::error_code error;
     tcp::socket* socket;
+    boost::asio::io_service* io_service;
     std::string IP;
     std::string PORT;
     std::string TOURNAMENT_PASSWORD;
