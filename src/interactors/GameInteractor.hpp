@@ -52,7 +52,24 @@ protected:
 public:
     // Initialize game, setup deck, setup board
     GameInteractor();
-    GameInteractor(Game*);
+    
+    //Default game
+    // Sets up a new game with the default values
+    void setupGame();
+    // Define tiles, shuffle them, and add tile type S at the top
+    void setupTileDeck();
+    // Set first tile, at (76,76), to tile at top of deck
+    void setupBoard();
+    // Setup 2-player game and alot tigers & crocodiles
+    void setupPlayers();
+    
+    
+    // Sets up a game with specified starting values
+    void setupGame(Tile* startTile, int startX, int startY, std::vector<Tile*> deckTiles);
+    // Define tile deck from vector
+    void setupTileDeck(std::vector<Tile*>);
+    // Set first tile at (startX, startY) to startTile
+    void setupBoard(Tile* startTile, int startX, int startY);
     
     Game& getGame();
     
@@ -67,8 +84,8 @@ public:
     static std::vector<Tile*> defineTiles();
     // Return the top tile from the deck, and remove it
     Tile* drawTile();
-    // Define tiles, shuffle them, and add tile type S at the top
-    void setupTileDeck();
+    
+//    void setupTileDeck()
 
     //Tile
     // Rotate a tile clockwise once
@@ -83,8 +100,6 @@ public:
     void placeLandmarks(int, int, Tile*);
     // Create a tile relation at coordinates
     bool placeTile(int, int, Tile*);
-    // Set first tile, at (76,76), to tile at top of deck
-    void setupBoard();
     
     //Landmarks
     // Check if landmark is complete (calls overloaded isComplete for specific landmark type)
@@ -100,8 +115,6 @@ public:
     int getCrocodileCount(TileLandmark*);
     
     //Player
-    // Setup 2-player game and alot tigers & crocodiles
-    void setupPlayers();
     
     // For every landmark on the tile, return the landmark's tigers to the players if the landmark is completed
     void returnTigers(int x, int y);

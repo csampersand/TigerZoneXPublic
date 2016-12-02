@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>498</x>
-      <y>1236</y>
+      <x>444</x>
+      <y>1014</y>
       <w>132</w>
       <h>108</h>
     </coordinates>
@@ -25,8 +25,8 @@ Tile(n, s, e, w, center, hasPennant)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>558</x>
-      <y>1170</y>
+      <x>504</x>
+      <y>948</y>
       <w>18</w>
       <h>78</h>
     </coordinates>
@@ -36,8 +36,8 @@ Tile(n, s, e, w, center, hasPennant)</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>498</x>
-      <y>1080</y>
+      <x>444</x>
+      <y>858</y>
       <w>126</w>
       <h>96</h>
     </coordinates>
@@ -57,8 +57,8 @@ setters()</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>498</x>
-      <y>978</y>
+      <x>444</x>
+      <y>756</y>
       <w>126</w>
       <h>66</h>
     </coordinates>
@@ -74,8 +74,8 @@ Board() // Place 1st tile &amp; init board</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>558</x>
-      <y>1038</y>
+      <x>504</x>
+      <y>816</y>
       <w>18</w>
       <h>54</h>
     </coordinates>
@@ -85,8 +85,8 @@ Board() // Place 1st tile &amp; init board</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>390</x>
-      <y>1122</y>
+      <x>336</x>
+      <y>900</y>
       <w>186</w>
       <h>126</h>
     </coordinates>
@@ -96,8 +96,8 @@ Board() // Place 1st tile &amp; init board</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>558</x>
-      <y>924</y>
+      <x>504</x>
+      <y>702</y>
       <w>18</w>
       <h>66</h>
     </coordinates>
@@ -107,8 +107,8 @@ Board() // Place 1st tile &amp; init board</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>846</x>
-      <y>1200</y>
+      <x>792</x>
+      <y>978</y>
       <w>126</w>
       <h>90</h>
     </coordinates>
@@ -126,8 +126,8 @@ bool hasCrocodile</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>978</x>
-      <y>1200</y>
+      <x>924</x>
+      <y>978</y>
       <w>126</w>
       <h>90</h>
     </coordinates>
@@ -140,8 +140,8 @@ vector&lt;Tile*&gt; surroundingTiles;</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>714</x>
-      <y>1200</y>
+      <x>660</x>
+      <y>978</y>
       <w>126</w>
       <h>90</h>
     </coordinates>
@@ -157,8 +157,8 @@ bool hasCrocodile</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>558</x>
-      <y>1038</y>
+      <x>504</x>
+      <y>816</y>
       <w>360</w>
       <h>42</h>
     </coordinates>
@@ -168,8 +168,8 @@ bool hasCrocodile</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>846</x>
-      <y>1068</y>
+      <x>792</x>
+      <y>846</y>
       <w>126</w>
       <h>108</h>
     </coordinates>
@@ -188,8 +188,8 @@ getLandmarkType()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>774</x>
-      <y>1170</y>
+      <x>720</x>
+      <y>948</y>
       <w>150</w>
       <h>42</h>
     </coordinates>
@@ -199,8 +199,8 @@ getLandmarkType()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>900</x>
-      <y>1170</y>
+      <x>846</x>
+      <y>948</y>
       <w>24</w>
       <h>42</h>
     </coordinates>
@@ -210,8 +210,8 @@ getLandmarkType()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>906</x>
-      <y>1170</y>
+      <x>852</x>
+      <y>948</y>
       <w>156</w>
       <h>42</h>
     </coordinates>
@@ -221,8 +221,8 @@ getLandmarkType()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>378</x>
-      <y>924</y>
+      <x>324</x>
+      <y>702</y>
       <w>198</w>
       <h>66</h>
     </coordinates>
@@ -233,8 +233,8 @@ m1=2..n</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>372</x>
-      <y>864</y>
+      <x>318</x>
+      <y>642</y>
       <w>84</w>
       <h>42</h>
     </coordinates>
@@ -248,8 +248,8 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>330</x>
-      <y>978</y>
+      <x>276</x>
+      <y>756</y>
       <w>126</w>
       <h>66</h>
     </coordinates>
@@ -265,8 +265,8 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>474</x>
-      <y>816</y>
+      <x>420</x>
+      <y>594</y>
       <w>180</w>
       <h>114</h>
     </coordinates>
@@ -288,8 +288,8 @@ int getTurnIndex()
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>330</x>
-      <y>1068</y>
+      <x>276</x>
+      <y>846</y>
       <w>126</w>
       <h>60</h>
     </coordinates>
@@ -302,8 +302,8 @@ int getTurnIndex()
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>390</x>
-      <y>924</y>
+      <x>336</x>
+      <y>702</y>
       <w>186</w>
       <h>156</h>
     </coordinates>
@@ -313,8 +313,8 @@ int getTurnIndex()
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>258</x>
-      <y>1230</y>
+      <x>204</x>
+      <y>1008</y>
       <w>198</w>
       <h>126</h>
     </coordinates>
@@ -335,8 +335,8 @@ int getTurnIndex()
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>474</x>
-      <y>570</y>
+      <x>420</x>
+      <y>348</y>
       <w>180</w>
       <h>210</h>
     </coordinates>
@@ -347,6 +347,7 @@ views: vector&lt;Interface*&gt;
 --
 void attachInterface(Interface*)
 void notifyInterfaces() // Calls update() on all interfaces
+Move* getLastTurn()
 
 // StartGame
 shuffleDeck()
@@ -384,8 +385,8 @@ scoreBoard(Board*)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>558</x>
-      <y>774</y>
+      <x>504</x>
+      <y>552</y>
       <w>18</w>
       <h>54</h>
     </coordinates>
@@ -395,15 +396,14 @@ scoreBoard(Board*)
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>258</x>
-      <y>240</y>
+      <x>204</x>
+      <y>18</y>
       <w>180</w>
       <h>150</h>
     </coordinates>
     <panel_attributes>*SocketInterface*
 --
--a: GameInteractor&amp;
--b: GameInteractor&amp;
+-gi: GameInteractor&amp;
 --
 -update()
 authenticate()
@@ -419,8 +419,8 @@ playTournament()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>342</x>
-      <y>384</y>
+      <x>288</x>
+      <y>162</y>
       <w>228</w>
       <h>78</h>
     </coordinates>
@@ -430,8 +430,8 @@ playTournament()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>552</x>
-      <y>384</y>
+      <x>498</x>
+      <y>162</y>
       <w>18</w>
       <h>78</h>
     </coordinates>
@@ -441,8 +441,8 @@ playTournament()</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>468</x>
-      <y>240</y>
+      <x>414</x>
+      <y>18</y>
       <w>180</w>
       <h>150</h>
     </coordinates>
@@ -454,21 +454,10 @@ playTournament()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>0</x>
-      <y>0</y>
-      <w>60</w>
-      <h>18</h>
-    </coordinates>
-    <panel_attributes>SimpleClass</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>96</x>
-      <y>258</y>
+      <x>42</x>
+      <y>36</y>
       <w>156</w>
       <h>42</h>
     </coordinates>
@@ -481,8 +470,8 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>474</x>
-      <y>450</y>
+      <x>420</x>
+      <y>228</y>
       <w>180</w>
       <h>96</h>
     </coordinates>
@@ -501,8 +490,8 @@ virtual void update()
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>558</x>
-      <y>540</y>
+      <x>504</x>
+      <y>318</y>
       <w>18</w>
       <h>42</h>
     </coordinates>
@@ -512,8 +501,8 @@ virtual void update()
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>678</x>
-      <y>240</y>
+      <x>624</x>
+      <y>18</y>
       <w>180</w>
       <h>150</h>
     </coordinates>
@@ -527,8 +516,8 @@ virtual void update()
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>552</x>
-      <y>384</y>
+      <x>498</x>
+      <y>162</y>
       <w>240</w>
       <h>78</h>
     </coordinates>

@@ -18,13 +18,15 @@
 #include <boost/asio.hpp>
 #include <boost/array.hpp>
 #include "GameInteractor.hpp"
+#include "Game.hpp"
+#include "Interface.hpp"
 #include <unordered_map>
 
 using boost::asio::ip::tcp;
 
 using boost::asio::ip::tcp;
 
-class SocketInterface {
+class SocketInterface : public Interface {
 private:
     boost::system::error_code error;
     tcp::socket* socket;
@@ -34,6 +36,11 @@ private:
     std::string TOURNAMENT_PASSWORD;
     std::string TEAM_USERNAME;
     std::string TEAM_PASSWORD;
+    std::string pid;
+    std::string cid;
+    std::string rid;
+    int roundCount;
+    std::string opponent;
     GameInteractor a;
     GameInteractor b;
     std::unordered_map<std::string, GameInteractor> activeGames;
@@ -41,13 +48,15 @@ private:
     int numOfRounds;
     int numOfTiles; //Not including starting tile
 public:
-    SocketInterface(std::string server, std::string port, std::string tournamentPassword, std::string teamUsername, std::string teamPassword);
+    SocketInterface(GameInteractor& gi, std::string server, std::string port, std::string tournamentPassword, std::string teamUsername, std::string teamPassword);
+    void update();
     std::string readLineFromSocket();
     void writeLineToSocket(std::string message);
     
     boost::system::system_error getErrorCode();
     std::smatch regexSearchNextMessage(const char*);
     bool regexMatchNextMessage(const char*);
+    
     void connect();
     
     void authenticate();

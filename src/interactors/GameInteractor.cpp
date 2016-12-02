@@ -14,6 +14,10 @@
 #include <iostream>
 
 GameInteractor::GameInteractor() {
+    this->setupGame();
+}
+
+void GameInteractor::setupGame() {
     this->game = new Game();
     this->setupTileDeck();
     this->setupBoard();
