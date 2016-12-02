@@ -67,7 +67,7 @@ public:
     // Sets up a game with specified starting values
     void setupGame(Tile* startTile, int startX, int startY, std::vector<Tile*> deckTiles);
     // Define tile deck from vector
-    void setupTileDeck(std::vector<Tile*>);
+    void setupTileDeck(std::vector<Tile*> deckTiles);
     // Set first tile at (startX, startY) to startTile
     void setupBoard(Tile* startTile, int startX, int startY);
     

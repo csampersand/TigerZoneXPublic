@@ -24,6 +24,29 @@ void GameInteractor::setupGame() {
     this->setupPlayers();
 }
 
+//Sets up a game with specified starting values
+
+void GameInteractor::setupGame(Tile* startTile, int startX, int startY, std::vector<Tile*> deckTiles){
+    this->game = new Game();
+    this->setupTileDeck(deckTiles);
+    this->setupBoard(startTile, startX, startY);
+    this->setupPlayers();
+}
+
+void GameInteractor::setupTileDeck(std::vector<Tile*> deckTiles){
+    game->deck->setTiles(deckTiles);
+    
+    //Push starting tile to top of deck
+    //game->deck->addTile(startTile);
+}
+
+void GameInteractor::setupBoard(Tile* startTile, int startX, int startY){
+    this->placeTile(startX, startY, startTile);
+    this->placeLandmarks(startX, startY, game->board->getTileRelation(startX, startY)->getTile());
+}
+
+//#################%%%%%%%%%%$#@------------------
+
 Game& GameInteractor::getGame() {
     return *this->game;
 }
