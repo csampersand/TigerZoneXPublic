@@ -15,6 +15,7 @@
 #include "Tile.hpp"
 #include "TileDeck.hpp"
 #include "TileLandmark.hpp"
+#include "Move.hpp"
 
 class GameInteractor {
 protected:
@@ -105,6 +106,7 @@ public:
     //Game
     // Place the next tile at the given xy-coordinate and place a tiger or croc in the specified zone
     bool playTurn(int x, int y, int rotations = 0, bool tiger = false, bool croc = false, int zone = 0);
+    Move getLastMove();
 };
 
 #endif /* GameInteractor_hpp */
