@@ -7,8 +7,12 @@
 //
 
 #include "BotInterface.hpp"
+#include <vector>
 
 void BotInterface::update()
 {
-
+	GameInteractor g = this->getInteractor();
+	std::vector<Move> moves = g.listPossibleMoves(
+	//pick a random move
+	//play the move
 }

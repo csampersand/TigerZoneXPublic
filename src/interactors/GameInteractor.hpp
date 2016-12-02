@@ -16,8 +16,10 @@
 #include "TileDeck.hpp"
 #include "TileLandmark.hpp"
 #include "Move.hpp"
+#include <queue>
 
 class GameInteractor {
+	void visitCoord(std::pair<int, int>, std::string, int, std::queue< std::pair<int, int> >, bool[][153], std::vector<Move>);
 protected:
     Game* game;
 //private:
@@ -107,6 +109,9 @@ public:
     // Place the next tile at the given xy-coordinate and place a tiger or croc in the specified zone
     bool playTurn(int x, int y, int rotations = 0, bool tiger = false, bool croc = false, int zone = 0);
     Move getLastMove();
+
+	//AI
+	std::vector<Move> listPossibleMoves(std::string, int);
 };
 
 #endif /* GameInteractor_hpp */
