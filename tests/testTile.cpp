@@ -561,3 +561,23 @@ TEST_CASE("Test playTurn for all possible illegal moves"){
 	}
 }
 
+
+TEST_CASE("Testing the new setupGame function"){
+    
+    GameInteractor*  gameI = new GameInteractor();
+    Tile* startTile = gameI->createTileFromTemplate('D');
+    std::vector<Tile*> deck  = gameI->defineTiles();
+    gameI->setupGame(startTile, 40, 60, deck);
+    
+    SECTION("Testing whether the values are there when constructed from given inputs"){
+        INFO("Using a constructed TileDeck, start Tile, and x, y")
+        REQUIRE(gameI->getGame().getBoard()->getTileRelation(40, 60)!=NULL);
+    }
+    
+    
+    
+}
+
+
+
+
