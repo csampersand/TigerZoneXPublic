@@ -565,14 +565,14 @@ TEST_CASE("Test playTurn for all possible illegal moves"){
 TEST_CASE("Testing printBoard()"){
     
     GameInteractor* gameInteractor = new GameInteractor();
-    Tile* t1 = gi->createTileFromTemplate('E');
-    Tile* t2 = gi->createTileFromTemplate('E');
+    Tile* t1 = gameInteractor->createTileFromTemplate('E');
+    Tile* t2 = gameInteractor->createTileFromTemplate('E');
     
     SECTION("testing printboard"){
         gameInteractor->placeTile(76,77, t1);
         gameInteractor->placeTile(76, 78, t2);
         
-        INFO("seeing if board is prtined")
+        INFO("seeing if board is prinetd")
         REQUIRE(printBoard()==23409)
     }
     
