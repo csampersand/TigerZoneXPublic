@@ -14,8 +14,11 @@
 #include <string>
 #include <memory>
 #include <regex>
+#include <boost/regex.hpp>
 #include <boost/asio.hpp>
+#include <boost/array.hpp>
 #include "GameInteractor.hpp"
+#include <unordered_map>
 
 using boost::asio::ip::tcp;
 
@@ -23,29 +26,28 @@ using boost::asio::ip::tcp;
 
 class SocketInterface {
 private:
-	boost::system::error_code error;
-	tcp::socket sock;
-	boost::asio::streambuf buf;
-	boost::asio::io_service io_service;
-    tcp::resolver res;
-	std::string IP;
-	std::string PORT;
-	std::string TOURNAMENT_PASSWORD;
-	std::string TEAM_USERNAME;
-	std::string TEAM_PASSWORD;
+    boost::system::error_code error;
+    tcp::socket* socket;
+    std::string IP;
+    std::string PORT;
+    std::string TOURNAMENT_PASSWORD;
+    std::string TEAM_USERNAME;
+    std::string TEAM_PASSWORD;
     GameInteractor a;
     GameInteractor b;
-	int numOfRounds;
-	int numOfTiles; //Not including starting tile
+    std::unordered_map<std::string, GameInteractor> activeGames;
+    
+    int numOfRounds;
+    int numOfTiles; //Not including starting tile
 public:
-    void connect();
-    SocketInterface(std::string server, std::string port, std::string tournamentPassword, std::string teamUsername, std::string teamPassword):sock(io_service){};
+    SocketInterface(std::string server, std::string port, std::string tournamentPassword, std::string teamUsername, std::string teamPassword);
     std::string readLineFromSocket();
-	void writeLineToSocket(std::string message);
-
-	boost::system::system_error getErrorCode();
+    void writeLineToSocket(std::string message);
+    
+    boost::system::system_error getErrorCode();
     std::smatch regexSearchNextMessage(const char*);
     bool regexMatchNextMessage(const char*);
+    void connect();
     
     void authenticate();
     

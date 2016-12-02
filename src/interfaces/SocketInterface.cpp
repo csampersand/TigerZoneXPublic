@@ -7,103 +7,114 @@
 //
 
 #include "SocketInterface.hpp"
+#include <regex>
 
 using boost::asio::ip::tcp;
 
 SocketInterface::SocketInterface(std::string server, std::string port, std::string tournamentPassword, std::string teamUsername, std::string teamPassword)
-	: IP(server), PORT(port), TOURNAMENT_PASSWORD(tournamentPassword), TEAM_USERNAME(teamUsername), TEAM_PASSWORD(teamPassword){
-	connect();
+:IP(server), PORT(port), TOURNAMENT_PASSWORD(tournamentPassword), TEAM_USERNAME(teamUsername), TEAM_PASSWORD(teamPassword){
+    playTournament();
 }
 
 boost::system::system_error SocketInterface::getErrorCode()
 {
-	return error;
+    return error;
 }
 
-void SocketInterface::connect()
-{
-    tcp::resolver res(io_service);
-	tcp::resolver::query query(IP, PORT);
-    tcp::resolver::iterator end_point_iterator = res.resolve(query);
-    sock = tcp::socket(io_service);
-	boost::system::error_code error = boost::asio::error::host_not_found;
-	while (error && end_point_iterator != end) {
-		socket.close();
-		socket.connect(*end_point_iterator++, error);
-	}
-	if (error)
-		throw boost::system::system_error(error);
-}
+//void SocketInterface::connect()
+//{
+//    boost::asio::io_service io_service;
+//    tcp::resolver resolver(io_service);
+//    tcp::resolver::query query(IP, PORT);
+//    tcp::resolver::iterator end_point_iterator = resolver.resolve(query);
+//    tcp::resolver::iterator end;
+//    tcp::socket socket(io_service);
+//    boost::system::error_code error = boost::asio::error::host_not_found;
+//    while (error && end_point_iterator != end) {
+//        socket.close();
+//        socket.connect(*end_point_iterator++, error);
+//    }
+//    if (error)
+//        throw boost::system::system_error(error);
+//    else
+//        std::cout << "Successfully connected to tournament server." << std::endl; //DEBUG
+//}
 
 std::string SocketInterface::readLineFromSocket() {
-	boost::asio::read_until(socket, buf, "\r\n", error);
-	std::istream is(&buf);
-	std::string line;
-	std::getline(is, line);
-	return line;
+    boost::asio::streambuf buf;
+    boost::asio::read_until(*socket, buf, '\n', error);
+    std::istream is(&buf);
+    std::string line;
+    std::getline(is, line);
+    std::cout << "Server: " + line << std::endl; //DEBUG
+    return line;
 }
 
 void SocketInterface::writeLineToSocket(std::string message) {
-    boost::asio::write(socket, boost::asio::buffer(message), error);
-}
-
-std::smatch SocketInterface::regexSearchNextMessage(const char* expression) {
-    std::regex r(expression);
-    std::smatch match;
-    std::string message = readLineFromSocket();
-    
-    std::regex_search(message, match, r);
-    
-    return match;
-}
-
-bool SocketInterface::regexMatchNextMessage(const char* expression) {
-    std::regex r(expression);
-    std::smatch match;
-    std::string message = readLineFromSocket();
-    
-    return std::regex_match(message, match, r);
+    std::cout << "Client: " + message << std::endl; //DEBUG
+    boost::asio::write(*socket, boost::asio::buffer(message + '\n'), error);
 }
 
 void SocketInterface::authenticate() {
-    if (regexMatchNextMessage("THIS IS SPARTA!")) {
-        writeLineToSocket("JOIN " + TOURNAMENT_PASSWORD);
-    }
-    if (regexMatchNextMessage("HELLO!")) {
-        writeLineToSocket("I AM " + TEAM_USERNAME + " " + TEAM_PASSWORD);
-    }
-    regexMatchNextMessage("WELCOME (.+) PLEASE WAIT FOR THE NEXT CHALLENGE");
+    readLineFromSocket(); //'THIS IS SPARTA'
+    writeLineToSocket("JOIN " + TOURNAMENT_PASSWORD);
+    readLineFromSocket(); //'HELLO!'
+    writeLineToSocket("I AM " + TEAM_USERNAME + ' ' + TEAM_PASSWORD);
+    std::string contains_PID = readLineFromSocket(); //'WELCOME <pid> PLEASE WAIT FOR THE NEXT CHALLENGE'
+    //TODO set pid
+    //receiveChallenge();
 }
 
-//void SocketInterface::receiveChallenge()
-//{
-//    int numOfRounds = stoi(regexSearchNextMessage("NEW CHALLENGE (\d+) YOU WILL PLAY (\d+) MATCHES")[2]);
-//	for (int i = 0; i < numOfRounds; ++i) {
-//		beginRound();
-//	}
-//    regexMatchNextMessage("END OF CHALLENGES");
-//}
-//
-//void SocketInterface::beginRound() {
-//	int rid = regexSearchNextMessage("BEGIN ROUND (\d+) OF (\d+)")[1];
-//	beginMatch();
-//    regexMatchNextMessage("END OF ROUND (\d+) OF (\d+) PLEASE WAIT FOR THE NEXT MATCH");
-//}
-//
-//void SocketInterface::beginMatch() {
-//	regexMatchNextMessage("YOUR OPPONENT IS PLAYER (.+)");
-//    regexSearchNextMessage("STARTING TILE IS <tile> AT <x> <y> <orientation>");
-//	//TODO forward this info to GameInteractor
-//	std::string line3 = readLineFromSocket(); //'THE REMAINING <number_tiles> TILES ARE [ <tiles> ]'
-//	//TODO set deck through GameInteractor and set numOfTiles
-//	std::string line4 = readLineFromSocket(); //'MATCH BEGINS IN <timeplan> SECONDS'
-//	for (int i = 0; i < numOfTiles; ++i) {
-//		//TODO
-//	}
-//	std::string line5 = readLineFromSocket(); //'GAME <gid> OVER PLAYER <pid> <score> PLAYER <pid> <score>'
-//	std::string line6 = readLineFromSocket(); //'GAME <gid> OVER PLAYER <pid> <score> PLAYER <pid> <score>'
-//}
-//
-//void SocketInterface::playTournament() {
-//    //
-//}
+void SocketInterface::receiveChallenge()
+{
+    std::string contains_CID_numOfRounds = readLineFromSocket(); //'NEW CHALLENGE <cid> YOU WILL PLAY <rounds> MATCHES'
+    //TODO set numOfRounds
+    for (int i = 0; i < numOfRounds; ++i) {
+        beginRound();
+    }
+    readLineFromSocket(); //'END OF CHALLENGES'
+}
+
+void SocketInterface::beginRound() {
+    std::string contains_RID = readLineFromSocket(); //'BEGIN ROUND <rid> OF <rounds>'
+    beginMatch();
+    readLineFromSocket(); //'END OF ROUND <rid> OF <rounds> PLEASE WAIT FOR THE NEXT MATCH'
+}
+
+void SocketInterface::beginMatch() {
+    std::string line1 = readLineFromSocket(); //'YOUR OPPONENT IS PLAYER <pid>'
+    std::string line2 = readLineFromSocket(); //'STARTING TILE IS <tile> AT <x> <y> <orientation>'
+    //TODO forward this info to GameInteractor
+    std::string line3 = readLineFromSocket(); //'THE REMAINING <number_tiles> TILES ARE [ <tiles> ]'
+    //TODO set deck through GameInteractor and set numOfTiles
+    //std::string tiles;
+    std::string line4 = readLineFromSocket(); //'MATCH BEGINS IN <timeplan> SECONDS'
+    
+    a = GameInteractor();
+    for (int i = 1; i < numOfTiles; ++i) {
+        
+    }
+    std::string line5 = readLineFromSocket(); //'GAME <gid> OVER PLAYER <pid> <score> PLAYER <pid> <score>'
+    std::string line6 = readLineFromSocket(); //'GAME <gid> OVER PLAYER <pid> <score> PLAYER <pid> <score>'
+}
+
+void SocketInterface::playTournament() {
+    boost::asio::io_service io_service;
+    tcp::resolver resolver(io_service);
+    tcp::resolver::query query(IP, PORT);
+    tcp::resolver::iterator end_point_iterator = resolver.resolve(query);
+    tcp::resolver::iterator end;
+    socket = new tcp::socket(io_service);
+    boost::system::error_code error = boost::asio::error::host_not_found;
+    while (error && end_point_iterator != end) {
+        socket->close();
+        socket->connect(*end_point_iterator++, error);
+    }
+    if (error)
+        throw boost::system::system_error(error);
+    else
+        std::cout << "Successfully connected to tournament server." << std::endl; //DEBUG
+    
+    authenticate();
+    
+}

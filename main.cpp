@@ -7,11 +7,10 @@
 //
 
 #include <iostream>
-#include "GameInteractor.hpp"
-#include "TileLandmark.hpp"
+#include "SocketInterface.hpp"
 
 int main(int argc, const char * argv[]) {
-    GameInteractor gi;
+    SocketInterface s(argv[1], argv[2], argv[3], argv[4], argv[5]);
 
     return 0;
 }
