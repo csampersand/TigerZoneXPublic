@@ -1329,6 +1329,14 @@ bool GameInteractor::playTurn(int x, int y, int rotations, bool tiger, bool croc
     
     // TODO: Scoring nigga
     
+    
+    // Storing last move
+    int tigerZone = 0;
+    if (tiger)
+        tigerZone = zone;
+    
+    this->lastMove = new Move(game->turnIndex, x, y, tile, rotations, croc, tigerZone);
+    
     // Move to next player's turn
     game->turnIndex++;
     if (game->turnIndex > 1) {
@@ -1388,4 +1396,8 @@ void GameInteractor::visitCoord(std::pair<int, int> coord, std::string tileStrin
 		}
 	}
 	delete tile;
+}
+
+Move GameInteractor::getLastMove() {
+    return *this->lastMove;
 }

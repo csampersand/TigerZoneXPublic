@@ -48,6 +48,7 @@ protected:
     int getCrocodileCount(TileTrail*);
     int getCrocodileCount(TileLake*, std::unordered_map<TileLake*,bool>&, int);
     int getCrocodileCount(TileDen*);
+    Move* lastMove;
 public:
     // Initialize game, setup deck, setup board
     GameInteractor();
