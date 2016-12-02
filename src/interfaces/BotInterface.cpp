@@ -7,3 +7,8 @@
 //
 
 #include "BotInterface.hpp"
+
+void BotInterface::update()
+{
+
+}

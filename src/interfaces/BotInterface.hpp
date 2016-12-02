@@ -9,6 +9,12 @@
 #ifndef BotInterface_hpp
 #define BotInterface_hpp
 
+#include "Interface.hpp"
 #include <stdio.h>
+
+class BotInterface : Interface {
+	BotInterface(GameInteractor& gameInteractor): Interface(gameInteractor) {};
+	void update();
+};
 
 #endif /* BotInterface_hpp */
