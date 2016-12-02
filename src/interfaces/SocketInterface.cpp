@@ -8,16 +8,21 @@
 
 #include "SocketInterface.hpp"
 #include <regex>
+#include "Tile.hpp"
+#include <vector>
 
 using boost::asio::ip::tcp;
 
 SocketInterface::SocketInterface(GameInteractor& gi, std::string server, std::string port, std::string tournamentPassword, std::string teamUsername, std::string teamPassword)
 :Interface(gi), IP(server), PORT(port), TOURNAMENT_PASSWORD(tournamentPassword), TEAM_USERNAME(teamUsername), TEAM_PASSWORD(teamPassword){
+    myTurn = true;
     playTournament();
 }
 
 void SocketInterface::update() {
-    
+    if (myTurn) {
+//        writeLineToSocket("GAME B MOVE 2 PLACE LJTJ- AT 0 2 180 TIGER 8");
+    }
 }
 
 boost::system::system_error SocketInterface::getErrorCode()
@@ -85,17 +90,17 @@ void SocketInterface::authenticate() {
 
 void SocketInterface::receiveChallenge()
 {
-    std::smatch challengeMatch = regexSearchNextMessage("NEW CHALLENGE (.+) YOU WILL PLAY (.+) MATCHES");
+    std::smatch challengeMatch = regexSearchNextMessage("NEW CHALLENGE (.+) YOU WILL PLAY (.+) MATCH(?:ES)?");
     std::string cid = challengeMatch[1];
     roundCount = stoi(challengeMatch[2]);
-    for (int i = 0; i < numOfRounds; ++i) {
+    for (int i = 0; i < roundCount; ++i) {
         beginRound();
     }
     readLineFromSocket(); //'END OF CHALLENGES'
 }
 
 void SocketInterface::beginRound() {
-    std::smatch beginRoundMatch = regexSearchNextMessage("BEGIN ROUND <rid> OF <rounds>");
+    std::smatch beginRoundMatch = regexSearchNextMessage("BEGIN ROUND (.+) OF (.+)");
     rid = stoi(beginRoundMatch[1]);
     roundCount = stoi(beginRoundMatch[2]);
     beginMatch();
@@ -103,23 +108,81 @@ void SocketInterface::beginRound() {
 }
 
 void SocketInterface::beginMatch() {
-    opponent = regexSearchNextMessage("YOUR OPPONENT IS PLAYER (.)+")[1];
-    std::string startTile;
-    std::string startX;
-    std::string startY;
-    std::string startOrientation;
+    opponent = regexSearchNextMessage("YOUR OPPONENT IS PLAYER (.+)")[1];
+    std::smatch startTileMatch = regexSearchNextMessage("STARTING TILE IS (.+) AT (.+) (.+) (.+)");
+    std::string startTileSequence = startTileMatch[1];
+    int startX = stoi(startTileMatch[2]) + 76;
+    int startY = stoi(startTileMatch[3]) + 76;
+    std::string startOrientation = startTileMatch[4];
+    
+    std::smatch defineDeckMatch = regexSearchNextMessage("THE REMAINING (.+) TILES ARE \\[ (.+) \\]");
+    tileCount = stoi(defineDeckMatch[1]);
+    std::string deckTilesString = defineDeckMatch[2];
+    std::vector<Tile*> deckTiles;
+    
+    std::stringstream ss(deckTilesString);
+    std::istream_iterator<std::string> begin(ss);
+    std::istream_iterator<std::string> end;
+    std::vector<std::string> deckTilesSequences(begin, end);
+    
+    for (auto i : deckTilesSequences) {
+        deckTiles.push_back(GameInteractor::createTileFromSequence(i));
+    }
+    
+//    Tile* startTile = GameInteractor::createTileFromSequence(startTileSequence);
+    
+    Tile* startTile = GameInteractor::createTileFromSequence("TLTJ-");
+    
+    if (startOrientation == "90") {
+        this->getInteractor().rotateTile(startTile, 3);
+    }
+    else if (startOrientation == "180") {
+        this->getInteractor().rotateTile(startTile, 2);
+    }
+    else if (startOrientation == "270") {
+        this->getInteractor().rotateTile(startTile, 3);
+    }
+    
     Game* a = new Game();
     Game* b = new Game();
-    std::string line2 = readLineFromSocket(); //'STARTING TILE IS <tile> AT <x> <y> <orientation>'
+    this->getInteractor().setGame(*a);
+    this->getInteractor().setupGame(startTile, startX, startY, deckTiles);
     
-    std::string line3 = readLineFromSocket(); //'THE REMAINING <number_tiles> TILES ARE [ <tiles> ]'
-    //TODO set deck through GameInteractor and set numOfTiles
-    //std::string tiles;
+    this->getInteractor().setGame(*b);
+    this->getInteractor().setupGame(startTile, startX, startY, deckTiles);
+    
+    
+    
     std::string line4 = readLineFromSocket(); //'MATCH BEGINS IN <timeplan> SECONDS'
 
-    for (int i = 1; i < numOfTiles; ++i) {
+    for (int i = 1; i < tileCount; ++i) {
+        std::string game = regexSearchNextMessage("MAKE YOUR MOVE IN GAME (.)")[1];
+        if (game == "A") {
+            this->getInteractor().setGame(*a);
+        }
+        else {
+            this->getInteractor().setGame(*b);
+        }
+        
+        this->getInteractor().notifyInterfaces();
+        
+        
+        
+        // TODO
+        // Need to handle sequencing
+        // call interactor.notifyInterfaces() to start the bot
+        // Then skip the right amount of messages
+        // Convert appropriate messages to playTurn
+        // Convert interactor.getLastTurn() to data to write to socket
+        // ^ do that every time we receive message prompting for turn
+        // No need to write update function for socket interface
+        // Bot will run automatically every time we play a turn from socket
+        // so get messages will always be updated
+        
+        
         
     }
+    
     std::string line5 = readLineFromSocket(); //'GAME <gid> OVER PLAYER <pid> <score> PLAYER <pid> <score>'
     std::string line6 = readLineFromSocket(); //'GAME <gid> OVER PLAYER <pid> <score> PLAYER <pid> <score>'
 }

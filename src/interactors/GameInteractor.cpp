@@ -13,6 +13,10 @@
 #include <unordered_map>
 #include <iostream>
 
+void GameInteractor::attachInterface(Interface* i) {
+    this->views.push_back(i);
+}
+
 GameInteractor::GameInteractor() {
     this->setupGame();
 }
@@ -27,7 +31,6 @@ void GameInteractor::setupGame() {
 //Sets up a game with specified starting values
 
 void GameInteractor::setupGame(Tile* startTile, int startX, int startY, std::vector<Tile*> deckTiles){
-    this->game = new Game();
     this->setupTileDeck(deckTiles);
     this->setupBoard(startTile, startX, startY);
     this->setupPlayers();
@@ -41,14 +44,19 @@ void GameInteractor::setupTileDeck(std::vector<Tile*> deckTiles){
 }
 
 void GameInteractor::setupBoard(Tile* startTile, int startX, int startY){
-    this->placeTile(startX, startY, startTile);
-    this->placeLandmarks(startX, startY, game->board->getTileRelation(startX, startY)->getTile());
+    this->game->board->setFirstTile(new TileRelation(startTile));
+    game->board->setTileRelation(startX, startY, game->board->getFirstTile());
+    this->placeLandmarks(startX, startY, startTile);
 }
 
 //#################%%%%%%%%%%$#@------------------
 
 Game& GameInteractor::getGame() {
     return *this->game;
+}
+
+void GameInteractor::setGame(Game& game) {
+    this->game = &game;
 }
 
 void GameInteractor::shuffleDeck() {

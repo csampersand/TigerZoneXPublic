@@ -14,10 +14,8 @@
 #include "GameInteractor.hpp"
 
 class Interface {
-private:
-    Game model;
-    GameInteractor interactor;
 protected:
+    GameInteractor interactor;
     Game& getGame();
     GameInteractor& getInteractor();
 public:

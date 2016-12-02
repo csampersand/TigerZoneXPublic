@@ -40,10 +40,12 @@ private:
     std::string cid;
     std::string rid;
     int roundCount;
+    int tileCount;
     std::string opponent;
     GameInteractor a;
     GameInteractor b;
     std::unordered_map<std::string, GameInteractor> activeGames;
+    bool myTurn;
     
     int numOfRounds;
     int numOfTiles; //Not including starting tile

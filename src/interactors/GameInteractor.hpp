@@ -18,6 +18,8 @@
 #include "Move.hpp"
 #include <queue>
 
+class Interface;
+
 class GameInteractor {
 	void visitCoord(std::pair<int, int>, Tile*, int, std::queue< std::pair<int, int> >, bool[][153], std::vector<Move>);
 protected:
@@ -49,7 +51,11 @@ protected:
     int getCrocodileCount(TileLake*, std::unordered_map<TileLake*,bool>&, int);
     int getCrocodileCount(TileDen*);
     Move* lastMove;
+    std::vector<Interface*> views;
 public:
+    void attachInterface(Interface*);
+    void notifyInterfaces();
+    
     // Initialize game, setup deck, setup board
     GameInteractor();
     
@@ -72,6 +78,7 @@ public:
     void setupBoard(Tile* startTile, int startX, int startY);
     
     Game& getGame();
+    void setGame(Game&);
     
     //TileDeck
     // Shuffle the deck

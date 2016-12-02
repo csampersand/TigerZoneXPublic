@@ -10,13 +10,18 @@
 
 Interface::Interface(GameInteractor& interactor) {
     this->interactor = interactor;
-    this->model = interactor.getGame();
 }
 
 Game& Interface::getGame() {
-    return this->model;
+    return this->interactor.getGame();
 }
 
 GameInteractor& Interface::getInteractor() {
     return this->interactor;
+}
+
+void GameInteractor::notifyInterfaces() {
+    for (auto i : views) {
+        i->update();
+    }
 }

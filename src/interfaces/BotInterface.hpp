@@ -13,8 +13,11 @@
 #include <stdio.h>
 
 class BotInterface : Interface {
-	BotInterface(GameInteractor& gameInteractor): Interface(gameInteractor) {};
+	BotInterface(GameInteractor& gameInteractor): Interface(gameInteractor) {
+        myTurn = true;
+    };
 	void update();
+    bool myTurn;
 };
 
 #endif /* BotInterface_hpp */
