@@ -20,6 +20,10 @@ GameInteractor::GameInteractor() {
     this->setupPlayers();
 }
 
+Game& GameInteractor::getGame() {
+    return *this->game;
+}
+
 void GameInteractor::shuffleDeck() {
     std::vector<Tile*> tiles = game->deck->getTiles();
 	typedef std::chrono::high_resolution_clock myclock;

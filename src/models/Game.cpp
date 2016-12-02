@@ -16,3 +16,19 @@ Game::Game() {
     }
     turnIndex = 0;
 }
+
+Board* Game::getBoard() {
+    return this->board;
+}
+
+TileDeck* Game::getDeck() {
+    return this->deck;
+}
+
+Player* Game::getPlayer(int i) {
+    return this->players[i];
+}
+
+int Game::getTurnIndex() {
+    return this->turnIndex;
+}

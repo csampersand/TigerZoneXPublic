@@ -50,6 +50,8 @@ public:
     GameInteractor();
     GameInteractor(Game*);
     
+    Game& getGame();
+    
     //TileDeck
     // Shuffle the deck
 	void shuffleDeck();

@@ -19,6 +19,10 @@ class Game {
     friend GameInteractor;
 public:
     Game();
+    Board* getBoard();
+    TileDeck* getDeck();
+    Player* getPlayer(int);
+    int getTurnIndex();
 protected:
     Board* board;
     TileDeck* deck;
