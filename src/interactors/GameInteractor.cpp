@@ -128,6 +128,7 @@ Tile* GameInteractor::createTileFromSequence(std::string str){
     return tile;
 };
 
+
 Tile* GameInteractor::createTileFromTemplate(char tileTemplate) {
     Tile* tile;
     switch(tileTemplate) {

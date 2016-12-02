@@ -14,6 +14,7 @@
 #include "TileDeck.hpp"
 #include "GameInteractor.hpp"
 #include "Interface.hpp"
+#include "LogInterface.hpp"
 #include <iostream>
 
 //class TestTile : public Tile {
@@ -567,13 +568,35 @@ TEST_CASE("Testing printBoard()"){
     GameInteractor* gameInteractor = new GameInteractor();
     Tile* t1 = gameInteractor->createTileFromTemplate('E');
     Tile* t2 = gameInteractor->createTileFromTemplate('E');
+    LogInterface inter(*gameInteractor);
     
     SECTION("testing printboard"){
         gameInteractor->placeTile(76,77, t1);
         gameInteractor->placeTile(76, 78, t2);
+        gameInteractor->placeTile(76, 79, t2);
+        gameInteractor->placeTile(76, 80, t2);
+        gameInteractor->placeTile(76, 81, t2);
+        gameInteractor->placeTile(79, 78, t2);
         
         INFO("seeing if board is prinetd")
-        REQUIRE(printBoard()==23409)
-    }
+        REQUIRE(inter.printBoard()==23409);
     
 }
+}
+
+    TEST_CASE("Testing new setup game"){
+        
+        GameInteractor* gameInteractor = new GameInteractor();
+        
+        //Tile* t1 = gameInteractor->createTileFromTemplate('E');
+       // Tile* t2 = gameInteractor->createTileFromTemplate('E');
+        LogInterface inter(*gameInteractor);
+        
+        SECTION("testing setupgame"){
+         
+            
+            INFO("seeing if board is prinetd")
+            REQUIRE(inter.printBoard()==23409);
+            
+        }
+    }

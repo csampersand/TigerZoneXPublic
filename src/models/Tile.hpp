@@ -14,21 +14,21 @@
 class Tile {
 public:
     enum SideType {
-        sideJungle = 'f',
-        sideTrail = 'r',
-        sideLake = 'c'
+        sideJungle = 'J',
+        sideTrail = 'T',
+        sideLake = 'L'
     };
     enum CenterType {
-        centerDen = 'm',
-        centerLake = 'c',
-        centerTrailBlock = 'x',
-        centerJungle = 'f'
+        centerDen = 'X',
+        centerLake = 'L',
+        centerTrailBlock = 't',
+        centerJungle = 'J'
     };
     enum PreyType {
-        preyBoar = 'b',
-        preyBuffalo = 'u',
-        preyDeer = 'd',
-        preyCroc = 'c',
+        preyBoar = 'P',
+        preyBuffalo = 'B',
+        preyDeer = 'D',
+        preyCroc = 'C',
         null = NULL
     };
     Tile(SideType, SideType, SideType, SideType, CenterType, PreyType prey = null);

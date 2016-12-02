@@ -11,11 +11,14 @@
 
 #include <stdio.h>
 #include "Interface.hpp"
+#include "Move.hpp"
 
 class LogInterface : public Interface {
     public:
         void update();
         int printBoard();
+        std::string returnTileSequence(Tile*);
+        void printMove(Move*);
         LogInterface(GameInteractor& gameInteractor): Interface(gameInteractor) {};
     
     private:
