@@ -13,6 +13,7 @@
 #include "Game.hpp"
 #include "TileDeck.hpp"
 #include "GameInteractor.hpp"
+#include "Interface.hpp"
 #include <iostream>
 
 //class TestTile : public Tile {
@@ -561,3 +562,18 @@ TEST_CASE("Test playTurn for all possible illegal moves"){
 	}
 }
 
+TEST_CASE("Testing printBoard()"){
+    
+    GameInteractor* gameInteractor = new GameInteractor();
+    Tile* t1 = gi->createTileFromTemplate('E');
+    Tile* t2 = gi->createTileFromTemplate('E');
+    
+    SECTION("testing printboard"){
+        gameInteractor->placeTile(76,77, t1);
+        gameInteractor->placeTile(76, 78, t2);
+        
+        INFO("seeing if board is prtined")
+        REQUIRE(printBoard()==23409)
+    }
+    
+}

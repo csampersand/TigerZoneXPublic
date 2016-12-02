@@ -10,7 +10,9 @@
 #include "SocketInterface.hpp"
 
 int main(int argc, const char * argv[]) {
-    SocketInterface s(argv[1], argv[2], argv[3], argv[4], argv[5]);
+//    SocketInterface s(argv[1], argv[2], argv[3], argv[4], argv[5]);
 
+    
+    
     return 0;
 }
