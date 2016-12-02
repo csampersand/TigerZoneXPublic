@@ -1346,7 +1346,7 @@ bool GameInteractor::playTurn(int x, int y, int rotations, bool tiger, bool croc
     return true;
 }
 
-std::vector<Move> GameInteractor::listPossibleMoves(std::string tileString, int PID) {
+std::vector<Move> GameInteractor::listPossibleMoves() {
 	std::vector<Move> validMoves;
 	std::queue< std::pair<int, int> > queue;
 	bool visited[153][153];
@@ -1358,14 +1358,13 @@ std::vector<Move> GameInteractor::listPossibleMoves(std::string tileString, int 
 		//Visit the next coord
 		nextCoord = queue.front();
 		queue.pop();
-		visitCoord(nextCoord, tileString, PID, queue, visited, validMoves);
+		visitCoord(nextCoord, game->deck->getTiles().front(), game->turnIndex, queue, visited, validMoves);
 	}
 
 	return validMoves;
 }
 
-void GameInteractor::visitCoord(std::pair<int, int> coord, std::string tileString, int PID, std::queue< std::pair<int, int> > queue, bool visited[][153], std::vector<Move> foundMoves) {
-	Tile* tile = createTileFromSequence(tileString);
+void GameInteractor::visitCoord(std::pair<int, int> coord, Tile* tile, int PID, std::queue< std::pair<int, int> > queue, bool visited[][153], std::vector<Move> foundMoves) {
 	//Mark current coord as visited
 	visited[coord.first][coord.second] = true;
 
@@ -1378,7 +1377,7 @@ void GameInteractor::visitCoord(std::pair<int, int> coord, std::string tileStrin
 			if (isPlacementValid(coord.first, coord.second, tempTile)) {
 				//Valid tile orientation found
 				//TODO find valid tiger and croc placements per rotation
-				foundMoves.push_back(Move(PID, coord.first, coord.second, tileString, i, false, 0));
+				foundMoves.push_back(Move(PID, coord.first, coord.second, tile, i, false, 0));
 			}
 		}
 		delete tempTile;
