@@ -26,7 +26,7 @@ using boost::asio::ip::tcp;
 
 using boost::asio::ip::tcp;
 
-class SocketInterface : public Interface {
+class SocketInterface {
 private:
     boost::system::error_code error;
     tcp::socket* socket;
@@ -39,16 +39,17 @@ private:
     std::string pid;
     std::string cid;
     std::string rid;
-    int roundCount;
+    int roundCount, startX, startY;
     std::string opponent;
-    GameInteractor a;
-    GameInteractor b;
+    std::pair<std::string, GameInteractor> a;
+    std::pair<std::string, GameInteractor> b;
     std::unordered_map<std::string, GameInteractor> activeGames;
     
     int numOfRounds;
+	int RID;
     int numOfTiles; //Not including starting tile
 public:
-    SocketInterface(GameInteractor& gi, std::string server, std::string port, std::string tournamentPassword, std::string teamUsername, std::string teamPassword);
+    SocketInterface(std::string server, std::string port, std::string tournamentPassword, std::string teamUsername, std::string teamPassword);
     void update();
     std::string readLineFromSocket();
     void writeLineToSocket(std::string message);
@@ -74,6 +75,12 @@ public:
     void endMatch();
     
     void playTournament();
+
+	void makeMove(int moveNum, std::string tile);
+
+	void readMoves();
+
+	Move makeMove(GameInteractor & g);
     
 };
 

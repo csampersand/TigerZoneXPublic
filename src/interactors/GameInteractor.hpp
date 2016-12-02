@@ -52,6 +52,7 @@ protected:
 public:
     // Initialize game, setup deck, setup board
     GameInteractor();
+	GameInteractor(std::string deckString);
     
     //Default game
     // Sets up a new game with the default values
