@@ -10,13 +10,14 @@ Our UML Diagram of our architecture, designed as a clean architecture with only 
 ![](UML/Architecture.png)
 
 ## How to build  
+### For Mac OS X  
 Run `xcodebuild` in the project directory
+
+### Using makefile
+Run `make` in the project directory
 
 ## How to run  
 Run `build/Release/TigerZoneX <IP> <PORT> <TOURNAMENT_PASSWORD> <TEAM_USERNAME> <TEAM_PASSWORD>`
-
-## How to build tests
-Run `xcodebuild -target TestTigerZoneX` in the project directory
 
 ## How to run tests  
 Run `build/Release/TestTigerZoneX`
