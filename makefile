@@ -1,5 +1,7 @@
-INC=-Isrc/models -Isrc/interactors -Isrc/interfaces -Iusr/local/opt
-LIB=-L/usr/local/lib
+BOOST_LIB=/usr/local/Cellar/boost/1.60.0_2/lib
+BOOST_INCLUDE=/usr/local/Cellar/boost/1.60.0_2/include
+INC=-Isrc/models -Isrc/interactors -Isrc/interfaces -I$(BOOST_INCLUDE)
+LIB=-L$(BOOST_LIB)
 LIBS=-lboost_system
 CATCH=-Itests/catch.hpp
 
@@ -55,7 +57,7 @@ testMain.o: tests/main.cpp
 	g++ -std=c++11 $(INC) -c tests/main.cpp -o testMain.o
 
 testAcceptance.o: tests/testAcceptance.cpp
-	g++ -std=c++11 $(INC) -c tests/testAcceptance.cpp -o
+	g++ -std=c++11 $(INC) -c tests/testAcceptance.cpp
 
 clean:
 	rm -rf *.o
