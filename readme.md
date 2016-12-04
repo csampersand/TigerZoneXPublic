@@ -10,7 +10,9 @@ Our UML Diagram of our architecture, designed as a clean architecture with only 
 ![](UML/Architecture.png)
 
 ## How to build  
-You will need to have boost installed in your `/usr/local` (can be changed by replacing `/usr/local` with the appropriate path in the makefile. On OS X with homebrew, all you need to do is run `brew install boost`.
+You will need to have boost installed in your `/usr/local`. On OS X with homebrew, all you need to do is run `brew install boost`.
+
+On Windows, download boost from [here](http://www.boost.org/users/history/version_1_55_0.html) and change `/usr/local/lib` to the `lib` directory in the downloaded files, and `/usr/local/opt` to the `include` directory in the local files. 
 
 Run `make` in the project directory
 
