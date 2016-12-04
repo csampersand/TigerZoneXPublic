@@ -10,10 +10,9 @@ Our UML Diagram of our architecture, designed as a clean architecture with only 
 ![](UML/Architecture.png)
 
 ## How to build  
-### For Mac OS X  
-Run `xcodebuild` in the project directory
+You will need to have boost installed in your `/usr/local` (can be changed by replacing `/usr/local` with the appropriate path in the makefile. On OS X with homebrew, all you need to do is run `brew install boost`.
 
-### Using makefile
+### Using makefile  
 Run `make` in the project directory
 
 ## How to run  
