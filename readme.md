@@ -12,7 +12,7 @@ Our UML Diagram of our architecture, designed as a clean architecture with only 
 ## How to build  
 You will need to have boost installed. On OS X with homebrew, all you need to do is run `brew install boost`.
 
-On Windows, download boost from [here](http://www.boost.org/users/history/version_1_55_0.html) and modify the makefile to point BOOST_LIB and BOOST_INCLUDE to the correct directories in the downloaded files.
+On Windows, download boost from [here](http://www.boost.org/users/history/version_1_55_0.html) and modify the makefile to point BOOST_LIB and BOOST_INCLUDE to the correct directories in the downloaded files (for BOOST_INCLUDE, point to `boost` folder instead of `include`.
 
 Run `make` in the project directory
 
