@@ -47,11 +47,29 @@ void BotInterface::visitCoord(std::pair<int, int> coord, Tile* tile, int PID, st
         //Find any possible moves at coord, given tile
         Tile* tempTile = new Tile(tile->getNType(), tile->getEType(), tile->getSType(), tile->getWType(), tile->getCenterType(), tile->getPreyType());
         for (int i = 0; i < 4; ++i) {
-            this->rotateTile(tempTile);
+            this->getInteractor().rotateTile(tempTile);
             if (this->getInteractor().isPlacementValid(coord.first, coord.second, tempTile)) {
                 //Valid tile orientation found
                 //TODO find valid tiger and croc placements per rotation
-                foundMoves.push_back(Move(PID, coord.first, coord.second, tile, i, false, 0));
+                int tempZone = 0;
+                
+                //looks to see if tile has a den
+                if(tempTile->getCenterType() == centerDen){
+                    tempZone = 5;
+                }
+                
+                //looks for a place to put tigers
+                GameInteractor gTemp = this->getInteractor();
+                gTemp.placeTile(coord.first, coord.second, tempTile);
+                for(int j = 0; j<9; j++){
+                    TileLandmark* tempLandmark = gTemp.getGame().getBoard()->getTileLandmark(coord.first, coord.second, j);
+                    if(!gTemp.hasOwner(tempLandmark)){
+                        tempZone = j;
+                    }
+                }
+                
+                foundMoves.push_back(Move(PID, coord.first, coord.second, tile, i, false, tempZone));
+                
             }
         }
         delete tempTile;
@@ -89,6 +107,21 @@ std::vector<Move> BotInterface::listPossibleMoves() {
     
     return validMoves;
 }
+
+//std::vector<Move> BotInterface::listPossibleMoves(){
+//    std::vector<Move> validMoves;
+//    std::queue< std::pair<int, int> > queue;
+//    bool visited[153][153];
+//    
+//    //Start BFS
+//    queue.push(std::make_pair(76, 76));
+//    std::pair<int, int> nextCoord;
+//    while(queue.size() > 0){
+//        
+//    }
+//    
+//    
+//}
 
 void BotInterface::setTigerZone(Move move){
     

@@ -1381,56 +1381,56 @@ bool GameInteractor::playTurn(int x, int y, int rotations, bool tiger, bool croc
     return true;
 }
 
-std::vector<Move> GameInteractor::listPossibleMoves() {
-	std::vector<Move> validMoves;
-	std::queue< std::pair<int, int> > queue;
-	bool visited[153][153];
-
-	//Start BFS
-	queue.push(std::make_pair(76, 76));
-	std::pair<int, int> nextCoord;
-	while (queue.size() > 0) {
-		//Visit the next coord
-		nextCoord = queue.front();
-		queue.pop();
-		visitCoord(nextCoord, game->deck->getTiles().front(), game->turnIndex, queue, visited, validMoves);
-	}
-
-	return validMoves;
-}
-
-void GameInteractor::visitCoord(std::pair<int, int> coord, Tile* tile, int PID, std::queue< std::pair<int, int> > queue, bool visited[][153], std::vector<Move> foundMoves) {
-	//Mark current coord as visited
-	visited[coord.first][coord.second] = true;
-
-	//Possible move location found
-	if (game->board->getTileRelation(coord.first, coord.second) == NULL) {
-		//Find any possible moves at coord, given tile
-		Tile* tempTile = new Tile(tile->getNType(), tile->getEType(), tile->getSType(), tile->getWType(), tile->getCenterType(), tile->getPreyType());
-		for (int i = 0; i < 4; ++i) {
-			rotateTile(tempTile);
-			if (isPlacementValid(coord.first, coord.second, tempTile)) {
-				//Valid tile orientation found
-				//TODO find valid tiger and croc placements per rotation
-				foundMoves.push_back(Move(PID, coord.first, coord.second, tile, i, false, 0));
-			}
-		}
-		delete tempTile;
-	}
-	//Keep searching
-	else {
-		int xx[] = { coord.first, coord.first + 1, coord.first, coord.first - 1 };
-		int yy[] = { coord.second + 1, coord.second, coord.second - 1, coord.second };
-		for (int i = 0; i < 4; ++i) {
-			//if coord is out of bounds or has already been visited do not add to queue
-			if (xx[i] > 152 || xx[i] < 0 || yy[i] > 152 || yy[i] < 0) continue;
-			if (visited[xx[i]][yy[i]]) continue;
-
-			queue.push(std::make_pair(xx[i], yy[i]));
-		}
-	}
-	delete tile;
-}
+//std::vector<Move> GameInteractor::listPossibleMoves() {
+//	std::vector<Move> validMoves;
+//	std::queue< std::pair<int, int> > queue;
+//	bool visited[153][153];
+//
+//	//Start BFS
+//	queue.push(std::make_pair(76, 76));
+//	std::pair<int, int> nextCoord;
+//	while (queue.size() > 0) {
+//		//Visit the next coord
+//		nextCoord = queue.front();
+//		queue.pop();
+//		visitCoord(nextCoord, game->deck->getTiles().front(), game->turnIndex, queue, visited, validMoves);
+//	}
+//
+//	return validMoves;
+//}
+//
+//void GameInteractor::visitCoord(std::pair<int, int> coord, Tile* tile, int PID, std::queue< std::pair<int, int> > queue, bool visited[][153], std::vector<Move> foundMoves) {
+//	//Mark current coord as visited
+//	visited[coord.first][coord.second] = true;
+//
+//	//Possible move location found
+//	if (game->board->getTileRelation(coord.first, coord.second) == NULL) {
+//		//Find any possible moves at coord, given tile
+//		Tile* tempTile = new Tile(tile->getNType(), tile->getEType(), tile->getSType(), tile->getWType(), tile->getCenterType(), tile->getPreyType());
+//		for (int i = 0; i < 4; ++i) {
+//			rotateTile(tempTile);
+//			if (isPlacementValid(coord.first, coord.second, tempTile)) {
+//				//Valid tile orientation found
+//				//TODO find valid tiger and croc placements per rotation
+//				foundMoves.push_back(Move(PID, coord.first, coord.second, tile, i, false, 0));
+//			}
+//		}
+//		delete tempTile;
+//	}
+//	//Keep searching
+//	else {
+//		int xx[] = { coord.first, coord.first + 1, coord.first, coord.first - 1 };
+//		int yy[] = { coord.second + 1, coord.second, coord.second - 1, coord.second };
+//		for (int i = 0; i < 4; ++i) {
+//			//if coord is out of bounds or has already been visited do not add to queue
+//			if (xx[i] > 152 || xx[i] < 0 || yy[i] > 152 || yy[i] < 0) continue;
+//			if (visited[xx[i]][yy[i]]) continue;
+//
+//			queue.push(std::make_pair(xx[i], yy[i]));
+//		}
+//	}
+//	delete tile;
+//}
 
 Move GameInteractor::getLastMove() {
     return *this->lastMove;
