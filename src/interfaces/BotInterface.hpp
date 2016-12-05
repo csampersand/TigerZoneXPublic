@@ -14,6 +14,7 @@
 
 class BotInterface : Interface {
 	BotInterface(GameInteractor& gameInteractor): Interface(gameInteractor) {
+        gameInteractor.attachInterface(this);
         myTurn = true;
     };
 	void update();

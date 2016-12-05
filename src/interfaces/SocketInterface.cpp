@@ -15,7 +15,7 @@ using boost::asio::ip::tcp;
 
 SocketInterface::SocketInterface(GameInteractor& gi, std::string server, std::string port, std::string tournamentPassword, std::string teamUsername, std::string teamPassword)
 :Interface(gi), IP(server), PORT(port), TOURNAMENT_PASSWORD(tournamentPassword), TEAM_USERNAME(teamUsername), TEAM_PASSWORD(teamPassword){
-    myTurn = true;
+    gi.attachInterface(this);
     playTournament();
 }
 
@@ -42,7 +42,6 @@ void SocketInterface::connect()
 }
 
 std::string SocketInterface::readLineFromSocket() {
-    boost::asio::streambuf buf;
     boost::asio::read_until(*socket, buf, '\n', error);
     std::istream is(&buf);
     std::string line;
@@ -98,7 +97,6 @@ void SocketInterface::beginRound() {
     rid = stoi(beginRoundMatch[1]);
     roundCount = stoi(beginRoundMatch[2]);
     beginMatch();
-    readLineFromSocket(); //'END OF ROUND <rid> OF <rounds> PLEASE WAIT FOR THE NEXT MATCH'
 }
 
 void SocketInterface::beginMatch() {
@@ -118,7 +116,8 @@ void SocketInterface::beginMatch() {
     std::stringstream ss(deckTilesString);
     std::istream_iterator<std::string> begin(ss);
     std::istream_iterator<std::string> end;
-    std::vector<std::string> deckTilesSequences(end, begin);
+    std::vector<std::string> deckTilesSequences(begin, end);
+    std::reverse(deckTilesSequences.begin(), deckTilesSequences.end());
     
     for (auto i : deckTilesSequences) {
         deckTiles.push_back(GameInteractor::createTileFromSequence(i));
@@ -145,8 +144,6 @@ void SocketInterface::beginMatch() {
     
     this->getInteractor().setGame(*b);
     this->getInteractor().setupGame(startTile, startX, startY, deckTiles);
-    
-    
     
     std::string line4 = readLineFromSocket(); //'MATCH BEGINS IN <timeplan> SECONDS'
 
@@ -188,11 +185,57 @@ void SocketInterface::beginMatch() {
     std::string line6 = readLineFromSocket(); //'GAME <gid> OVER PLAYER <pid> <score> PLAYER <pid> <score>'
 }
 
+std::string SocketInterface::convertTileToString(Tile* tile, int rotations) {
+    this->getInteractor().rotateTile(tile, 4 - rotations);
+    std::string str = "";
+    char n,e,w,s;
+    char specialCode;
+    if(tile->getCenterType() == 'X'){
+        specialCode = 'X';
+    }
+    else if (tile->getPreyType()==Tile::null){
+        specialCode = '-';
+    }
+    else{
+        specialCode = tile->getPreyType();
+    }
+    n = tile->getNType();
+    e = tile->getEType();
+    s = tile->getSType();
+    w = tile->getWType();
+    str += n;
+    str += e;
+    str += s;
+    str += w;
+    str += specialCode;
+    
+    return str;
+}
+
 void SocketInterface::update() {
     if (currentPlayer == pid) {
         Move aiMove = this->getInteractor().getLastMove();
-        // GAME A MOVE 1 PLACE TLTTP AT 0 1 90 TIGER 8
-        this->writeLineToSocket("GAME " + gameId + " MOVE " + moveNumber + " PLACE " + )
+        
+        std::string orientation = "0";
+        if (aiMove.rotations == 3) {
+            orientation = "90";
+        }
+        else if (aiMove.rotations == 2) {
+            orientation = "180";
+        }
+        else if (aiMove.rotations == 1) {
+            orientation = "270";
+        }
+        
+        std::string tigerString = "NONE";
+        if (aiMove.croc) {
+            tigerString = "CROCODILE";
+        }
+        else if (aiMove.tigerZone > 0) {
+            tigerString = "TIGER " + std::to_string(aiMove.tigerZone);
+        }
+        
+        this->writeLineToSocket("GAME " + gameId + " MOVE " + moveNumber + " PLACE " + convertTileToString(aiMove.tile, aiMove.rotations) + " AT " + std::to_string(aiMove.x) + " " + std::to_string(aiMove.y) + " " + orientation + " " + tigerString);
     }
 }
 

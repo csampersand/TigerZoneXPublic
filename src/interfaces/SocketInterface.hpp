@@ -30,6 +30,7 @@ private:
     boost::system::error_code error;
     tcp::socket* socket;
     boost::asio::io_service* io_service;
+    boost::asio::streambuf buf;
     std::string IP;
     std::string PORT;
     std::string TOURNAMENT_PASSWORD;
@@ -47,7 +48,6 @@ private:
     GameInteractor a;
     GameInteractor b;
     std::unordered_map<std::string, GameInteractor> activeGames;
-    bool myTurn;
     
     int numOfRounds;
     int numOfTiles; //Not including starting tile
@@ -76,6 +76,8 @@ public:
     void sendMove();
     
     void endMatch();
+    
+    std::string convertTileToString(Tile* tile, int rotations);
     
     void playTournament();
     
