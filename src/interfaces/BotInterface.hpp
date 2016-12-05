@@ -16,8 +16,8 @@
 class BotInterface : Interface {
 public:
 	BotInterface(GameInteractor& gameInteractor): Interface(gameInteractor) {
-        update();
         myTurn = true;
+        update();
     };
 	void update();
     bool myTurn;
