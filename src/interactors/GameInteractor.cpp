@@ -1439,6 +1439,7 @@ int GameInteractor::checkTigers(){
             return i;
         }
     }
+    return 0;
 }
 
 Move GameInteractor::getLastMove() {
