@@ -13,7 +13,7 @@
 
 void BotInterface::update()
 {
-    if (this->getGame().getTurnIndex() != lastTurnIndex) {
+    if (true) {
         GameInteractor g = this->getInteractor();
         std::vector<Move> moves = g.listPossibleMoves();
 

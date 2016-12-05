@@ -133,6 +133,8 @@ public:
 
 	//AI
 	std::vector<Move> listPossibleMoves();
+    int checkTigers();
+    
 };
 
 #endif /* GameInteractor_hpp */

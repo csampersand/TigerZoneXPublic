@@ -1432,6 +1432,15 @@ void GameInteractor::visitCoord(std::pair<int, int> coord, Tile* tile, int PID, 
 	delete tile;
 }
 
+int GameInteractor::checkTigers(){
+    for (int i = 0; i< 9 ; i++){
+        TileLandmark* land = this->getGame().getBoard()->getTileLandmark(76, 76, i);
+        if(!hasOwner(land)){
+            return i;
+        }
+    }
+}
+
 Move GameInteractor::getLastMove() {
     return *this->lastMove;
 }

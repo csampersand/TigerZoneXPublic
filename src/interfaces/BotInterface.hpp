@@ -16,6 +16,7 @@ class BotInterface : public Interface {
 public:
 	BotInterface(GameInteractor& gameInteractor): Interface(gameInteractor) {
         lastTurnIndex = -1;
+        update();
     };
 	void update();
     bool myTurn;

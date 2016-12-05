@@ -82,3 +82,5 @@ void LogInterface::printMove(Move* move){
     std::cout << "Player " << move->playerId << " played the Tile " << returnTileSequence(move->tile) << " at coordinates " << move->x << ", " << move->y << " with orientation " << move->rotations << " and placed Nothing.";
     }
 }
+
+
