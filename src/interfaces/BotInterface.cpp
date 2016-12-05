@@ -14,8 +14,8 @@
 void BotInterface::update()
 {
     if (myTurn) {
-        GameInteractor g = this->getInteractor();
-        std::vector<Move> moves = g.listPossibleMoves();
+        //GameInteractor g = this->getInteractor();
+        std::vector<Move> moves = listPossibleMoves();
 
         typedef std::chrono::high_resolution_clock myclock;
         myclock::time_point beginning = myclock::now();
@@ -24,14 +24,75 @@ void BotInterface::update()
         auto engine = std::default_random_engine{};
         engine.seed(seed);
         std::shuffle(std::begin(moves), std::end(moves), engine);
+        
+        setMoves(moves);
 
         //pick a random move
-        Move move = moves.front();
+        Move move = getMoves().front();
         //play the move
         if(move.tigerZone == 0)
-            g.playTurn(move.x, move.y, move.rotations, false, move.croc, move.tigerZone);
+            this->getInteractor().playTurn(move.x, move.y, move.rotations, false, move.croc, move.tigerZone);
         else
-            g.playTurn(move.x, move.y, move.rotations, true, move.croc, move.tigerZone);
+            this->getInteractor().playTurn(move.x, move.y, move.rotations, true, move.croc, move.tigerZone);
     }
     myTurn = !myTurn;
+}
+
+void BotInterface::visitCoord(std::pair<int, int> coord, Tile* tile, int PID, std::queue< std::pair<int, int> > queue, bool visited[][153], std::vector<Move> foundMoves) {
+    //Mark current coord as visited
+    visited[coord.first][coord.second] = true;
+    
+    //Possible move location found
+    if (this->getInteractor().getGame()->board->getTileRelation(coord.first, coord.second) == NULL) {
+        //Find any possible moves at coord, given tile
+        Tile* tempTile = new Tile(tile->getNType(), tile->getEType(), tile->getSType(), tile->getWType(), tile->getCenterType(), tile->getPreyType());
+        for (int i = 0; i < 4; ++i) {
+            this->rotateTile(tempTile);
+            if (this->getInteractor().isPlacementValid(coord.first, coord.second, tempTile)) {
+                //Valid tile orientation found
+                //TODO find valid tiger and croc placements per rotation
+                foundMoves.push_back(Move(PID, coord.first, coord.second, tile, i, false, 0));
+            }
+        }
+        delete tempTile;
+    }
+    //Keep searching
+    else {
+        int xx[] = { coord.first, coord.first + 1, coord.first, coord.first - 1 };
+        int yy[] = { coord.second + 1, coord.second, coord.second - 1, coord.second };
+        for (int i = 0; i < 4; ++i) {
+            //if coord is out of bounds or has already been visited do not add to queue
+            if (xx[i] > 152 || xx[i] < 0 || yy[i] > 152 || yy[i] < 0) continue;
+            if (visited[xx[i]][yy[i]]) continue;
+            
+            queue.push(std::make_pair(xx[i], yy[i]));
+        }
+    }
+    delete tile;
+}
+
+
+std::vector<Move> BotInterface::listPossibleMoves() {
+    std::vector<Move> validMoves;
+    std::queue< std::pair<int, int> > queue;
+    bool visited[153][153];
+    
+    //Start BFS
+    queue.push(std::make_pair(76, 76));
+    std::pair<int, int> nextCoord;
+    while (queue.size() > 0) {
+        //Visit the next coord
+        nextCoord = queue.front();
+        queue.pop();
+        visitCoord(nextCoord, this->getInteractor().getGame()->getDeck()->getTiles().front(), this->getInteractor().getGame()->turnIndex, queue, visited, validMoves);
+    }
+    
+    return validMoves;
+}
+
+void BotInterface::setTigerZone(Move move){
+    
+    
+    
+    
 }

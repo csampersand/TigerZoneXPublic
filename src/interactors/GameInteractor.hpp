@@ -21,7 +21,7 @@
 class Interface;
 
 class GameInteractor {
-	void visitCoord(std::pair<int, int>, Tile*, int, std::queue< std::pair<int, int> >, bool[][153], std::vector<Move>);
+	//void visitCoord(std::pair<int, int>, Tile*, int, std::queue< std::pair<int, int> >, bool[][153], std::vector<Move>);
 protected:
     Game* game;
 //private:
@@ -132,7 +132,7 @@ public:
     Move getLastMove();
 
 	//AI
-	std::vector<Move> listPossibleMoves();
+	//std::vector<Move> listPossibleMoves();
 };
 
 #endif /* GameInteractor_hpp */

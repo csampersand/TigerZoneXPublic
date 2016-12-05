@@ -18,6 +18,13 @@ class BotInterface : Interface {
     };
 	void update();
     bool myTurn;
+    std::vector<Move> listPossibleMoves();
+    void visitCoord(std::pair<int, int>, Tile*, int, std::queue< std::pair<int, int> >, bool, std::vector<Move>);
+    void setTigerZone(Move);
+    void setMoves(std::vector<Move>);
+    std::vector<Move> getMoves();
+private:
+    std::vector<Move> moves;
 };
 
 #endif /* BotInterface_hpp */
