@@ -5,7 +5,7 @@
 #include <string>
 
 struct Move {
-    Move();
+    Move(){};
     Move(int playerId, int x, int y, Tile* tile, int rotations, bool croc, int tigerZone);
     int playerId;
     Tile* tile;
