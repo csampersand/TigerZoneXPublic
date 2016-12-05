@@ -19,12 +19,6 @@ SocketInterface::SocketInterface(GameInteractor& gi, std::string server, std::st
     playTournament();
 }
 
-void SocketInterface::update() {
-    if (myTurn) {
-//        writeLineToSocket("GAME B MOVE 2 PLACE LJTJ- AT 0 2 180 TIGER 8");
-    }
-}
-
 boost::system::system_error SocketInterface::getErrorCode()
 {
     return error;
@@ -90,7 +84,7 @@ void SocketInterface::authenticate() {
 
 void SocketInterface::receiveChallenge()
 {
-    std::smatch challengeMatch = regexSearchNextMessage("NEW CHALLENGE (.+) YOU WILL PLAY (.+) MATCH(?:ES)?");
+    std::smatch challengeMatch = regexSearchNextMessage("NEW CHALLENGE (\\d+) YOU WILL PLAY (\\d+) MATCH(?:ES)?");
     std::string cid = challengeMatch[1];
     roundCount = stoi(challengeMatch[2]);
     for (int i = 0; i < roundCount; ++i) {
@@ -100,7 +94,7 @@ void SocketInterface::receiveChallenge()
 }
 
 void SocketInterface::beginRound() {
-    std::smatch beginRoundMatch = regexSearchNextMessage("BEGIN ROUND (.+) OF (.+)");
+    std::smatch beginRoundMatch = regexSearchNextMessage("BEGIN ROUND (\\d+) OF (\\d+)");
     rid = stoi(beginRoundMatch[1]);
     roundCount = stoi(beginRoundMatch[2]);
     beginMatch();
@@ -109,12 +103,13 @@ void SocketInterface::beginRound() {
 
 void SocketInterface::beginMatch() {
     opponent = regexSearchNextMessage("YOUR OPPONENT IS PLAYER (.+)")[1];
-    std::smatch startTileMatch = regexSearchNextMessage("STARTING TILE IS (.+) AT (.+) (.+) (.+)");
+    std::smatch startTileMatch = regexSearchNextMessage("STARTING TILE IS (\\w{4}.) AT (\\d+) (\\d+) (\\d+)");
     std::string startTileSequence = startTileMatch[1];
     int startX = stoi(startTileMatch[2]) + 76;
     int startY = stoi(startTileMatch[3]) + 76;
     std::string startOrientation = startTileMatch[4];
     
+    // TODO clean up this regex
     std::smatch defineDeckMatch = regexSearchNextMessage("THE REMAINING (.+) TILES ARE \\[ (.+) \\]");
     tileCount = stoi(defineDeckMatch[1]);
     std::string deckTilesString = defineDeckMatch[2];
@@ -123,7 +118,7 @@ void SocketInterface::beginMatch() {
     std::stringstream ss(deckTilesString);
     std::istream_iterator<std::string> begin(ss);
     std::istream_iterator<std::string> end;
-    std::vector<std::string> deckTilesSequences(begin, end);
+    std::vector<std::string> deckTilesSequences(end, begin);
     
     for (auto i : deckTilesSequences) {
         deckTiles.push_back(GameInteractor::createTileFromSequence(i));
@@ -140,7 +135,7 @@ void SocketInterface::beginMatch() {
         this->getInteractor().rotateTile(startTile, 2);
     }
     else if (startOrientation == "270") {
-        this->getInteractor().rotateTile(startTile, 3);
+        this->getInteractor().rotateTile(startTile, 1);
     }
     
     Game* a = new Game();
@@ -155,15 +150,21 @@ void SocketInterface::beginMatch() {
     
     std::string line4 = readLineFromSocket(); //'MATCH BEGINS IN <timeplan> SECONDS'
 
-    for (int i = 1; i < tileCount; ++i) {
-        std::string game = regexSearchNextMessage("MAKE YOUR MOVE IN GAME (.)")[1];
-        if (game == "A") {
+    for (int i = 0; i < tileCount; ++i) {
+        if (i > 0) {
+            // Get moves and place
+        }
+        
+        std::smatch moveMatch = regexSearchNextMessage("MAKE YOUR MOVE IN GAME (\\w) WITHIN (\\d+) SECONDS?: MOVE (\\d+) PLACE (\\w{4}.)");
+        gameId = moveMatch[1];
+        moveNumber = moveMatch[3];
+        if (gameId == "A") {
             this->getInteractor().setGame(*a);
         }
         else {
             this->getInteractor().setGame(*b);
         }
-        
+        this->currentPlayer = pid;
         this->getInteractor().notifyInterfaces();
         
         
@@ -185,6 +186,14 @@ void SocketInterface::beginMatch() {
     
     std::string line5 = readLineFromSocket(); //'GAME <gid> OVER PLAYER <pid> <score> PLAYER <pid> <score>'
     std::string line6 = readLineFromSocket(); //'GAME <gid> OVER PLAYER <pid> <score> PLAYER <pid> <score>'
+}
+
+void SocketInterface::update() {
+    if (currentPlayer == pid) {
+        Move aiMove = this->getInteractor().getLastMove();
+        // GAME A MOVE 1 PLACE TLTTP AT 0 1 90 TIGER 8
+        this->writeLineToSocket("GAME " + gameId + " MOVE " + moveNumber + " PLACE " + )
+    }
 }
 
 void SocketInterface::playTournament() {

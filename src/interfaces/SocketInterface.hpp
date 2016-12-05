@@ -21,8 +21,7 @@
 #include "Game.hpp"
 #include "Interface.hpp"
 #include <unordered_map>
-
-using boost::asio::ip::tcp;
+#include "Move.hpp"
 
 using boost::asio::ip::tcp;
 
@@ -42,6 +41,9 @@ private:
     int roundCount;
     int tileCount;
     std::string opponent;
+    std::string currentPlayer;
+    std::string moveNumber;
+    std::string gameId;
     GameInteractor a;
     GameInteractor b;
     std::unordered_map<std::string, GameInteractor> activeGames;
