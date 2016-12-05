@@ -574,6 +574,13 @@ TEST_CASE("Testing the new setupGame function"){
         REQUIRE(gameI->getGame().getBoard()->getTileRelation(40, 60)!=NULL);
     }
     
+    TEST_CASE("TESTING THE print board"){
+        
+        
+        SECTION("testing board tile placement before printing"){
+            REQUIRE(board->getTileRelation(76, 76)!=NULL)
+        }
+    }
     
     
 }
