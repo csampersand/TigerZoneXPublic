@@ -12,13 +12,14 @@
 #include "Interface.hpp"
 #include <stdio.h>
 
-class BotInterface : Interface {
+class BotInterface : public Interface {
+public:
 	BotInterface(GameInteractor& gameInteractor): Interface(gameInteractor) {
-        gameInteractor.attachInterface(this);
-        myTurn = true;
+        lastTurnIndex = -1;
     };
 	void update();
     bool myTurn;
+    int lastTurnIndex;
 };
 
 #endif /* BotInterface_hpp */

@@ -13,7 +13,7 @@
 
 void BotInterface::update()
 {
-    if (myTurn) {
+    if (this->getGame().getTurnIndex() != lastTurnIndex) {
         GameInteractor g = this->getInteractor();
         std::vector<Move> moves = g.listPossibleMoves();
 
@@ -33,5 +33,5 @@ void BotInterface::update()
         else
             g.playTurn(move.x, move.y, move.rotations, true, move.croc, move.tigerZone);
     }
-    myTurn = !myTurn;
+    lastTurnIndex = this->getGame().getTurnIndex();
 }

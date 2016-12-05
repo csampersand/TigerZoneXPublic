@@ -10,6 +10,7 @@
 
 Interface::Interface(GameInteractor& interactor) {
     this->interactor = interactor;
+    this->interactor.attachInterface(this);
 }
 
 Game& Interface::getGame() {

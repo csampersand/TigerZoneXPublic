@@ -15,7 +15,6 @@ using boost::asio::ip::tcp;
 
 SocketInterface::SocketInterface(GameInteractor& gi, std::string server, std::string port, std::string tournamentPassword, std::string teamUsername, std::string teamPassword)
 :Interface(gi), IP(server), PORT(port), TOURNAMENT_PASSWORD(tournamentPassword), TEAM_USERNAME(teamUsername), TEAM_PASSWORD(teamPassword){
-    gi.attachInterface(this);
     playTournament();
 }
 
@@ -109,6 +108,7 @@ void SocketInterface::beginMatch() {
     
     // TODO clean up this regex
     std::smatch defineDeckMatch = regexSearchNextMessage("THE REMAINING (.+) TILES ARE \\[ (.+) \\]");
+    auto test = defineDeckMatch[1];
     tileCount = stoi(defineDeckMatch[1]);
     std::string deckTilesString = defineDeckMatch[2];
     std::vector<Tile*> deckTiles;
@@ -125,7 +125,7 @@ void SocketInterface::beginMatch() {
     
 //    Tile* startTile = GameInteractor::createTileFromSequence(startTileSequence);
     
-    Tile* startTile = GameInteractor::createTileFromSequence("TLTJ-");
+    Tile* startTile = GameInteractor::createTileFromSequence(startTileSequence);
     
     if (startOrientation == "90") {
         this->getInteractor().rotateTile(startTile, 3);
@@ -155,13 +155,13 @@ void SocketInterface::beginMatch() {
         std::smatch moveMatch = regexSearchNextMessage("MAKE YOUR MOVE IN GAME (\\w) WITHIN (\\d+) SECONDS?: MOVE (\\d+) PLACE (\\w{4}.)");
         gameId = moveMatch[1];
         moveNumber = moveMatch[3];
-        if (gameId == "A") {
+        if (gameId == "1") {
             this->getInteractor().setGame(*a);
         }
         else {
             this->getInteractor().setGame(*b);
         }
-        this->currentPlayer = pid;
+        this->lastTurnIndex = this->getGame().getTurnIndex();
         this->getInteractor().notifyInterfaces();
         
         
@@ -213,7 +213,8 @@ std::string SocketInterface::convertTileToString(Tile* tile, int rotations) {
 }
 
 void SocketInterface::update() {
-    if (currentPlayer == pid) {
+    if (this->getGame().getTurnIndex() != lastTurnIndex) {
+        lastTurnIndex = this->getGame().getTurnIndex();
         Move aiMove = this->getInteractor().getLastMove();
         
         std::string orientation = "0";

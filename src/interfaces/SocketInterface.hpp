@@ -41,8 +41,8 @@ private:
     std::string rid;
     int roundCount;
     int tileCount;
+    int lastTurnIndex;
     std::string opponent;
-    std::string currentPlayer;
     std::string moveNumber;
     std::string gameId;
     GameInteractor a;
