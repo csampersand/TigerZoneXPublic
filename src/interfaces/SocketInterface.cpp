@@ -54,14 +54,20 @@ void SocketInterface::writeLineToSocket(std::string message) {
     boost::asio::write(*socket, boost::asio::buffer(message + '\n'), error);
 }
 
-std::smatch SocketInterface::regexSearchNextMessage(const char* expression) {
+std::vector<std::string> SocketInterface::regexSearchNextMessage(const char* expression) {
     std::regex r(expression);
     std::smatch match;
     std::string message = readLineFromSocket();
     
     std::regex_search(message, match, r);
     
-    return match;
+    std::vector<std::string> matchv;
+    
+    for (int i=0; i<match.size(); i++) {
+        matchv.push_back(match[i]);
+    }
+    
+    return matchv;
 }
 
 bool SocketInterface::regexMatchNextMessage(const char* expression) {
@@ -82,7 +88,7 @@ void SocketInterface::authenticate() {
 
 void SocketInterface::receiveChallenge()
 {
-    std::smatch challengeMatch = regexSearchNextMessage("NEW CHALLENGE (\\d+) YOU WILL PLAY (\\d+) MATCH(?:ES)?");
+    std::vector<std::string> challengeMatch = regexSearchNextMessage("NEW CHALLENGE (\\d+) YOU WILL PLAY (\\d+) MATCH(?:ES)?");
     std::string cid = challengeMatch[1];
     roundCount = stoi(challengeMatch[2]);
     for (int i = 0; i < roundCount; ++i) {
@@ -92,7 +98,7 @@ void SocketInterface::receiveChallenge()
 }
 
 void SocketInterface::beginRound() {
-    std::smatch beginRoundMatch = regexSearchNextMessage("BEGIN ROUND (\\d+) OF (\\d+)");
+    std::vector<std::string> beginRoundMatch = regexSearchNextMessage("BEGIN ROUND (\\d+) OF (\\d+)");
     rid = stoi(beginRoundMatch[1]);
     roundCount = stoi(beginRoundMatch[2]);
     beginMatch();
@@ -100,15 +106,14 @@ void SocketInterface::beginRound() {
 
 void SocketInterface::beginMatch() {
     opponent = regexSearchNextMessage("YOUR OPPONENT IS PLAYER (.+)")[1];
-    std::smatch startTileMatch = regexSearchNextMessage("STARTING TILE IS (\\w{4}.) AT (\\d+) (\\d+) (\\d+)");
+    std::vector<std::string> startTileMatch = regexSearchNextMessage("STARTING TILE IS (\\w{4}.) AT (\\d+) (\\d+) (\\d+)");
     std::string startTileSequence = startTileMatch[1];
     int startX = stoi(startTileMatch[2]) + 76;
     int startY = stoi(startTileMatch[3]) + 76;
     std::string startOrientation = startTileMatch[4];
     
     // TODO clean up this regex
-    std::smatch defineDeckMatch = regexSearchNextMessage("THE REMAINING (.+) TILES ARE \\[ (.+) \\]");
-    auto test = defineDeckMatch[1];
+    std::vector<std::string> defineDeckMatch = regexSearchNextMessage("THE REMAINING (.+) TILES ARE \\[ (.+) \\]");
     tileCount = stoi(defineDeckMatch[1]);
     std::string deckTilesString = defineDeckMatch[2];
     std::vector<Tile*> deckTiles;
@@ -152,7 +157,7 @@ void SocketInterface::beginMatch() {
             // Get moves and place
         }
         
-        std::smatch moveMatch = regexSearchNextMessage("MAKE YOUR MOVE IN GAME (\\w) WITHIN (\\d+) SECONDS?: MOVE (\\d+) PLACE (\\w{4}.)");
+        std::vector<std::string> moveMatch = regexSearchNextMessage("MAKE YOUR MOVE IN GAME (\\d) WITHIN (\\d+) SECONDS?: MOVE (\\d+) PLACE (\\w{4}.)");
         gameId = moveMatch[1];
         moveNumber = moveMatch[3];
         if (gameId == "1") {

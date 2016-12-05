@@ -58,7 +58,7 @@ public:
     void writeLineToSocket(std::string message);
     
     boost::system::system_error getErrorCode();
-    std::smatch regexSearchNextMessage(const char*);
+    std::vector<std::string> regexSearchNextMessage(const char*);
     bool regexMatchNextMessage(const char*);
     
     void connect();
