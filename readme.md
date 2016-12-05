@@ -1,9 +1,9 @@
 # TigerZone Group X  
 ## Members  
-* Chris Anderson
-* Connor Elkin
-* Jacob Gonzales
-* Will Hsiung
+* Chris Anderson @csampersand
+* Connor Elkin @connorelkin
+* Jacob Gonzales @JGonzalez731
+* Will Hsiung @hsiungwilliam
 
 ## Architecture and design  
 Our UML Diagram of our architecture, designed as a clean architecture with only inward pointing dependences (Adapters → Use Cases → Entities).
