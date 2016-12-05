@@ -25,10 +25,10 @@ void BotInterface::update()
         engine.seed(seed);
         std::shuffle(std::begin(moves), std::end(moves), engine);
         
-        setMoves(moves);
+       // this->setMoves(moves);
 
         //pick a random move
-        Move move = getMoves().front();
+        Move move = moves.front();
         //play the move
         if(move.tigerZone == 0)
             this->getInteractor().playTurn(move.x, move.y, move.rotations, false, move.croc, move.tigerZone);
@@ -43,7 +43,7 @@ void BotInterface::visitCoord(std::pair<int, int> coord, Tile* tile, int PID, st
     visited[coord.first][coord.second] = true;
     
     //Possible move location found
-    if (this->getInteractor().getGame()->board->getTileRelation(coord.first, coord.second) == NULL) {
+    if (this->getInteractor().getGame().getBoard()->getTileRelation(coord.first, coord.second) == NULL) {
         //Find any possible moves at coord, given tile
         Tile* tempTile = new Tile(tile->getNType(), tile->getEType(), tile->getSType(), tile->getWType(), tile->getCenterType(), tile->getPreyType());
         for (int i = 0; i < 4; ++i) {
@@ -54,7 +54,7 @@ void BotInterface::visitCoord(std::pair<int, int> coord, Tile* tile, int PID, st
                 int tempZone = 0;
                 
                 //looks to see if tile has a den
-                if(tempTile->getCenterType() == centerDen){
+                if(tempTile->getCenterType() == Tile::centerDen){
                     tempZone = 5;
                 }
                 
@@ -93,7 +93,7 @@ void BotInterface::visitCoord(std::pair<int, int> coord, Tile* tile, int PID, st
 std::vector<Move> BotInterface::listPossibleMoves() {
     std::vector<Move> validMoves;
     std::queue< std::pair<int, int> > queue;
-    bool visited[153][153];
+    bool visited[153][153] = {false};
     
     //Start BFS
     queue.push(std::make_pair(76, 76));
@@ -102,7 +102,7 @@ std::vector<Move> BotInterface::listPossibleMoves() {
         //Visit the next coord
         nextCoord = queue.front();
         queue.pop();
-        visitCoord(nextCoord, this->getInteractor().getGame()->getDeck()->getTiles().front(), this->getInteractor().getGame()->turnIndex, queue, visited, validMoves);
+        visitCoord(nextCoord, this->getInteractor().getGame().getDeck()->getTiles().front(), this->getInteractor().getGame().getTurnIndex(), queue, visited, validMoves);
     }
     
     return validMoves;

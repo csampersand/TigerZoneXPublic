@@ -10,16 +10,19 @@
 #define BotInterface_hpp
 
 #include "Interface.hpp"
+#include "Move.hpp"
 #include <stdio.h>
 
 class BotInterface : Interface {
+public:
 	BotInterface(GameInteractor& gameInteractor): Interface(gameInteractor) {
+        update();
         myTurn = true;
     };
 	void update();
     bool myTurn;
     std::vector<Move> listPossibleMoves();
-    void visitCoord(std::pair<int, int>, Tile*, int, std::queue< std::pair<int, int> >, bool, std::vector<Move>);
+    void visitCoord(std::pair<int, int>, Tile*, int, std::queue< std::pair<int, int> >, bool visited[][153], std::vector<Move>);
     void setTigerZone(Move);
     void setMoves(std::vector<Move>);
     std::vector<Move> getMoves();
