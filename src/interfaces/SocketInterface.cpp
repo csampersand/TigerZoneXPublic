@@ -82,6 +82,15 @@ void SocketInterface::authenticate() {
     pid = regexSearchNextMessage("WELCOME (.+) PLEASE WAIT FOR THE NEXT CHALLENGE")[1];
 }
 
+void SocketInterface::gameOver() {
+    std::string tempGameID;
+    tempGameID = regexSearchNextMessage("GAME " + tempGameID + " OVER SEND OUTCOME")[1];
+    if(tempGameID == gameId){
+        sendOutcome();
+    }
+
+}
+
 void SocketInterface::receiveChallenge()
 {
     std::smatch challengeMatch = regexSearchNextMessage("NEW CHALLENGE (\\d+) YOU WILL PLAY (\\d+) MATCH(?:ES)?");
@@ -192,8 +201,13 @@ void SocketInterface::update() {
     if (currentPlayer == pid) {
         Move aiMove = this->getInteractor().getLastMove();
         // GAME A MOVE 1 PLACE TLTTP AT 0 1 90 TIGER 8
-        this->writeLineToSocket("GAME " + gameId + " MOVE " + moveNumber + " PLACE " + )
+        this->writeLineToSocket("GAME " + gameId + " MOVE " + moveNumber + " PLACE " + );
     }
+}
+
+void SocketInterface::sendOutcome(){
+    this->writeLineToSocket("GAME " + gameId + " OVER PLAYER " + pid + " " + this->getInteractor()->getGame()->getPlayer(0)->getScore() + " PLAYER " + pid + this->getInteractor()->getGame()->getPlayer(1))->getScore());
+    
 }
 
 void SocketInterface::playTournament() {

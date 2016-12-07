@@ -63,6 +63,8 @@ public:
     
     void connect();
     
+    void gameOver();
+    
     void authenticate();
     
     void receiveChallenge();
@@ -78,6 +80,8 @@ public:
     void endMatch();
     
     void playTournament();
+    
+    void sendOutcome();
     
 };
 
