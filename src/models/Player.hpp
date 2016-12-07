@@ -17,9 +17,12 @@ public:
     void giveTiger();
     int getCrocodileCount();
     void setCrocodileCount(int);
+    int getGoatCount();
+    void setGoatCount(int);
 private:
 	int tigerCount;
 	int crocodileCount;
+    int goatCount;
 	int score;
 };
 

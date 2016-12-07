@@ -128,7 +128,7 @@ public:
     
     //Game
     // Place the next tile at the given xy-coordinate and place a tiger or croc in the specified zone
-    bool playTurn(int x, int y, int rotations = 0, bool tiger = false, bool croc = false, int zone = 0);
+    bool playTurn(int x, int y, int rotations = 0, bool tiger = false, bool croc = false, bool goat = false, int zone = 0);
     Move getLastMove();
 
 	//AI

@@ -22,6 +22,14 @@ void TileLandmark::setHasCrocodile(bool crocodile) {
     this->hasCrocodile = crocodile;
 }
 
+bool TileLandmark::getHasGoat() {
+    return this->hasCrocodile;
+}
+
+void TileLandmark::setHasGoat(bool goat) {
+    this->hasGoat = goat;
+}
+
 void TileTrail::trailEnd(bool end) {
     trailEnds = end;
 }
@@ -161,4 +169,12 @@ Player* TileLandmark::getTigerOwner() {
 
 void TileLandmark::setTigerOwner(Player* player) {
     this->tigerOwner = player;
+}
+
+Player* TileLandmark::getGoatOwner() {
+    return this->goatOwner;
+}
+
+void TileLandmark::setGoatOwner(Player* player){
+    this->goatOwner = player;
 }

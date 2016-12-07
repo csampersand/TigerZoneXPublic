@@ -1157,6 +1157,7 @@ void GameInteractor::setupPlayers() {
         game->players[i]->setScore(0);
         game->players[i]->setTigerCount(7);
         game->players[i]->setCrocodileCount(2);
+        game->players[i]->setGoatCount(3);
     }
    // std::cout<< "pointer player: " << game->players[0] << " player[0]->getTigerCount " << game->players[0]->getTigerCount() << std::endl;
 }
@@ -1317,7 +1318,7 @@ void GameInteractor::returnTigers(TileLake* lake, std::unordered_map<TileLake*,b
 
 // TODO: This removes the tile from the deck before checking if the placement is allowed. Figure out how to handle that.
 // Actually, figure out how to handle any invalid move. Exceptions?
-bool GameInteractor::playTurn(int x, int y, int rotations, bool tiger, bool croc, int zone) {
+bool GameInteractor::playTurn(int x, int y, int rotations, bool tiger, bool croc, bool goat, int zone) {
     Tile* tile = this->drawTile();
     rotateTile(tile, rotations);
     
@@ -1369,6 +1370,24 @@ bool GameInteractor::playTurn(int x, int y, int rotations, bool tiger, bool croc
             }
         }
     }
+    if (goat){
+        int count[9];
+        for(int u = 0; u<9; u++){
+            TileLandmark* o = game->board->getTileLandmark(x, y, u+1);
+            if(o->getType()=='T'){
+                count[u] = 1;
+            }
+        }
+        for (int i=0; i<9; i++) {
+            TileLandmark* l = game->board->getTileLandmark(x, y, i+1);
+            
+            // TODO: Refactor this to only happen once per unique landmark
+            // TODO: Make sure the tile is of the right type
+            if (count[i]==1 && !l->getHasGoat()) {
+                l->setHasGoat(true);
+                l->setGoatOwner(this->game->getPlayer(0));
+            }
+    }
     
     // Give tigers back for completed landmarks
     // Tigers stay on landmarks
@@ -1382,7 +1401,7 @@ bool GameInteractor::playTurn(int x, int y, int rotations, bool tiger, bool croc
     if (tiger)
         tigerZone = zone;
     
-    this->lastMove = new Move(game->turnIndex, x, y, tile, rotations, croc, tigerZone);
+    this->lastMove = new Move(game->turnIndex, x, y, tile, rotations, croc, goat, tigerZone);
     
     // Move to next player's turn
     game->turnIndex++;

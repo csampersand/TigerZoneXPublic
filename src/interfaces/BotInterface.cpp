@@ -46,7 +46,7 @@ void BotInterface::visitCoord(std::pair<int, int> coord, Tile* tile, int PID, st
     if (this->getInteractor().getGame().getBoard()->getTileRelation(coord.first, coord.second) == NULL) {
         //Find any possible moves at coord, given tile
         Tile* tempTile = new Tile(tile->getNType(), tile->getEType(), tile->getSType(), tile->getWType(), tile->getCenterType(), tile->getPreyType());
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 4; ++i) {
             this->getInteractor().rotateTile(tempTile);
             if (this->getInteractor().isPlacementValid(coord.first, coord.second, tempTile)) {
                 //Valid tile orientation found
@@ -59,16 +59,19 @@ void BotInterface::visitCoord(std::pair<int, int> coord, Tile* tile, int PID, st
                 }
                 
                 //looks for a place to put tigers
-//                GameInteractor gTemp = this->getInteractor();
-//                gTemp.placeTile(coord.first, coord.second, tempTile);
-//                for(int j = 0; j<9; j++){
-//                    TileLandmark* tempLandmark = gTemp.getGame().getBoard()->getTileLandmark(coord.first, coord.second, j);
-//                    if(!gTemp.hasOwner(tempLandmark)){
-//                        tempZone = j;
-//                    }
-//                }
+                GameInteractor gTemp = this->getInteractor();
+                gTemp.placeTile(coord.first, coord.second, tempTile);
+                for(int j = 0; j<9; j++){
+                    TileLandmark* tempLandmark = gTemp.getGame().getBoard()->getTileLandmark(coord.first, coord.second, j);
+                    if(!gTemp.hasOwner(tempLandmark)){
+                        tempZone = j;
+                    }
+                }
                 
-                foundMoves.push_back(Move(PID, coord.first, coord.second, tile, i, false, tempZone));
+                //placeGoat if bot desires
+                
+                
+                foundMoves.push_back(Move(PID, coord.first, coord.second, tile, i, false, false, tempZone));
                 
             }
         }
@@ -86,7 +89,7 @@ void BotInterface::visitCoord(std::pair<int, int> coord, Tile* tile, int PID, st
             queue.push(std::make_pair(xx[i], yy[i]));
         }
     }
-    //delete tile;
+    delete tile;
 }
 
 
@@ -102,13 +105,13 @@ std::vector<Move> BotInterface::listPossibleMoves() {
         //Visit the next coord
         nextCoord = queue.front();
         queue.pop();
-        visitCoord(nextCoord, this->getInteractor().getGame().getDeck()->getTiles().back(), this->getInteractor().getGame().getTurnIndex(), queue, visited, validMoves);
+        visitCoord(nextCoord, this->getInteractor().getGame().getDeck()->getTiles().front(), this->getInteractor().getGame().getTurnIndex(), queue, visited, validMoves);
     }
     
     return validMoves;
 }
 
-//std::vector<Move> BotInterface::listPossibleMoves(){
+//std::vector<Move> BotInterface::listPossibleMoves2(){
 //    std::vector<Move> validMoves;
 //    std::queue< std::pair<int, int> > queue;
 //    bool visited[153][153];

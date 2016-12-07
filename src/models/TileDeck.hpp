@@ -18,7 +18,7 @@ public:
 	int size();
     std::vector<Tile*> getTiles();
     void setTiles(std::vector<Tile*>);
-    Tile* createTileFromSequence(std::string);
+   // Tile* createTileFromSequence(std::string);
     void addTile(Tile*);
     void removeTile();
 private:

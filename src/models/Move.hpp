@@ -6,13 +6,14 @@
 
 struct Move {
     Move();
-    Move(int playerId, int x, int y, Tile* tile, int rotations, bool croc, int tigerZone);
+    Move(int playerId, int x, int y, Tile* tile, int rotations, bool croc, bool goat, int tigerZone);
     int playerId;
     Tile* tile;
     int rotations;
     int x;
     int y;
     bool croc;
+    bool goat;
     int tigerZone;
 };
 

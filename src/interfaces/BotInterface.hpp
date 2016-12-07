@@ -22,6 +22,7 @@ public:
 	void update();
     bool myTurn;
     std::vector<Move> listPossibleMoves();
+    std::vector<Move> listPossibleMoves2();
     void visitCoord(std::pair<int, int>, Tile*, int, std::queue< std::pair<int, int> >, bool visited[][153], std::vector<Move>);
     void setTigerZone(Move);
     void setMoves(std::vector<Move>);

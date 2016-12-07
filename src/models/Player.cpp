@@ -31,3 +31,11 @@ void Player::setTigerCount(int tigerCount) {
 void Player::setCrocodileCount(int crocodileCount) {
     this->crocodileCount = crocodileCount;
 }
+
+void Player::setGoatCount(int goatCount) {
+    this->goatCount = goatCount;
+}
+
+int Player::getGoatCount() {
+    return this->goatCount;
+}

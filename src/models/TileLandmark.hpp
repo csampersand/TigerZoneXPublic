@@ -45,14 +45,21 @@ protected:
     int tigerCount;
     LandmarkType type;
     bool hasCrocodile;
+    bool hasGoat;
+    Player* goatOwner;
 public:
     TileLandmark();
     bool getHasCrocodile();
     void setHasCrocodile(bool);
+    bool getHasGoat();
+    void setHasGoat(bool);
     LandmarkType getType();
     void setType(LandmarkType);
     Player* getTigerOwner();
+    Player* getGoatOwner();
     void setTigerOwner(Player*);
+    void setGoatOwner(Player*);
+    
 };
 
 class TileTrail : public TileLandmark {
