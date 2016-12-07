@@ -1370,6 +1370,7 @@ bool GameInteractor::playTurn(int x, int y, int rotations, bool tiger, bool croc
             }
         }
     }
+    
     if (goat){
         int count[9];
         for(int u = 0; u<9; u++){
@@ -1387,6 +1388,7 @@ bool GameInteractor::playTurn(int x, int y, int rotations, bool tiger, bool croc
                 l->setHasGoat(true);
                 l->setGoatOwner(this->game->getPlayer(0));
             }
+    }
     }
     
     // Give tigers back for completed landmarks
@@ -1465,4 +1467,4 @@ bool GameInteractor::playTurn(int x, int y, int rotations, bool tiger, bool croc
 
 Move GameInteractor::getLastMove() {
     return *this->lastMove;
-}
+};
