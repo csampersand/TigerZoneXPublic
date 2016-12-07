@@ -389,6 +389,14 @@ Tile* GameInteractor::createTileFromTemplate(char tileTemplate) {
                             Tile::centerLake,
                             Tile::preyCroc);
             break;
+        case '$':
+            tile = new Tile(Tile::sideLake,
+                            Tile::sideTrail,
+                            Tile::sideLake,
+                            Tile::sideTrail,
+                            Tile::centerJungle,
+                            Tile::null);
+            break;
             
         default:
             tile = NULL;
@@ -546,7 +554,11 @@ std::vector<Tile*> GameInteractor::defineTiles() {
         //Type @ 2x
         tiles.push_back(createTileFromTemplate('@'));
         tiles.push_back(createTileFromTemplate('@'));
-        
+    
+        //Type $ 2x
+    tiles.push_back(createTileFromTemplate('$'));
+    tiles.push_back(createTileFromTemplate('$'));
+    
         return tiles;
 }
 
